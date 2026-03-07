@@ -1,64 +1,55 @@
 # Gyan Tarang Education & Technology
 
 ## Current State
-Previous version had multiple pages but faced issues: video lectures not loading, logo not showing, OTP not working, and several features were incomplete or broken. App needs a full clean rebuild with all features working correctly.
+- Full-stack Caffeine app with Motoko backend and React frontend
+- Backend has: ContentItem CRUD, UserProfile management, Quiz scores, User roles (admin/user/guest), Groups, Quotes
+- Frontend has multiple pages but has been failing builds due to excessive complexity
+- Previous builds had issues with logo not showing, videos not loading, and too many features causing build failures
 
 ## Requested Changes (Diff)
 
 ### Add
-- Official Gyan Tarang logo (diya + Ashoka chakra design) shown on every page/navbar
-- Hindi slogan: "नहीं आता है? सीखो!" displayed prominently
-- Founder section: Mrityunjay Pandey, BTech CSE
-- Phone OTP verification (simulated) + Email login + Google sign-up (UI flow)
-- Study Tracker: daily study hours log, subject-wise progress, streaks
-- National Digital Library direct link (ndl.gov.in) - opens in new tab
-- BTech All Branches dedicated dashboard panel with subject-wise resources, tools, notes, video lectures
-- NCERT Video Lectures (Class 1-12, Hindi medium) - YouTube official playlist cards, direct open in new tab
-- Admin panel in Dashboard: founder can add PDF links, notes, video links, motivational quotes
-- Handwriting Notes PDF section with official NCERT/government links
-- Previous Year Question Papers with official answer sheets (CBSE, JEE, NEET, UPSC, SSC, Bihar Police)
-- Government Jobs/Scholarships/Schemes with direct apply links
-- Study Groups chat (students can message each other)
-- Student Wellness Hub: Health tips, Time Management timetable builder, Motivation Hub, Study Groups
-- AI Maths Tutor (interactive step-by-step practice problems)
-- AI English Coach (grammar practice, vocabulary, reading comprehension)
-- Competitive Exams: JEE, NEET, UPSC, SSC, Banking, Railway, Bihar Police and 30+ exams
-- Placement Preparation: BTech all branches with official NPTEL/government links
-- Interactive Quizzes with score saving
-- Multi-language support: Hindi/English toggle in navbar
-- UGC/AICTE approved content labels
-- 100% Free Forever badge
+- Official Gyan Tarang logo (diya + Ashoka chakra, saffron/navy colors) in navbar and hero
+- Gyan Mitra AI Doubt Solver -- interactive chat-style doubt clearing for all subjects (simulated AI responses for Maths, Science, English, History, GK, Career)
+- Mock Tests section -- CBSE, JEE, NEET, UPSC, SSC (copyright-free, government-approved style questions)
+- Study Tracker page -- daily study log, weekly chart, streak counter
+- Wellness Hub -- Pomodoro timer, health tips, motivation quotes
+- Admin Panel with category-wise sections: Content Management, User Management, Mock Tests Management, Announcements
+- BTech section with all 8 branches (CSE, ECE, ME, CE, EE, IT, Chemical, Biotech) linking to NPTEL
+- Competitive Exams section (30+ exams with official government links)
+- Government Jobs/Scholarships page with NSP, NCS, official links
 
 ### Modify
-- Rebuild entire app from scratch - clean, fully working codebase
-- All external links open in new tab (target="_blank")
-- Video lectures: no iframe embedding, only direct YouTube/NCERT links as cards
-- Logo: show on all pages, with text fallback if image fails
+- Video Lectures page: replace iframe embeds with direct YouTube link cards (Hindi + English tabs), use NCERT/DIKSHA/NPTEL/SWAYAM official playlists
+- NCERT Books page: class 1-12 with ncert.nic.in direct links
+- Login page: Email + Phone OTP (simulated) + Internet Identity
+- Dashboard: Admin users see glowing Admin Panel card; all users see personalized welcome with quick links
+- Overall color theme: saffron (#FF6B00) primary, deep navy (#0A1628) secondary, white accents
+- Slogan: "नहीं आता है? सीखो!" visible on hero/landing
 
 ### Remove
-- Broken iframe video players
-- Non-functional OTP flows
+- No features removed -- simplify implementation to avoid build failures
+- Remove iframe video embeds that cause "not found" errors
 
 ## Implementation Plan
-1. Generate official logo image (diya + book + Ashoka chakra, saffron/navy/white)
-2. Select components: authorization, blob-storage
-3. Generate Motoko backend: user profiles, content items, quiz scores, study tracker, groups, quotes
-4. Build frontend:
-   - Landing page with hero, features, founder section
-   - Auth page: Email login, Phone OTP (simulated), Google sign-in
-   - Dashboard with Study Tracker, Admin Panel (admin only)
-   - NCERT page: Class 1-12 all subjects, direct YouTube links
-   - Video Lectures page: Class-wise YouTube official playlist cards
-   - Notes & PDF page: Handwriting notes, NCERT PDF links
-   - Previous Year Papers page
-   - BTech Dashboard: All branches (CSE, ECE, ME, CE, EE, IT) with NPTEL resources
-   - Competitive Exams page: 30+ exams with official preparation links
-   - Placement Prep page
-   - Government Jobs/Scholarships page
-   - AI Maths Tutor page
-   - AI English Coach page
-   - Quizzes page
-   - Wellness Hub page
-   - Study Groups page
-   - National Digital Library link integration
-5. Validate, fix errors, deploy
+
+1. Generate official Gyan Tarang logo image (saffron diya + Ashoka chakra)
+2. Build frontend with these pages (keep each page focused and lean):
+   - `/` -- Landing page with hero, features grid, slogan, logo
+   - `/login` -- Auth page (Email, Phone OTP, Internet Identity)
+   - `/dashboard` -- User dashboard with quick access cards, admin card if admin
+   - `/ncert` -- NCERT Books class 1-12, subject links to ncert.nic.in
+   - `/videos` -- Video Lectures with Hindi/English tabs, YouTube direct links
+   - `/notes` -- Notes & PDF section (NCERT, BTech NPTEL, Competitive)
+   - `/pyq` -- Previous Year Question Papers
+   - `/btech` -- BTech section, 8 branches, NPTEL links
+   - `/competitive` -- 30+ Competitive Exams
+   - `/gyan-mitra` -- AI Doubt Solver chat interface
+   - `/mock-tests` -- Mock Tests with subject selection and quiz UI
+   - `/study-tracker` -- Study log, streak, weekly chart
+   - `/wellness` -- Pomodoro, tips, motivation
+   - `/govt-jobs` -- Government jobs, scholarships, schemes
+   - `/admin` -- Admin Panel (Content, Users, Mock Tests, Announcements tabs)
+3. Wire backend APIs: content items (admin), user profiles, quiz scores, user roles
+4. Apply saffron theme throughout, logo in navbar and hero
+5. All external links open in new tab with rel="noopener noreferrer"

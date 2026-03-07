@@ -378,7 +378,7 @@ export default function AuthPage() {
             className="relative inline-block mb-3"
           >
             <img
-              src="/assets/generated/gyan-tarang-logo-transparent.dim_400x200.png"
+              src="/assets/generated/gyan-tarang-logo-transparent.dim_400x400.png"
               alt="Gyan Tarang"
               className="h-20 w-20 mx-auto object-contain"
               style={{ boxShadow: "0 0 40px oklch(0.72 0.18 55 / 0.5)" }}

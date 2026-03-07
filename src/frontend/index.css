@@ -186,4 +186,53 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 25px oklch(0.22 0.12 260 / 0.15);
   }
+
+  /* Float animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Saffron glow */
+  .glow-saffron {
+    box-shadow: 0 0 20px oklch(0.72 0.18 55 / 0.5), 0 0 40px oklch(0.72 0.18 55 / 0.25);
+  }
+
+  /* Green glow */
+  .glow-green {
+    box-shadow: 0 0 20px oklch(0.56 0.18 145 / 0.4), 0 0 40px oklch(0.56 0.18 145 / 0.2);
+  }
+
+  /* Vibrant card hover */
+  .card-vibrant {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-vibrant:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px oklch(0.22 0.12 260 / 0.2), 0 4px 12px oklch(0.72 0.18 55 / 0.15);
+  }
+
+  /* Warm gradient section */
+  .section-gradient-warm {
+    background: linear-gradient(135deg, oklch(0.72 0.18 55 / 0.08) 0%, oklch(0.65 0.15 40 / 0.06) 100%);
+  }
+
+  /* Cool gradient section */
+  .section-gradient-cool {
+    background: linear-gradient(135deg, oklch(0.15 0.10 260) 0%, oklch(0.20 0.12 250) 100%);
+  }
+
+  /* Admin card glow border */
+  .admin-card-glow {
+    background: linear-gradient(135deg, oklch(0.72 0.18 55 / 0.15), oklch(0.65 0.15 40 / 0.10));
+    border: 1.5px solid oklch(0.72 0.18 55 / 0.5);
+    box-shadow: 0 0 20px oklch(0.72 0.18 55 / 0.2), 0 4px 16px oklch(0.72 0.18 55 / 0.12);
+  }
+  .admin-card-glow:hover {
+    border-color: oklch(0.72 0.18 55 / 0.8);
+    box-shadow: 0 0 32px oklch(0.72 0.18 55 / 0.35), 0 8px 24px oklch(0.72 0.18 55 / 0.2);
+  }
 }

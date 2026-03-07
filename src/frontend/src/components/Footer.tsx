@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { BookOpen, Flag, Heart, Mail, Phone, Shield } from "lucide-react";
 
-const LOGO = "/assets/generated/gyan-tarang-logo-transparent.dim_400x200.png";
+const LOGO = "/assets/generated/gyan-tarang-logo-transparent.dim_400x400.png";
 
 export default function Footer() {
   const year = new Date().getFullYear();

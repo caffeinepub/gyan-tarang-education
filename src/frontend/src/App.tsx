@@ -18,9 +18,11 @@ import CompetitiveExamsPage from "./pages/CompetitiveExamsPage";
 import DashboardPage from "./pages/DashboardPage";
 import EnglishCoachPage from "./pages/EnglishCoachPage";
 import GovernmentPage from "./pages/GovernmentPage";
+import GyanMitraPage from "./pages/GyanMitraPage";
 // Pages
 import LandingPage from "./pages/LandingPage";
 import MathsTutorPage from "./pages/MathsTutorPage";
+import MockTestsPage from "./pages/MockTestsPage";
 import NCERTPage from "./pages/NCERTPage";
 import NdlPage from "./pages/NdlPage";
 import NotesPage from "./pages/NotesPage";
@@ -169,6 +171,18 @@ const ndlRoute = createRoute({
   component: NdlPage,
 });
 
+const gyanMitraRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/gyan-mitra",
+  component: GyanMitraPage,
+});
+
+const mockTestsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/mock-tests",
+  component: MockTestsPage,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   authPageRoute,
@@ -190,6 +204,8 @@ const routeTree = rootRoute.addChildren([
   aboutRoute,
   studyTrackerRoute,
   ndlRoute,
+  gyanMitraRoute,
+  mockTestsRoute,
 ]);
 
 const router = createRouter({ routeTree });

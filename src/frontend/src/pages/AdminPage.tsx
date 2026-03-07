@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
 import {
@@ -35,19 +36,31 @@ import {
 } from "@/hooks/useQueries";
 import { useNavigate } from "@tanstack/react-router";
 import {
+  Bell,
   FileText,
+  Info,
   Loader2,
   Plus,
   Quote,
   Settings,
   Shield,
   Trash2,
+  TrendingUp,
   Users,
 } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { toast } from "sonner";
 import type { ContentItem } from "../backend.d.ts";
+
+type AnnouncementType = "info" | "success" | "warning";
+
+interface Announcement {
+  id: string;
+  text: string;
+  type: AnnouncementType;
+  createdAt: string;
+}
 
 export default function AdminPage() {
   const { isLoggedIn, currentUser } = useAppContext();
@@ -79,6 +92,28 @@ export default function AdminPage() {
   // New quote
   const [newQuoteText, setNewQuoteText] = useState("");
 
+  // User role management (local state only)
+  const [userRoles, setUserRoles] = useState<Record<string, string>>({});
+
+  // Announcements (local state)
+  const [announcements, setAnnouncements] = useState<Announcement[]>([
+    {
+      id: "1",
+      text: "Gyan Tarang platform par aapka swagat hai! Naye features aur content ab available hain.",
+      type: "success",
+      createdAt: new Date().toLocaleDateString("hi-IN"),
+    },
+    {
+      id: "2",
+      text: "JEE 2025 ke liye naye study material NCERT se add kiye gaye hain.",
+      type: "info",
+      createdAt: new Date().toLocaleDateString("hi-IN"),
+    },
+  ]);
+  const [newAnnouncementText, setNewAnnouncementText] = useState("");
+  const [newAnnouncementType, setNewAnnouncementType] =
+    useState<AnnouncementType>("info");
+
   if (!isLoggedIn) {
     navigate({ to: "/auth" });
     return null;
@@ -96,7 +131,6 @@ export default function AdminPage() {
     );
   }
 
-  // Check admin role from context (since backend might not be live)
   const isAdminUser = isAdmin || currentUser?.role === "admin";
   if (!isAdminUser && !adminLoading) {
     return (
@@ -167,6 +201,93 @@ export default function AdminPage() {
     });
   };
 
+  const handleSetUserRole = (email: string, role: string) => {
+    setUserRoles((prev) => ({ ...prev, [email]: role }));
+    toast.success(`${email} ka role "${role}" set ho gaya`);
+  };
+
+  const handleAddAnnouncement = () => {
+    if (!newAnnouncementText.trim()) {
+      toast.error("Announcement text likhein");
+      return;
+    }
+    const ann: Announcement = {
+      id: Date.now().toString(),
+      text: newAnnouncementText.trim(),
+      type: newAnnouncementType,
+      createdAt: new Date().toLocaleDateString("hi-IN"),
+    };
+    setAnnouncements((prev) => [ann, ...prev]);
+    setNewAnnouncementText("");
+    toast.success("Announcement add ho gayi!");
+  };
+
+  const handleDeleteAnnouncement = (id: string) => {
+    setAnnouncements((prev) => prev.filter((a) => a.id !== id));
+    toast.success("Announcement delete ho gayi");
+  };
+
+  const announcementColors: Record<
+    AnnouncementType,
+    { bg: string; border: string; text: string; label: string }
+  > = {
+    info: {
+      bg: "oklch(0.45 0.18 220 / 0.1)",
+      border: "oklch(0.45 0.18 220 / 0.4)",
+      text: "oklch(0.35 0.18 220)",
+      label: "Info",
+    },
+    success: {
+      bg: "oklch(0.56 0.18 145 / 0.1)",
+      border: "oklch(0.56 0.18 145 / 0.4)",
+      text: "oklch(0.35 0.18 145)",
+      label: "Success",
+    },
+    warning: {
+      bg: "oklch(0.72 0.18 55 / 0.1)",
+      border: "oklch(0.72 0.18 55 / 0.4)",
+      text: "oklch(0.55 0.18 55)",
+      label: "Warning",
+    },
+  };
+
+  // Stats
+  const totalContent = contentItems?.length ?? 0;
+  const totalUsers = userProfiles?.length ?? 0;
+  const totalQuotes = quotes?.length ?? 0;
+  const totalAnnouncements = announcements.length;
+
+  const statCards = [
+    {
+      label: "Total Content",
+      value: totalContent,
+      icon: FileText,
+      color: "oklch(0.72 0.18 55)",
+      bg: "oklch(0.72 0.18 55 / 0.1)",
+    },
+    {
+      label: "Registered Users",
+      value: totalUsers,
+      icon: Users,
+      color: "oklch(0.45 0.18 220)",
+      bg: "oklch(0.45 0.18 220 / 0.1)",
+    },
+    {
+      label: "Motivational Quotes",
+      value: totalQuotes,
+      icon: Quote,
+      color: "oklch(0.56 0.18 145)",
+      bg: "oklch(0.56 0.18 145 / 0.1)",
+    },
+    {
+      label: "Announcements",
+      value: totalAnnouncements,
+      icon: Bell,
+      color: "oklch(0.65 0.18 30)",
+      bg: "oklch(0.65 0.18 30 / 0.1)",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background page-enter">
       {/* Header */}
@@ -186,7 +307,7 @@ export default function AdminPage() {
               </h1>
             </div>
             <p className="text-white/70">
-              Content Manager, Users aur Quotes manage karein
+              Content Manager, Users, Quotes aur Announcements manage karein
             </p>
             <Badge className="mt-2 bg-saffron/20 border-saffron/30 text-white">
               Admin Access
@@ -196,19 +317,80 @@ export default function AdminPage() {
       </div>
 
       <div className="container mx-auto px-4 py-8">
+        {/* Stats Overview Row */}
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          data-ocid="admin.stats.panel"
+        >
+          {statCards.map((stat) => (
+            <Card
+              key={stat.label}
+              className="border border-border/50 overflow-hidden"
+              style={{ background: stat.bg }}
+            >
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-semibold text-muted-foreground">
+                    {stat.label}
+                  </span>
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: `${stat.color}20` }}
+                  >
+                    <stat.icon
+                      className="h-4 w-4"
+                      style={{ color: stat.color }}
+                    />
+                  </div>
+                </div>
+                <div
+                  className="font-display text-3xl font-black"
+                  style={{ color: stat.color }}
+                >
+                  {stat.value}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </motion.div>
+
+        {/* Tabs */}
         <Tabs defaultValue="content">
-          <TabsList className="grid grid-cols-3 w-full mb-6">
-            <TabsTrigger value="content" className="gap-1.5">
+          <TabsList className="grid grid-cols-4 w-full mb-6 h-auto p-1">
+            <TabsTrigger
+              value="content"
+              className="gap-1.5 py-2 data-[state=active]:shadow-sm"
+              data-ocid="admin.content.tab"
+            >
               <FileText className="h-3.5 w-3.5" />
-              Content
+              <span className="hidden sm:inline">Content</span>
             </TabsTrigger>
-            <TabsTrigger value="users" className="gap-1.5">
+            <TabsTrigger
+              value="users"
+              className="gap-1.5 py-2 data-[state=active]:shadow-sm"
+              data-ocid="admin.users.tab"
+            >
               <Users className="h-3.5 w-3.5" />
-              Users
+              <span className="hidden sm:inline">Users</span>
             </TabsTrigger>
-            <TabsTrigger value="quotes" className="gap-1.5">
+            <TabsTrigger
+              value="quotes"
+              className="gap-1.5 py-2 data-[state=active]:shadow-sm"
+              data-ocid="admin.quotes.tab"
+            >
               <Quote className="h-3.5 w-3.5" />
-              Quotes
+              <span className="hidden sm:inline">Quotes</span>
+            </TabsTrigger>
+            <TabsTrigger
+              value="announcements"
+              className="gap-1.5 py-2 data-[state=active]:shadow-sm"
+              data-ocid="admin.announcements.tab"
+            >
+              <Bell className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Announce</span>
             </TabsTrigger>
           </TabsList>
 
@@ -242,7 +424,7 @@ export default function AdminPage() {
                         value={newUrl}
                         onChange={(e) => setNewUrl(e.target.value)}
                         className="mt-1"
-                        data-ocid="admin.content.input"
+                        data-ocid="admin.content.url.input"
                       />
                     </div>
                   </div>
@@ -250,7 +432,10 @@ export default function AdminPage() {
                     <div>
                       <Label className="text-xs">Type</Label>
                       <Select value={newType} onValueChange={setNewType}>
-                        <SelectTrigger className="mt-1">
+                        <SelectTrigger
+                          className="mt-1"
+                          data-ocid="admin.content.type.select"
+                        >
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -328,7 +513,11 @@ export default function AdminPage() {
                     </div>
                   </div>
                   <Button
-                    className="w-full bg-saffron hover:bg-saffron/90 text-white gap-2"
+                    className="w-full text-white gap-2"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.65 0.15 40))",
+                    }}
                     onClick={handleAddContent}
                     disabled={addingContent}
                     data-ocid="admin.content.add_button"
@@ -346,7 +535,11 @@ export default function AdminPage() {
               {/* Content List */}
               <Card className="border border-border/50">
                 <CardHeader>
-                  <CardTitle className="text-base font-display">
+                  <CardTitle className="text-base font-display flex items-center gap-2">
+                    <TrendingUp
+                      className="h-4 w-4"
+                      style={{ color: "oklch(0.72 0.18 55)" }}
+                    />
                     Content Library ({contentItems?.length || 0})
                   </CardTitle>
                 </CardHeader>
@@ -412,7 +605,10 @@ export default function AdminPage() {
             <Card className="border border-border/50">
               <CardHeader>
                 <CardTitle className="text-base font-display flex items-center gap-2">
-                  <Users className="h-4 w-4" />
+                  <Users
+                    className="h-4 w-4"
+                    style={{ color: "oklch(0.45 0.18 220)" }}
+                  />
                   Registered Users ({userProfiles?.length || 0})
                 </CardTitle>
               </CardHeader>
@@ -432,40 +628,74 @@ export default function AdminPage() {
                             <TableHead>Name</TableHead>
                             <TableHead>Email</TableHead>
                             <TableHead>Class/Branch</TableHead>
-                            <TableHead>Role</TableHead>
-                            <TableHead>Language</TableHead>
+                            <TableHead>Current Role</TableHead>
+                            <TableHead>Set Role</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody data-ocid="admin.users.table">
-                          {userProfiles.map((u, idx) => (
-                            <TableRow
-                              key={u.email}
-                              data-ocid={`admin.users.row.${idx + 1}`}
-                            >
-                              <TableCell className="font-medium text-sm">
-                                {u.name}
-                              </TableCell>
-                              <TableCell className="text-xs text-muted-foreground">
-                                {u.email}
-                              </TableCell>
-                              <TableCell className="text-xs">
-                                {u.classOrBranch}
-                              </TableCell>
-                              <TableCell>
-                                <Badge
-                                  variant={
-                                    u.role === "admin" ? "default" : "outline"
-                                  }
-                                  className="text-[10px]"
-                                >
-                                  {u.role}
-                                </Badge>
-                              </TableCell>
-                              <TableCell className="text-xs">
-                                {u.language}
-                              </TableCell>
-                            </TableRow>
-                          ))}
+                          {userProfiles.map((u, idx) => {
+                            const currentRole = userRoles[u.email] ?? u.role;
+                            return (
+                              <TableRow
+                                key={u.email}
+                                data-ocid={`admin.users.row.${idx + 1}`}
+                              >
+                                <TableCell className="font-medium text-sm">
+                                  {u.name}
+                                </TableCell>
+                                <TableCell className="text-xs text-muted-foreground">
+                                  {u.email}
+                                </TableCell>
+                                <TableCell className="text-xs">
+                                  {u.classOrBranch}
+                                </TableCell>
+                                <TableCell>
+                                  <Badge
+                                    variant={
+                                      currentRole === "admin"
+                                        ? "default"
+                                        : "outline"
+                                    }
+                                    className="text-[10px]"
+                                    style={
+                                      currentRole === "admin"
+                                        ? {
+                                            background: "oklch(0.72 0.18 55)",
+                                            color: "white",
+                                            border: "none",
+                                          }
+                                        : {}
+                                    }
+                                  >
+                                    {currentRole}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell>
+                                  <Select
+                                    value={currentRole}
+                                    onValueChange={(val) =>
+                                      handleSetUserRole(u.email, val)
+                                    }
+                                  >
+                                    <SelectTrigger
+                                      className="h-7 text-xs w-28"
+                                      data-ocid={`admin.users.role.select.${idx + 1}`}
+                                    >
+                                      <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="student">
+                                        student
+                                      </SelectItem>
+                                      <SelectItem value="admin">
+                                        admin
+                                      </SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                </TableCell>
+                              </TableRow>
+                            );
+                          })}
                         </TableBody>
                       </Table>
                     ) : (
@@ -501,7 +731,11 @@ export default function AdminPage() {
                     data-ocid="admin.quotes.textarea"
                   />
                   <Button
-                    className="w-full bg-saffron hover:bg-saffron/90 text-white gap-2"
+                    className="w-full text-white gap-2"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, oklch(0.56 0.18 145), oklch(0.45 0.18 145))",
+                    }}
                     onClick={handleAddQuote}
                     disabled={addingQuote}
                     data-ocid="admin.quotes.add_button"
@@ -557,6 +791,174 @@ export default function AdminPage() {
                 </CardContent>
               </Card>
             </div>
+          </TabsContent>
+
+          {/* ANNOUNCEMENTS TAB */}
+          <TabsContent value="announcements">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Add Announcement Form */}
+              <Card className="border border-border/50">
+                <CardHeader>
+                  <CardTitle className="text-base font-display flex items-center gap-2">
+                    <Bell
+                      className="h-4 w-4"
+                      style={{ color: "oklch(0.65 0.18 30)" }}
+                    />
+                    Naya Announcement Add Karein
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <Label className="text-xs mb-1 block">
+                      Announcement Type
+                    </Label>
+                    <Select
+                      value={newAnnouncementType}
+                      onValueChange={(v) =>
+                        setNewAnnouncementType(v as AnnouncementType)
+                      }
+                    >
+                      <SelectTrigger
+                        className="w-full"
+                        data-ocid="admin.announcement.type.select"
+                      >
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="info">
+                          <div className="flex items-center gap-2">
+                            <Info className="h-3.5 w-3.5 text-blue-500" />
+                            Info
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="success">
+                          <div className="flex items-center gap-2">
+                            <span className="text-green-600 text-xs font-bold">
+                              ✓
+                            </span>
+                            Success
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="warning">
+                          <div className="flex items-center gap-2">
+                            <span className="text-orange-500 text-xs font-bold">
+                              !
+                            </span>
+                            Warning
+                          </div>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label className="text-xs mb-1 block">
+                      Announcement Text
+                    </Label>
+                    <Textarea
+                      placeholder="Students ke liye announcement likhein..."
+                      value={newAnnouncementText}
+                      onChange={(e) => setNewAnnouncementText(e.target.value)}
+                      className="h-24"
+                      data-ocid="admin.announcement.textarea"
+                    />
+                  </div>
+                  <Button
+                    className="w-full text-white gap-2"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, oklch(0.65 0.18 30), oklch(0.72 0.18 55))",
+                    }}
+                    onClick={handleAddAnnouncement}
+                    data-ocid="admin.announcement.add_button"
+                  >
+                    <Bell className="h-4 w-4" />
+                    Publish Announcement
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Announcements List */}
+              <Card className="border border-border/50">
+                <CardHeader>
+                  <CardTitle className="text-base font-display flex items-center justify-between">
+                    <span>Active Announcements ({announcements.length})</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <ScrollArea className="h-80">
+                    {announcements.length > 0 ? (
+                      <div className="p-3 space-y-3">
+                        {announcements.map((ann, idx) => {
+                          const colors = announcementColors[ann.type];
+                          return (
+                            <div
+                              key={ann.id}
+                              className="p-3 rounded-lg"
+                              style={{
+                                background: colors.bg,
+                                border: `1px solid ${colors.border}`,
+                              }}
+                              data-ocid={`admin.announcements.item.${idx + 1}`}
+                            >
+                              <div className="flex items-start justify-between gap-2">
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <Badge
+                                      className="text-[10px] px-1.5 py-0 h-4"
+                                      style={{
+                                        background: colors.bg,
+                                        color: colors.text,
+                                        border: `1px solid ${colors.border}`,
+                                      }}
+                                    >
+                                      {colors.label}
+                                    </Badge>
+                                    <span className="text-[10px] text-muted-foreground">
+                                      {ann.createdAt}
+                                    </span>
+                                  </div>
+                                  <p
+                                    className="text-sm leading-relaxed"
+                                    style={{ color: colors.text }}
+                                  >
+                                    {ann.text}
+                                  </p>
+                                </div>
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  className="h-6 w-6 p-0 text-destructive hover:text-destructive hover:bg-destructive/10 flex-shrink-0"
+                                  onClick={() =>
+                                    handleDeleteAnnouncement(ann.id)
+                                  }
+                                  data-ocid={`admin.announcements.delete_button.${idx + 1}`}
+                                >
+                                  <Trash2 className="h-3 w-3" />
+                                </Button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <div
+                        className="p-8 text-center text-muted-foreground"
+                        data-ocid="admin.announcements.empty_state"
+                      >
+                        <Bell className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                        <p className="text-sm">Koi announcements nahi hain</p>
+                      </div>
+                    )}
+                  </ScrollArea>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Separator className="my-4" />
+            <p className="text-xs text-muted-foreground text-center">
+              Note: Announcements abhi local state mein stored hain. Page
+              refresh karne par reset ho jayenge.
+            </p>
           </TabsContent>
         </Tabs>
       </div>

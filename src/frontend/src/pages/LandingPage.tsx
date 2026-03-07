@@ -132,14 +132,38 @@ export default function LandingPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-hero-pattern py-20 md:py-32">
-        {/* Decorative chakra circles */}
+        {/* Decorative elements - more glowing orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Saffron glow top-right */}
+          <div
+            className="absolute -top-16 right-0 w-96 h-96 rounded-full opacity-40"
+            style={{
+              background:
+                "radial-gradient(circle, oklch(0.72 0.18 55 / 0.35) 0%, transparent 70%)",
+            }}
+          />
+          {/* Green glow bottom-left */}
+          <div
+            className="absolute bottom-0 -left-16 w-80 h-80 rounded-full opacity-30"
+            style={{
+              background:
+                "radial-gradient(circle, oklch(0.56 0.18 145 / 0.3) 0%, transparent 70%)",
+            }}
+          />
+          {/* Chakra pulse circles */}
           <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full border border-saffron/10 animate-wave-pulse" />
           <div
             className="absolute top-1/3 left-1/3 w-96 h-96 rounded-full border border-saffron/6 animate-wave-pulse"
             style={{ animationDelay: "0.5s" }}
           />
-          <div className="absolute top-1/2 right-1/4 w-48 h-48 rounded-full bg-india-green/5 rounded-full" />
+          {/* Extra blue glow center */}
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10"
+            style={{
+              background:
+                "radial-gradient(circle, oklch(0.45 0.18 220 / 0.4) 0%, transparent 70%)",
+            }}
+          />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -158,12 +182,12 @@ export default function LandingPage() {
             >
               <div className="relative">
                 <img
-                  src="/assets/generated/gyan-tarang-logo-transparent.dim_400x200.png"
+                  src="/assets/generated/gyan-tarang-logo-transparent.dim_400x400.png"
                   alt="Gyan Tarang"
                   className="h-24 w-24 rounded-full shadow-2xl animate-float"
                   style={{
                     boxShadow:
-                      "0 0 60px oklch(0.72 0.18 55 / 0.6), 0 0 120px oklch(0.72 0.18 55 / 0.2)",
+                      "0 0 60px oklch(0.72 0.18 55 / 0.6), 0 8px 32px oklch(0.72 0.18 55 / 0.4)",
                   }}
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
@@ -222,7 +246,8 @@ export default function LandingPage() {
                   background:
                     "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.65 0.15 40))",
                   color: "white",
-                  boxShadow: "0 8px 32px oklch(0.72 0.18 55 / 0.4)",
+                  boxShadow:
+                    "0 0 60px oklch(0.72 0.18 55 / 0.6), 0 8px 32px oklch(0.72 0.18 55 / 0.4)",
                 }}
               >
                 नहीं आता है? सीखो!
@@ -304,37 +329,63 @@ export default function LandingPage() {
       <section className="py-14 border-b border-border">
         <div className="container mx-auto px-4">
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4"
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
           >
-            {stats.map((stat, i) => (
-              <motion.div
-                key={stat.value}
-                variants={item}
-                className="text-center"
-              >
-                <div
-                  className="font-display text-4xl md:text-5xl font-black mb-1"
+            {stats.map((stat, i) => {
+              const statColors = [
+                {
+                  bg: "oklch(0.72 0.18 55 / 0.08)",
+                  border: "oklch(0.72 0.18 55 / 0.25)",
+                  grad: "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.65 0.15 40))",
+                },
+                {
+                  bg: "oklch(0.22 0.12 260 / 0.06)",
+                  border: "oklch(0.22 0.12 260 / 0.2)",
+                  grad: "linear-gradient(135deg, oklch(0.22 0.12 260), oklch(0.45 0.18 220))",
+                },
+                {
+                  bg: "oklch(0.56 0.18 145 / 0.08)",
+                  border: "oklch(0.56 0.18 145 / 0.25)",
+                  grad: "linear-gradient(135deg, oklch(0.56 0.18 145), oklch(0.45 0.15 145))",
+                },
+                {
+                  bg: "oklch(0.65 0.18 30 / 0.08)",
+                  border: "oklch(0.65 0.18 30 / 0.25)",
+                  grad: "linear-gradient(135deg, oklch(0.65 0.18 30), oklch(0.72 0.18 55))",
+                },
+              ];
+              const sc = statColors[i % statColors.length];
+              return (
+                <motion.div
+                  key={stat.value}
+                  variants={item}
+                  className="text-center rounded-2xl p-5"
                   style={{
-                    background:
-                      i % 2 === 0
-                        ? "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.65 0.15 40))"
-                        : "linear-gradient(135deg, oklch(0.22 0.12 260), oklch(0.56 0.18 145))",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
+                    background: sc.bg,
+                    border: `1px solid ${sc.border}`,
                   }}
                 >
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground font-body font-semibold">
-                  {t(stat.labelHi, stat.labelEn)}
-                </div>
-              </motion.div>
-            ))}
+                  <div
+                    className="font-display text-4xl md:text-5xl font-black mb-1"
+                    style={{
+                      background: sc.grad,
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground font-body font-semibold">
+                    {t(stat.labelHi, stat.labelEn)}
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -378,12 +429,16 @@ export default function LandingPage() {
                     : "oklch(0.56 0.18 145)";
               return (
                 <motion.div key={feat.titleEn} variants={item}>
-                  <Card className="card-hover border border-border/50 overflow-hidden h-full">
-                    {/* Gradient top border */}
+                  <Card
+                    className="card-vibrant border overflow-hidden h-full"
+                    style={{ borderColor: `${featColor}30` }}
+                  >
+                    {/* Gradient top glow border */}
                     <div
-                      className="h-1"
+                      className="h-1.5"
                       style={{
-                        background: `linear-gradient(90deg, ${featColor}, ${featColor}60)`,
+                        background: `linear-gradient(90deg, ${featColor}, ${featColor}80)`,
+                        boxShadow: `0 1px 8px ${featColor}40`,
                       }}
                     />
                     <CardContent className="p-6">
@@ -620,13 +675,21 @@ export default function LandingPage() {
 
       {/* Final CTA */}
       <section
-        className="py-20"
+        className="py-20 relative overflow-hidden"
         style={{
           background:
             "linear-gradient(135deg, oklch(0.72 0.18 55) 0%, oklch(0.65 0.15 40) 100%)",
         }}
       >
-        <div className="container mx-auto px-4 text-center">
+        {/* Radial gradient overlay for depth */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at 30% 50%, oklch(1 0 0 / 0.12) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, oklch(0.56 0.18 145 / 0.25) 0%, transparent 50%)",
+          }}
+        />
+        <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

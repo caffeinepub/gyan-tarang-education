@@ -41,6 +41,18 @@ const navLinks = [
 
 const moreLinks = [
   {
+    to: "/gyan-mitra",
+    labelHi: "Gyan Mitra AI",
+    labelEn: "Gyan Mitra AI",
+    icon: Brain,
+  },
+  {
+    to: "/mock-tests",
+    labelHi: "Mock Tests",
+    labelEn: "Mock Tests",
+    icon: Trophy,
+  },
+  {
     to: "/maths-tutor",
     labelHi: "AI Maths Tutor",
     labelEn: "AI Maths Tutor",
@@ -85,7 +97,7 @@ const moreLinks = [
   { to: "/pyq", labelHi: "PYQ Papers", labelEn: "PYQ Papers", icon: BookOpen },
 ];
 
-const LOGO = "/assets/generated/gyan-tarang-logo-transparent.dim_400x200.png";
+const LOGO = "/assets/generated/gyan-tarang-logo-transparent.dim_400x400.png";
 
 export default function Navbar() {
   const { t, language, setLanguage, currentUser, setCurrentUser, isLoggedIn } =
@@ -236,16 +248,33 @@ export default function Navbar() {
                     </Link>
                   </DropdownMenuItem>
                   {currentUser?.role === "admin" && (
-                    <DropdownMenuItem asChild>
-                      <Link
-                        to="/admin"
-                        className="flex items-center gap-2"
-                        data-ocid="nav.admin.link"
-                      >
-                        <Shield className="h-4 w-4" />
-                        {t("Admin Panel", "Admin Panel")}
-                      </Link>
-                    </DropdownMenuItem>
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem asChild>
+                        <Link
+                          to="/admin"
+                          className="flex items-center gap-2"
+                          data-ocid="nav.admin.link"
+                        >
+                          <Shield
+                            className="h-4 w-4"
+                            style={{ color: "oklch(0.72 0.18 55)" }}
+                          />
+                          <span className="flex-1">
+                            {t("Admin Panel", "Admin Panel")}
+                          </span>
+                          <span
+                            className="text-[10px] font-bold px-1.5 py-0.5 rounded-full"
+                            style={{
+                              background: "oklch(0.72 0.18 55)",
+                              color: "white",
+                            }}
+                          >
+                            Admin
+                          </span>
+                        </Link>
+                      </DropdownMenuItem>
+                    </>
                   )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
@@ -329,6 +358,34 @@ export default function Navbar() {
                   >
                     {t("Dashboard", "Dashboard")}
                   </Link>
+                  {currentUser?.role === "admin" && (
+                    <Link
+                      to="/admin"
+                      className="flex items-center gap-2 px-3 py-2 text-sm rounded-md font-semibold"
+                      onClick={() => setMenuOpen(false)}
+                      style={{
+                        background: "oklch(0.72 0.18 55 / 0.15)",
+                        color: "oklch(0.90 0.10 55)",
+                        border: "1px solid oklch(0.72 0.18 55 / 0.3)",
+                      }}
+                      data-ocid="nav.mobile.admin.link"
+                    >
+                      <Shield
+                        className="h-4 w-4"
+                        style={{ color: "oklch(0.72 0.18 55)" }}
+                      />
+                      {t("Admin Panel", "Admin Panel")}
+                      <span
+                        className="ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded-full"
+                        style={{
+                          background: "oklch(0.72 0.18 55)",
+                          color: "white",
+                        }}
+                      >
+                        Admin
+                      </span>
+                    </Link>
+                  )}
                   <button
                     type="button"
                     onClick={handleLogout}

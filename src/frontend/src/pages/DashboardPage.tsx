@@ -126,7 +126,25 @@ const navItems = [
     ocid: "dashboard.govt.link",
   },
   {
-    to: "/ncert",
+    to: "/gyan-mitra",
+    icon: Brain,
+    labelHi: "Gyan Mitra AI",
+    labelEn: "Gyan Mitra AI",
+    color: "saffron",
+    badge: "AI Doubt Solver",
+    ocid: "dashboard.gyan_mitra.link",
+  },
+  {
+    to: "/mock-tests",
+    icon: Trophy,
+    labelHi: "Mock Tests",
+    labelEn: "Mock Tests",
+    color: "india-green",
+    badge: "8 Exams",
+    ocid: "dashboard.mock_tests.link",
+  },
+  {
+    to: "/notes",
     icon: FileText,
     labelHi: "Notes & PDFs",
     labelEn: "Notes & PDFs",
@@ -181,21 +199,8 @@ export default function DashboardPage() {
     return null;
   }
 
-  const allItems =
-    currentUser?.role === "admin"
-      ? [
-          ...navItems,
-          {
-            to: "/admin",
-            icon: Settings,
-            labelHi: "Admin Panel",
-            labelEn: "Admin Panel",
-            color: "navy",
-            badge: "Admin Only",
-            ocid: "dashboard.admin.link",
-          },
-        ]
-      : navItems;
+  const isAdmin = currentUser?.role === "admin";
+  const allItems = navItems;
 
   return (
     <div className="min-h-screen bg-background page-enter">
@@ -294,6 +299,97 @@ export default function DashboardPage() {
 
       {/* Quick Nav Grid */}
       <div className="container mx-auto px-4 py-8">
+        {/* Admin Tools Section - Only for Admin Users */}
+        {isAdmin && (
+          <motion.div
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="mb-8"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div
+                className="flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold"
+                style={{
+                  background: "oklch(0.72 0.18 55 / 0.15)",
+                  border: "1px solid oklch(0.72 0.18 55 / 0.35)",
+                  color: "oklch(0.55 0.18 55)",
+                }}
+              >
+                <Shield className="h-3 w-3" />
+                Admin Tools
+              </div>
+              <div
+                className="h-px flex-1"
+                style={{ background: "oklch(0.72 0.18 55 / 0.2)" }}
+              />
+            </div>
+            <Link to="/admin" data-ocid="dashboard.admin.link">
+              <div className="admin-card-glow cursor-pointer rounded-2xl p-5 transition-all duration-300 group">
+                <div className="flex items-center gap-5">
+                  <div
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.65 0.15 40))",
+                      boxShadow: "0 4px 20px oklch(0.72 0.18 55 / 0.4)",
+                    }}
+                  >
+                    <Shield className="h-8 w-8 text-white" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="font-display text-lg font-black text-foreground">
+                        Admin Panel
+                      </h3>
+                      <Badge
+                        className="text-[10px] font-bold"
+                        style={{
+                          background: "oklch(0.72 0.18 55)",
+                          color: "white",
+                          border: "none",
+                        }}
+                      >
+                        Admin Only
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      {t(
+                        "Content, Users & Announcements manage karein",
+                        "Manage Content, Users & Announcements",
+                      )}
+                    </p>
+                    <div className="flex items-center gap-4 mt-2">
+                      <span
+                        className="text-xs"
+                        style={{ color: "oklch(0.56 0.18 145)" }}
+                      >
+                        ● Content Manager
+                      </span>
+                      <span
+                        className="text-xs"
+                        style={{ color: "oklch(0.45 0.18 220)" }}
+                      >
+                        ● User Management
+                      </span>
+                      <span
+                        className="text-xs"
+                        style={{ color: "oklch(0.72 0.18 55)" }}
+                      >
+                        ● Announcements
+                      </span>
+                    </div>
+                  </div>
+                  <ChevronRight
+                    className="h-6 w-6 flex-shrink-0 group-hover:translate-x-1 transition-transform"
+                    style={{ color: "oklch(0.72 0.18 55)" }}
+                  />
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        )}
+
         <div className="flex items-center justify-between mb-6">
           <h2 className="font-display text-xl font-bold text-foreground">
             {t("सभी Sections", "All Sections")}
@@ -310,7 +406,7 @@ export default function DashboardPage() {
           {allItems.map((navItem) => (
             <motion.div key={navItem.to + navItem.labelEn} variants={item}>
               <Link to={navItem.to} data-ocid={navItem.ocid}>
-                <Card className="card-hover cursor-pointer border border-border/50 h-full group">
+                <Card className="card-vibrant cursor-pointer border border-border/50 h-full group">
                   <CardContent className="p-4 flex flex-col gap-3">
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110"
