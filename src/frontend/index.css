@@ -36,13 +36,13 @@
     /* Green:   oklch(0.56 0.18 145) ≈ #138808 */
     /* White:   oklch(0.99 0 0) */
 
-    --background: 0.98 0.005 80;
+    --background: 0.97 0.015 65;
     --foreground: 0.15 0.02 260;
 
-    --card: 1 0 0;
+    --card: 0.99 0.01 70;
     --card-foreground: 0.18 0.02 260;
 
-    --popover: 1 0 0;
+    --popover: 0.99 0.01 70;
     --popover-foreground: 0.18 0.02 260;
 
     /* Primary = Saffron */
@@ -53,7 +53,7 @@
     --secondary: 0.22 0.12 260;
     --secondary-foreground: 0.99 0 0;
 
-    --muted: 0.95 0.01 80;
+    --muted: 0.94 0.02 65;
     --muted-foreground: 0.50 0.04 260;
 
     /* Accent = India Green */
@@ -63,8 +63,8 @@
     --destructive: 0.57 0.25 27;
     --destructive-foreground: 0.99 0 0;
 
-    --border: 0.88 0.02 260;
-    --input: 0.90 0.01 80;
+    --border: 0.86 0.03 65;
+    --input: 0.93 0.015 65;
     --ring: 0.72 0.18 55;
 
     /* Chart colors */
@@ -130,11 +130,12 @@
     background: linear-gradient(135deg, oklch(0.72 0.18 55) 0%, oklch(0.99 0 0) 50%, oklch(0.56 0.18 145) 100%);
   }
   .bg-hero-pattern {
-    background-color: oklch(0.18 0.10 260);
+    background-color: oklch(0.14 0.12 260);
     background-image: 
-      radial-gradient(circle at 20% 20%, oklch(0.72 0.18 55 / 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, oklch(0.56 0.18 145 / 0.12) 0%, transparent 50%),
-      radial-gradient(circle at 60% 10%, oklch(0.72 0.18 55 / 0.08) 0%, transparent 40%);
+      radial-gradient(circle at 15% 25%, oklch(0.72 0.18 55 / 0.25) 0%, transparent 50%),
+      radial-gradient(circle at 85% 75%, oklch(0.56 0.18 145 / 0.20) 0%, transparent 50%),
+      radial-gradient(circle at 65% 10%, oklch(0.72 0.18 55 / 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 40% 90%, oklch(0.56 0.18 145 / 0.12) 0%, transparent 35%);
   }
 
   /* Government-approved badge style */
@@ -184,7 +185,7 @@
   }
   .card-hover:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px oklch(0.22 0.12 260 / 0.15);
+    box-shadow: 0 8px 30px oklch(0.22 0.12 260 / 0.18), 0 2px 8px oklch(0.72 0.18 55 / 0.12);
   }
 
   /* Float animation */
@@ -217,12 +218,17 @@
 
   /* Warm gradient section */
   .section-gradient-warm {
-    background: linear-gradient(135deg, oklch(0.72 0.18 55 / 0.08) 0%, oklch(0.65 0.15 40 / 0.06) 100%);
+    background: linear-gradient(135deg, oklch(0.72 0.18 55 / 0.12) 0%, oklch(0.65 0.15 40 / 0.08) 100%);
   }
 
   /* Cool gradient section */
   .section-gradient-cool {
-    background: linear-gradient(135deg, oklch(0.15 0.10 260) 0%, oklch(0.20 0.12 250) 100%);
+    background: linear-gradient(135deg, oklch(0.13 0.12 260) 0%, oklch(0.18 0.14 255) 100%);
+  }
+
+  /* Warm page background for internal pages */
+  .bg-page-warm {
+    background: linear-gradient(160deg, oklch(0.97 0.02 65) 0%, oklch(0.95 0.025 60) 50%, oklch(0.97 0.015 75) 100%);
   }
 
   /* Admin card glow border */
