@@ -13,6 +13,7 @@ import { AppProvider } from "./context/AppContext";
 import AboutPage from "./pages/AboutPage";
 import AdminPage from "./pages/AdminPage";
 import AuthPage from "./pages/AuthPage";
+import BtechPage from "./pages/BtechPage";
 import CompetitiveExamsPage from "./pages/CompetitiveExamsPage";
 import DashboardPage from "./pages/DashboardPage";
 import EnglishCoachPage from "./pages/EnglishCoachPage";
@@ -21,9 +22,13 @@ import GovernmentPage from "./pages/GovernmentPage";
 import LandingPage from "./pages/LandingPage";
 import MathsTutorPage from "./pages/MathsTutorPage";
 import NCERTPage from "./pages/NCERTPage";
+import NdlPage from "./pages/NdlPage";
+import NotesPage from "./pages/NotesPage";
 import PlacementPage from "./pages/PlacementPage";
+import PreviousYearPage from "./pages/PreviousYearPage";
 import QuizzesPage from "./pages/QuizzesPage";
 import StudyGroupsPage from "./pages/StudyGroupsPage";
+import StudyTrackerPage from "./pages/StudyTrackerPage";
 import VideoLecturesPage from "./pages/VideoLecturesPage";
 import WellnessPage from "./pages/WellnessPage";
 
@@ -134,12 +139,45 @@ const aboutRoute = createRoute({
   component: AboutPage,
 });
 
+const notesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/notes",
+  component: NotesPage,
+});
+
+const pyqRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/pyq",
+  component: PreviousYearPage,
+});
+
+const btechRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/btech",
+  component: BtechPage,
+});
+
+const studyTrackerRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/study-tracker",
+  component: StudyTrackerPage,
+});
+
+const ndlRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/ndl",
+  component: NdlPage,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   authPageRoute,
   dashboardRoute,
   ncertRoute,
   videosRoute,
+  notesRoute,
+  pyqRoute,
+  btechRoute,
   competitiveRoute,
   placementRoute,
   mathsTutorRoute,
@@ -150,6 +188,8 @@ const routeTree = rootRoute.addChildren([
   governmentRoute,
   adminRoute,
   aboutRoute,
+  studyTrackerRoute,
+  ndlRoute,
 ]);
 
 const router = createRouter({ routeTree });

@@ -12,6 +12,7 @@ import {
 import { useAppContext } from "@/context/AppContext";
 import { Link, useNavigate } from "@tanstack/react-router";
 import {
+  BarChart3,
   BookOpen,
   Brain,
   Briefcase,
@@ -21,6 +22,7 @@ import {
   FileText,
   GraduationCap,
   Heart,
+  Library,
   MessageSquare,
   Settings,
   Shield,
@@ -133,13 +135,31 @@ const navItems = [
     ocid: "dashboard.notes.link",
   },
   {
-    to: "/about",
+    to: "/btech",
     icon: GraduationCap,
-    labelHi: "About Us",
-    labelEn: "About Us",
+    labelHi: "BTech Dashboard",
+    labelEn: "BTech Dashboard",
+    color: "navy",
+    badge: "All Branches",
+    ocid: "dashboard.btech.link",
+  },
+  {
+    to: "/study-tracker",
+    icon: BarChart3,
+    labelHi: "Study Tracker",
+    labelEn: "Study Tracker",
+    color: "india-green",
+    badge: "Track Progress",
+    ocid: "dashboard.tracker.link",
+  },
+  {
+    to: "/ndl",
+    icon: Library,
+    labelHi: "Digital Library",
+    labelEn: "Digital Library",
     color: "saffron",
-    badge: "Founder",
-    ocid: "dashboard.about.link",
+    badge: "70 Lakh+ Books",
+    ocid: "dashboard.ndl.link",
   },
 ];
 

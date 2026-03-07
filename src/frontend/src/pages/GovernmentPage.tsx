@@ -5,9 +5,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAppContext } from "@/context/AppContext";
 import {
   Award,
+  BookOpen,
   Briefcase,
   Building2,
   Clock,
+  Download,
   ExternalLink,
   GraduationCap,
   Shield,
@@ -130,6 +132,81 @@ const scholarships = [
   },
 ];
 
+const examBooks = [
+  {
+    title: "JEE Main & Advanced Syllabus PDF",
+    org: "NTA / JEE Advanced",
+    desc: "Official JEE Main & Advanced complete syllabus PDF - Physics, Chemistry, Maths",
+    url: "https://nta.ac.in/Download/Syllabus",
+    badge: "JEE",
+    urgent: true,
+  },
+  {
+    title: "NEET UG Syllabus PDF",
+    org: "NTA",
+    desc: "Official NEET UG full syllabus - Biology, Physics, Chemistry for MBBS/BDS prep",
+    url: "https://nta.ac.in/Download/Syllabus",
+    badge: "NEET",
+    urgent: true,
+  },
+  {
+    title: "UPSC Civil Services Syllabus",
+    org: "UPSC",
+    desc: "Official UPSC IAS Prelims & Mains complete syllabus and exam notification PDF",
+    url: "https://upsc.gov.in/examinations/exam-notification",
+    badge: "UPSC IAS",
+    urgent: false,
+  },
+  {
+    title: "SSC CGL Syllabus PDF",
+    org: "Staff Selection Commission",
+    desc: "SSC CGL Tier 1 & Tier 2 official syllabus with exam pattern and marking scheme",
+    url: "https://ssc.nic.in/Portal/Syllabus",
+    badge: "SSC CGL",
+    urgent: false,
+  },
+  {
+    title: "RRB NTPC Syllabus PDF",
+    org: "Indian Railways / RRB",
+    desc: "Railway NTPC CBT Stage 1 & Stage 2 official syllabus PDF with exam pattern",
+    url: "https://indianrailways.gov.in",
+    badge: "RRB NTPC",
+    urgent: false,
+  },
+  {
+    title: "IBPS PO/Clerk Syllabus PDF",
+    org: "IBPS",
+    desc: "IBPS PO & Clerk official exam syllabus - Prelims & Mains detailed pattern",
+    url: "https://ibps.in",
+    badge: "IBPS Banking",
+    urgent: false,
+  },
+  {
+    title: "Bihar Police Constable Syllabus",
+    org: "CSBC Bihar",
+    desc: "CSBC Bihar Police Constable official syllabus and exam pattern PDF",
+    url: "https://csbc.bih.nic.in",
+    badge: "Bihar Police",
+    urgent: true,
+  },
+  {
+    title: "BPSC Exam Syllabus PDF",
+    org: "Bihar Public Service Commission",
+    desc: "BPSC 69th/70th Prelims & Mains official syllabus and exam notification PDF",
+    url: "https://bpsc.bih.nic.in",
+    badge: "BPSC",
+    urgent: false,
+  },
+  {
+    title: "NCERT Full Textbooks Set (Free)",
+    org: "NCERT - Ministry of Education",
+    desc: "Download NCERT textbooks for Class 1-12 All Subjects - Free, Official, Copyright-Free",
+    url: "https://ncert.nic.in/textbook.php",
+    badge: "Class 1-12",
+    urgent: false,
+  },
+];
+
 const schemes = [
   {
     title: "PM Free Silai Machine Yojana",
@@ -217,18 +294,38 @@ export default function GovernmentPage() {
 
       <div className="container mx-auto px-4 py-8">
         <Tabs defaultValue="jobs">
-          <TabsList className="grid grid-cols-3 w-full mb-6">
-            <TabsTrigger value="jobs" className="gap-1.5">
+          <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full mb-6 h-auto gap-1">
+            <TabsTrigger
+              value="jobs"
+              className="gap-1.5 text-xs py-2"
+              data-ocid="govt.jobs.tab"
+            >
               <Briefcase className="h-3.5 w-3.5" />
               {t("Jobs", "Jobs")}
             </TabsTrigger>
-            <TabsTrigger value="scholarships" className="gap-1.5">
+            <TabsTrigger
+              value="scholarships"
+              className="gap-1.5 text-xs py-2"
+              data-ocid="govt.scholarships.tab"
+            >
               <GraduationCap className="h-3.5 w-3.5" />
               {t("Scholarships", "Scholarships")}
             </TabsTrigger>
-            <TabsTrigger value="schemes" className="gap-1.5">
+            <TabsTrigger
+              value="schemes"
+              className="gap-1.5 text-xs py-2"
+              data-ocid="govt.schemes.tab"
+            >
               <Award className="h-3.5 w-3.5" />
               {t("Schemes", "Schemes")}
+            </TabsTrigger>
+            <TabsTrigger
+              value="exambooks"
+              className="gap-1.5 text-xs py-2"
+              data-ocid="govt.exambooks.tab"
+            >
+              <BookOpen className="h-3.5 w-3.5" />
+              {t("Exam Books", "Exam Books")}
             </TabsTrigger>
           </TabsList>
 
@@ -270,13 +367,16 @@ export default function GovernmentPage() {
                         </span>
                         <Button
                           size="sm"
-                          variant="outline"
-                          className="text-xs gap-1.5 h-7"
+                          className="text-xs gap-1.5 h-8 font-semibold"
+                          style={{
+                            background: "oklch(0.56 0.18 145)",
+                            color: "white",
+                          }}
                           onClick={() => window.open(job.url, "_blank")}
                           data-ocid="govt.link"
                         >
                           <ExternalLink className="h-3 w-3" />
-                          Apply
+                          Direct Apply
                         </Button>
                       </div>
                     </CardContent>
@@ -466,6 +566,139 @@ export default function GovernmentPage() {
                 >
                   <ExternalLink className="h-4 w-4" />
                   Visit India.gov.in
+                </Button>
+              </div>
+            </div>
+          </TabsContent>
+
+          {/* EXAM BOOKS & NOTES TAB */}
+          <TabsContent value="exambooks">
+            <div
+              className="mb-5 p-4 rounded-xl border flex items-start gap-3"
+              style={{
+                borderColor: "oklch(0.22 0.12 260 / 0.3)",
+                background: "oklch(0.22 0.12 260 / 0.04)",
+              }}
+            >
+              <BookOpen
+                className="h-4 w-4 shrink-0 mt-0.5"
+                style={{ color: "oklch(0.22 0.12 260)" }}
+              />
+              <div>
+                <p className="text-sm font-semibold text-foreground mb-0.5">
+                  Official Exam Syllabus & Study Books - Free PDF
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Sabhi syllabus aur books official government websites (NTA,
+                  UPSC, SSC, RRB, CSBC, NCERT) se hain - 100% free aur
+                  authentic.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {examBooks.map((book, idx) => (
+                <motion.div
+                  key={book.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.07 }}
+                >
+                  <Card className="card-hover border border-border/50 h-full overflow-hidden flex flex-col">
+                    {book.urgent && <div className="h-1.5 bg-destructive" />}
+                    {!book.urgent && (
+                      <div
+                        className="h-1.5"
+                        style={{ background: "oklch(0.22 0.12 260)" }}
+                      />
+                    )}
+                    <CardContent className="p-4 flex flex-col flex-1">
+                      <div className="flex items-start gap-3 mb-2">
+                        <div
+                          className="flex-shrink-0 p-2 rounded-lg mt-0.5"
+                          style={{ background: "oklch(0.22 0.12 260 / 0.1)" }}
+                        >
+                          <BookOpen
+                            className="h-4 w-4"
+                            style={{ color: "oklch(0.22 0.12 260)" }}
+                          />
+                        </div>
+                        <div className="min-w-0">
+                          <h3 className="font-display font-bold text-sm text-foreground leading-tight mb-1">
+                            {book.title}
+                          </h3>
+                          <p className="text-xs text-muted-foreground">
+                            {book.org}
+                          </p>
+                        </div>
+                      </div>
+                      <p className="text-xs text-foreground/75 mb-3 flex-1 line-clamp-2">
+                        {book.desc}
+                      </p>
+                      <div className="flex items-center gap-1.5 mb-3 flex-wrap">
+                        <Badge
+                          className="text-[10px] px-1.5 py-0"
+                          style={{
+                            background: "oklch(0.72 0.18 55 / 0.1)",
+                            color: "oklch(0.55 0.18 55)",
+                            borderColor: "oklch(0.72 0.18 55 / 0.3)",
+                          }}
+                        >
+                          {book.badge}
+                        </Badge>
+                        <span className="badge-govt text-[10px]">
+                          ✅ Official PDF
+                        </span>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button
+                          className="flex-1 gap-1.5 text-xs font-semibold"
+                          size="sm"
+                          style={{
+                            background: "oklch(0.22 0.12 260)",
+                            color: "white",
+                          }}
+                          onClick={() => window.open(book.url, "_blank")}
+                          data-ocid={`govt.exambook.button.${idx + 1}`}
+                        >
+                          <ExternalLink className="h-3.5 w-3.5" />
+                          {t("Direct Open", "Direct Open")}
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="gap-1 text-xs"
+                          onClick={() => window.open(book.url, "_blank")}
+                          data-ocid={`govt.exambook.download.${idx + 1}`}
+                        >
+                          <Download className="h-3.5 w-3.5" />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* NTA Official */}
+            <div className="mt-6 p-5 rounded-2xl border border-border/50 bg-muted/30">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                  <h3 className="font-display font-bold text-foreground mb-1">
+                    📚 NTA.ac.in - National Testing Agency
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    JEE, NEET, CUET sab exams ke official syllabus aur study
+                    material
+                  </p>
+                </div>
+                <Button
+                  className="gap-2 font-semibold"
+                  style={{ background: "oklch(0.22 0.12 260)", color: "white" }}
+                  onClick={() => window.open("https://nta.ac.in", "_blank")}
+                  data-ocid="govt.nta.button"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Visit NTA Portal
                 </Button>
               </div>
             </div>

@@ -11,6 +11,8 @@ import {
   Brain,
   Briefcase,
   CheckCircle,
+  ClipboardList,
+  FileText,
   Globe,
   GraduationCap,
   Heart,
@@ -71,6 +73,24 @@ const features = [
     descHi: "BTech सभी branches के लिए placement preparation",
     descEn: "Placement prep for all BTech branches",
     color: "navy",
+  },
+  {
+    icon: FileText,
+    titleHi: "Handwriting Notes PDF",
+    titleEn: "Handwriting Notes PDF",
+    descHi: "Class 1 से BTech तक सभी Notes PDF - सरकारी अनुमोदित",
+    descEn: "All Notes PDF from Class 1 to BTech - government approved",
+    color: "saffron",
+  },
+  {
+    icon: ClipboardList,
+    titleHi: "Previous Year Papers",
+    titleEn: "Previous Year Papers",
+    descHi:
+      "CBSE, JEE, NEET, UPSC, SSC - सभी previous year papers with answers",
+    descEn:
+      "CBSE, JEE, NEET, UPSC, SSC - all previous year papers with answers",
+    color: "india-green",
   },
 ];
 
@@ -138,11 +158,31 @@ export default function LandingPage() {
             >
               <div className="relative">
                 <img
-                  src="/assets/generated/gyan-tarang-logo-transparent.dim_200x200.png"
+                  src="/assets/generated/gyan-tarang-logo-transparent.dim_400x200.png"
                   alt="Gyan Tarang"
                   className="h-24 w-24 rounded-full shadow-2xl animate-float"
-                  style={{ boxShadow: "0 0 40px oklch(0.72 0.18 55 / 0.4)" }}
+                  style={{
+                    boxShadow:
+                      "0 0 60px oklch(0.72 0.18 55 / 0.6), 0 0 120px oklch(0.72 0.18 55 / 0.2)",
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                    const sibling = e.currentTarget
+                      .nextElementSibling as HTMLElement | null;
+                    if (sibling) sibling.style.display = "flex";
+                  }}
                 />
+                <div
+                  style={{
+                    display: "none",
+                    background:
+                      "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.22 0.12 260))",
+                    boxShadow: "0 0 60px oklch(0.72 0.18 55 / 0.6)",
+                  }}
+                  className="h-24 w-24 rounded-full items-center justify-center text-white font-black text-3xl font-display animate-float"
+                >
+                  GT
+                </div>
               </div>
             </motion.div>
 
@@ -152,7 +192,16 @@ export default function LandingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              <h1 className="font-display text-4xl md:text-6xl font-black text-white mb-2 leading-tight">
+              <h1
+                className="font-display text-4xl md:text-6xl font-black mb-2 leading-tight"
+                style={{
+                  background:
+                    "linear-gradient(135deg, oklch(0.72 0.18 55) 0%, oklch(0.90 0.05 55) 40%, oklch(0.56 0.18 145) 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
                 Gyan Tarang
               </h1>
               <div className="text-sm md:text-base font-ui text-white/50 tracking-widest uppercase mb-4">
@@ -218,7 +267,14 @@ export default function LandingPage() {
               <Link to="/auth">
                 <Button
                   size="lg"
-                  className="font-semibold px-8 py-6 text-base rounded-xl gap-2 bg-saffron hover:bg-saffron/90 text-white shadow-saffron"
+                  className="font-semibold px-8 py-6 text-base rounded-xl gap-2 text-white transition-all duration-300"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.65 0.15 40))",
+                    boxShadow:
+                      "0 0 30px oklch(0.72 0.18 55 / 0.5), 0 4px 20px oklch(0.72 0.18 55 / 0.3)",
+                  }}
+                  data-ocid="landing.primary_button"
                 >
                   <Zap className="h-5 w-5" />
                   {t("अभी शुरू करें", "Start Learning Now")}
@@ -229,7 +285,11 @@ export default function LandingPage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="font-semibold px-8 py-6 text-base rounded-xl gap-2 border-white/30 text-white hover:bg-white/10"
+                  className="font-semibold px-8 py-6 text-base rounded-xl gap-2 border-white/30 text-white hover:bg-white/10 transition-all duration-300"
+                  style={{
+                    boxShadow: "0 0 20px oklch(1 0 0 / 0.05)",
+                  }}
+                  data-ocid="landing.secondary_button"
                 >
                   <BookOpen className="h-5 w-5" />
                   {t("NCERT Books देखें", "Browse NCERT Books")}
@@ -241,28 +301,36 @@ export default function LandingPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 border-b border-border">
+      <section className="py-14 border-b border-border">
         <div className="container mx-auto px-4">
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
           >
-            {stats.map((stat) => (
+            {stats.map((stat, i) => (
               <motion.div
                 key={stat.value}
                 variants={item}
                 className="text-center"
               >
                 <div
-                  className="font-display text-3xl md:text-4xl font-black"
-                  style={{ color: "oklch(0.72 0.18 55)" }}
+                  className="font-display text-4xl md:text-5xl font-black mb-1"
+                  style={{
+                    background:
+                      i % 2 === 0
+                        ? "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.65 0.15 40))"
+                        : "linear-gradient(135deg, oklch(0.22 0.12 260), oklch(0.56 0.18 145))",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
                 >
                   {stat.value}
                 </div>
-                <div className="text-sm text-muted-foreground font-body mt-1">
+                <div className="text-sm text-muted-foreground font-body font-semibold">
                   {t(stat.labelHi, stat.labelEn)}
                 </div>
               </motion.div>
@@ -301,53 +369,139 @@ export default function LandingPage() {
             whileInView="show"
             viewport={{ once: true }}
           >
-            {features.map((feat) => (
-              <motion.div key={feat.titleEn} variants={item}>
-                <Card className="card-hover border border-border/50 overflow-hidden h-full">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div
-                        className="p-3 rounded-xl flex-shrink-0"
-                        style={{
-                          background:
-                            feat.color === "saffron"
-                              ? "oklch(0.72 0.18 55 / 0.12)"
-                              : feat.color === "navy"
-                                ? "oklch(0.22 0.12 260 / 0.12)"
-                                : "oklch(0.56 0.18 145 / 0.12)",
-                        }}
-                      >
-                        <feat.icon
-                          className="h-6 w-6"
+            {features.map((feat) => {
+              const featColor =
+                feat.color === "saffron"
+                  ? "oklch(0.72 0.18 55)"
+                  : feat.color === "navy"
+                    ? "oklch(0.22 0.12 260)"
+                    : "oklch(0.56 0.18 145)";
+              return (
+                <motion.div key={feat.titleEn} variants={item}>
+                  <Card className="card-hover border border-border/50 overflow-hidden h-full">
+                    {/* Gradient top border */}
+                    <div
+                      className="h-1"
+                      style={{
+                        background: `linear-gradient(90deg, ${featColor}, ${featColor}60)`,
+                      }}
+                    />
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div
+                          className="p-3 rounded-xl flex-shrink-0 shadow-sm"
                           style={{
-                            color:
-                              feat.color === "saffron"
-                                ? "oklch(0.72 0.18 55)"
-                                : feat.color === "navy"
-                                  ? "oklch(0.22 0.12 260)"
-                                  : "oklch(0.56 0.18 145)",
+                            background: `${featColor}15`,
+                            border: `1px solid ${featColor}30`,
                           }}
-                        />
+                        >
+                          <feat.icon
+                            className="h-6 w-6"
+                            style={{ color: featColor }}
+                          />
+                        </div>
+                        <div>
+                          <h3 className="font-display font-bold text-foreground mb-1">
+                            {t(feat.titleHi, feat.titleEn)}
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            {t(feat.descHi, feat.descEn)}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-display font-bold text-foreground mb-1">
-                          {t(feat.titleHi, feat.titleEn)}
-                        </h3>
-                        <p className="text-sm text-muted-foreground">
-                          {t(feat.descHi, feat.descEn)}
-                        </p>
+                      <div className="mt-4 flex items-center justify-between">
+                        <span className="badge-govt">
+                          ✅ {t("सरकारी अनुमोदित", "Govt Approved")}
+                        </span>
+                        <span className="text-xs text-muted-foreground font-semibold">
+                          100% Free
+                        </span>
                       </div>
-                    </div>
-                    <div className="mt-4 flex items-center justify-between">
-                      <span className="badge-govt">
-                        ✅ {t("सरकारी अनुमोदित", "Govt Approved")}
-                      </span>
-                      <span className="text-xs text-muted-foreground">
-                        100% Free
-                      </span>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Why Gyan Tarang? */}
+      <section className="py-16" style={{ background: "oklch(0.18 0.10 260)" }}>
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="font-display text-3xl md:text-4xl font-black text-white mb-3">
+              {t("Gyan Tarang क्यों?", "Why Gyan Tarang?")}
+            </h2>
+            <p className="text-white/60 max-w-xl mx-auto">
+              {t(
+                "तीन मजबूत स्तंभ जो हमें अलग बनाते हैं",
+                "Three strong pillars that make us different",
+              )}
+            </p>
+          </motion.div>
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            {[
+              {
+                emoji: "🏛️",
+                titleHi: "Government Approved",
+                titleEn: "Government Approved",
+                descHi:
+                  "NCERT, NPTEL, UGC, AICTE — सभी सरकारी sources से content",
+                descEn:
+                  "Content from NCERT, NPTEL, UGC, AICTE official sources",
+                color: "oklch(0.72 0.18 55)",
+              },
+              {
+                emoji: "🆓",
+                titleHi: "100% Free Forever",
+                titleEn: "100% Free Forever",
+                descHi:
+                  "कोई subscription नहीं, कोई hidden charge नहीं — हमेशा के लिए मुफ्त",
+                descEn: "No subscription, no hidden charges — free forever",
+                color: "oklch(0.56 0.18 145)",
+              },
+              {
+                emoji: "🇮🇳",
+                titleHi: "Made in India",
+                titleEn: "Made in India",
+                descHi: "भारतीय छात्रों के लिए, भारत में बना — NEP 2020 compliant",
+                descEn:
+                  "Built in India for Indian students — NEP 2020 compliant",
+                color: "oklch(0.45 0.18 220)",
+              },
+            ].map((pillar) => (
+              <motion.div key={pillar.titleEn} variants={item}>
+                <div
+                  className="p-6 rounded-2xl text-center border transition-all hover:scale-105"
+                  style={{
+                    background: `${pillar.color}12`,
+                    borderColor: `${pillar.color}30`,
+                    boxShadow: `0 8px 32px ${pillar.color}10`,
+                  }}
+                >
+                  <div className="text-5xl mb-4">{pillar.emoji}</div>
+                  <h3
+                    className="font-display text-xl font-black mb-2"
+                    style={{ color: pillar.color }}
+                  >
+                    {t(pillar.titleHi, pillar.titleEn)}
+                  </h3>
+                  <p className="text-white/65 text-sm leading-relaxed">
+                    {t(pillar.descHi, pillar.descEn)}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -355,7 +509,7 @@ export default function LandingPage() {
       </section>
 
       {/* NEP 2020 Section */}
-      <section className="py-16" style={{ background: "oklch(0.18 0.10 260)" }}>
+      <section className="py-16" style={{ background: "oklch(0.22 0.10 260)" }}>
         <div className="container mx-auto px-4">
           <motion.div
             className="max-w-3xl mx-auto text-center"
@@ -490,7 +644,13 @@ export default function LandingPage() {
             <Link to="/auth">
               <Button
                 size="lg"
-                className="bg-white text-saffron hover:bg-white/90 font-bold px-10 py-6 text-base rounded-xl gap-2 shadow-lg"
+                className="bg-white font-bold px-10 py-6 text-base rounded-xl gap-2 transition-all duration-300"
+                style={{
+                  color: "oklch(0.72 0.18 55)",
+                  boxShadow:
+                    "0 0 40px oklch(1 0 0 / 0.4), 0 8px 32px oklch(0 0 0 / 0.2)",
+                }}
+                data-ocid="landing.cta.primary_button"
               >
                 <GraduationCap className="h-5 w-5" />
                 {t("अभी Register करें - Free!", "Register Now - Free!")}

@@ -10,27 +10,82 @@ import {
 import { useAppContext } from "@/context/AppContext";
 import { Link, useNavigate } from "@tanstack/react-router";
 import {
+  BarChart3,
+  BookOpen,
+  Brain,
   ChevronDown,
   Globe,
   GraduationCap,
+  Heart,
+  Library,
   LogOut,
   Menu,
+  Shield,
+  Trophy,
   User,
+  Users,
+  Video,
   X,
 } from "lucide-react";
 import { useState } from "react";
 
 const navLinks = [
-  { to: "/ncert", labelHi: "NCERT Books", labelEn: "NCERT Books" },
-  { to: "/videos", labelHi: "Video Lectures", labelEn: "Video Lectures" },
-  {
-    to: "/competitive",
-    labelHi: "Competitive Exams",
-    labelEn: "Competitive Exams",
-  },
+  { to: "/ncert", labelHi: "NCERT", labelEn: "NCERT" },
+  { to: "/videos", labelHi: "Videos", labelEn: "Videos" },
+  { to: "/notes", labelHi: "Notes", labelEn: "Notes" },
+  { to: "/competitive", labelHi: "Exams", labelEn: "Exams" },
   { to: "/quizzes", labelHi: "Quizzes", labelEn: "Quizzes" },
   { to: "/government", labelHi: "Govt Jobs", labelEn: "Govt Jobs" },
+  { to: "/btech", labelHi: "BTech", labelEn: "BTech" },
 ];
+
+const moreLinks = [
+  {
+    to: "/maths-tutor",
+    labelHi: "AI Maths Tutor",
+    labelEn: "AI Maths Tutor",
+    icon: Brain,
+  },
+  {
+    to: "/english-coach",
+    labelHi: "AI English Coach",
+    labelEn: "AI English Coach",
+    icon: Globe,
+  },
+  {
+    to: "/placement",
+    labelHi: "Placement Prep",
+    labelEn: "Placement Prep",
+    icon: GraduationCap,
+  },
+  {
+    to: "/wellness",
+    labelHi: "Wellness Hub",
+    labelEn: "Wellness Hub",
+    icon: Heart,
+  },
+  {
+    to: "/study-groups",
+    labelHi: "Study Groups",
+    labelEn: "Study Groups",
+    icon: Users,
+  },
+  {
+    to: "/study-tracker",
+    labelHi: "Study Tracker",
+    labelEn: "Study Tracker",
+    icon: BarChart3,
+  },
+  {
+    to: "/ndl",
+    labelHi: "Digital Library",
+    labelEn: "Digital Library",
+    icon: Library,
+  },
+  { to: "/pyq", labelHi: "PYQ Papers", labelEn: "PYQ Papers", icon: BookOpen },
+];
+
+const LOGO = "/assets/generated/gyan-tarang-logo-transparent.dim_400x200.png";
 
 export default function Navbar() {
   const { t, language, setLanguage, currentUser, setCurrentUser, isLoggedIn } =
@@ -45,7 +100,7 @@ export default function Navbar() {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full border-b border-border/50 bg-navy shadow-navy/20 shadow-sm"
+      className="sticky top-0 z-50 w-full border-b border-border/50 shadow-sm"
       style={{ background: "oklch(0.18 0.10 260)" }}
     >
       <div className="tricolor-bar" />
@@ -58,10 +113,22 @@ export default function Navbar() {
             data-ocid="nav.home.link"
           >
             <img
-              src="/assets/generated/gyan-tarang-logo-transparent.dim_200x200.png"
+              src={LOGO}
               alt="Gyan Tarang Logo"
-              className="h-10 w-10 rounded-full object-cover"
+              className="h-10 w-20 object-contain"
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+                const sibling = e.currentTarget
+                  .nextElementSibling as HTMLElement | null;
+                if (sibling) sibling.style.display = "flex";
+              }}
             />
+            <div
+              style={{ display: "none", background: "oklch(0.72 0.18 55)" }}
+              className="h-10 w-10 rounded-full items-center justify-center text-white font-black text-sm"
+            >
+              GT
+            </div>
             <div className="hidden sm:block">
               <div className="font-display text-sm font-bold text-white leading-tight">
                 Gyan Tarang
@@ -73,17 +140,44 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
                 className="px-3 py-1.5 rounded-md text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 transition-colors"
-                data-ocid="nav.home.link"
+                data-ocid={`nav.${link.to.slice(1)}.link`}
               >
                 {t(link.labelHi, link.labelEn)}
               </Link>
             ))}
+            {/* More dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-white/80 hover:text-white hover:bg-white/10 gap-1 text-sm font-medium px-3 py-1.5"
+                >
+                  {t("और", "More")}
+                  <ChevronDown className="h-3 w-3 opacity-60" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-52">
+                {moreLinks.map((link) => (
+                  <DropdownMenuItem key={link.to} asChild>
+                    <Link
+                      to={link.to}
+                      className="flex items-center gap-2"
+                      data-ocid={`nav.more.${link.to.slice(1)}.link`}
+                    >
+                      <link.icon className="h-4 w-4 text-muted-foreground" />
+                      {t(link.labelHi, link.labelEn)}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
 
           {/* Right controls */}
@@ -109,7 +203,10 @@ export default function Navbar() {
                     size="sm"
                     className="text-white/90 hover:text-white hover:bg-white/10 gap-1.5"
                   >
-                    <div className="h-7 w-7 rounded-full bg-saffron flex items-center justify-center text-xs font-bold text-white">
+                    <div
+                      className="h-7 w-7 rounded-full flex items-center justify-center text-xs font-bold text-white"
+                      style={{ background: "oklch(0.72 0.18 55)" }}
+                    >
                       {currentUser?.name?.charAt(0)?.toUpperCase() || "U"}
                     </div>
                     <span className="hidden sm:block text-xs max-w-[80px] truncate">
@@ -118,17 +215,34 @@ export default function Navbar() {
                     <ChevronDown className="h-3 w-3 opacity-60" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuContent align="end" className="w-52">
                   <DropdownMenuItem asChild>
-                    <Link to="/dashboard" className="flex items-center gap-2">
+                    <Link
+                      to="/dashboard"
+                      className="flex items-center gap-2"
+                      data-ocid="nav.dashboard.link"
+                    >
                       <User className="h-4 w-4" />
                       {t("Dashboard", "Dashboard")}
                     </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link
+                      to="/study-tracker"
+                      className="flex items-center gap-2"
+                    >
+                      <BarChart3 className="h-4 w-4" />
+                      {t("Study Tracker", "Study Tracker")}
+                    </Link>
+                  </DropdownMenuItem>
                   {currentUser?.role === "admin" && (
                     <DropdownMenuItem asChild>
-                      <Link to="/admin" className="flex items-center gap-2">
-                        <GraduationCap className="h-4 w-4" />
+                      <Link
+                        to="/admin"
+                        className="flex items-center gap-2"
+                        data-ocid="nav.admin.link"
+                      >
+                        <Shield className="h-4 w-4" />
                         {t("Admin Panel", "Admin Panel")}
                       </Link>
                     </DropdownMenuItem>
@@ -137,6 +251,7 @@ export default function Navbar() {
                   <DropdownMenuItem
                     onClick={handleLogout}
                     className="text-destructive focus:text-destructive"
+                    data-ocid="nav.logout.button"
                   >
                     <LogOut className="h-4 w-4 mr-2" />
                     {t("Logout", "Logout")}
@@ -146,7 +261,8 @@ export default function Navbar() {
             ) : (
               <Button
                 size="sm"
-                className="bg-saffron hover:bg-saffron/90 text-white font-semibold shadow-saffron text-xs px-3"
+                className="text-white font-semibold shadow-saffron text-xs px-3"
+                style={{ background: "oklch(0.72 0.18 55)" }}
                 onClick={() => navigate({ to: "/auth" })}
                 data-ocid="nav.login.button"
               >
@@ -158,8 +274,9 @@ export default function Navbar() {
             <Button
               variant="ghost"
               size="sm"
-              className="lg:hidden text-white/80 hover:text-white hover:bg-white/10"
+              className="xl:hidden text-white/80 hover:text-white hover:bg-white/10"
               onClick={() => setMenuOpen(!menuOpen)}
+              data-ocid="nav.menu.toggle"
             >
               {menuOpen ? (
                 <X className="h-5 w-5" />
@@ -174,7 +291,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div
-          className="lg:hidden border-t border-white/10 bg-navy"
+          className="xl:hidden border-t border-white/10"
           style={{ background: "oklch(0.16 0.09 260)" }}
         >
           <nav className="container mx-auto px-4 py-3 flex flex-col gap-1">
@@ -184,7 +301,20 @@ export default function Navbar() {
                 to={link.to}
                 className="px-3 py-2 rounded-md text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 transition-colors"
                 onClick={() => setMenuOpen(false)}
+                data-ocid={`nav.mobile.${link.to.slice(1)}.link`}
               >
+                {t(link.labelHi, link.labelEn)}
+              </Link>
+            ))}
+            <div className="border-t border-white/10 my-1" />
+            {moreLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                onClick={() => setMenuOpen(false)}
+              >
+                <link.icon className="h-4 w-4" />
                 {t(link.labelHi, link.labelEn)}
               </Link>
             ))}
@@ -195,6 +325,7 @@ export default function Navbar() {
                     to="/dashboard"
                     className="block px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-md"
                     onClick={() => setMenuOpen(false)}
+                    data-ocid="nav.mobile.dashboard.link"
                   >
                     {t("Dashboard", "Dashboard")}
                   </Link>
@@ -202,6 +333,7 @@ export default function Navbar() {
                     type="button"
                     onClick={handleLogout}
                     className="w-full text-left px-3 py-2 text-sm text-red-400 hover:bg-white/10 rounded-md"
+                    data-ocid="nav.mobile.logout.button"
                   >
                     {t("Logout", "Logout")}
                   </button>
@@ -210,7 +342,9 @@ export default function Navbar() {
                 <Link to="/auth" onClick={() => setMenuOpen(false)}>
                   <Button
                     size="sm"
-                    className="w-full bg-saffron hover:bg-saffron/90 text-white"
+                    className="w-full text-white"
+                    style={{ background: "oklch(0.72 0.18 55)" }}
+                    data-ocid="nav.mobile.login.button"
                   >
                     {t("Login करें", "Login")}
                   </Button>

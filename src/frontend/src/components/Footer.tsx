@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { BookOpen, Flag, Heart, Mail, Phone, Shield } from "lucide-react";
 
+const LOGO = "/assets/generated/gyan-tarang-logo-transparent.dim_400x200.png";
+
 export default function Footer() {
   const year = new Date().getFullYear();
   const hostname =
@@ -18,10 +20,22 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <img
-                src="/assets/generated/gyan-tarang-logo-transparent.dim_200x200.png"
+                src={LOGO}
                 alt="Gyan Tarang"
-                className="h-12 w-12 rounded-full"
+                className="h-12 w-24 object-contain"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                  const sibling = e.currentTarget
+                    .nextElementSibling as HTMLElement | null;
+                  if (sibling) sibling.style.display = "flex";
+                }}
               />
+              <div
+                style={{ display: "none", background: "oklch(0.72 0.18 55)" }}
+                className="h-12 w-12 rounded-full items-center justify-center text-white font-black"
+              >
+                GT
+              </div>
               <div>
                 <div className="font-display text-xl font-bold text-white">
                   Gyan Tarang
@@ -44,6 +58,7 @@ export default function Footer() {
               <span className="badge-made-in-india">🇮🇳 Made in India</span>
               <span className="badge-govt">✅ NEP 2020 Compliant</span>
               <span className="badge-govt">🔒 Fully Secure</span>
+              <span className="badge-govt">🎓 UGC/AICTE Approved</span>
             </div>
             <div className="text-xs text-white/40 space-y-1">
               <div className="flex items-center gap-1.5">
@@ -68,7 +83,7 @@ export default function Footer() {
                   to="/ncert"
                   className="hover:text-white transition-colors"
                 >
-                  NCERT Books
+                  NCERT Books (Class 1-12)
                 </Link>
               </li>
               <li>
@@ -81,10 +96,18 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  to="/btech"
+                  className="hover:text-white transition-colors"
+                >
+                  BTech All Branches
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/competitive"
                   className="hover:text-white transition-colors"
                 >
-                  Competitive Exams
+                  Competitive Exams (50+)
                 </Link>
               </li>
               <li>
@@ -92,7 +115,7 @@ export default function Footer() {
                   to="/placement"
                   className="hover:text-white transition-colors"
                 >
-                  Placement Prep
+                  Placement Preparation
                 </Link>
               </li>
               <li>
@@ -121,10 +144,39 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  to="/study-tracker"
+                  className="hover:text-white transition-colors"
+                >
+                  Study Tracker
+                </Link>
+              </li>
+              <li>
+                <Link to="/ndl" className="hover:text-white transition-colors">
+                  National Digital Library
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/government"
                   className="hover:text-white transition-colors"
                 >
                   Govt Jobs & Scholarships
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/maths-tutor"
+                  className="hover:text-white transition-colors"
+                >
+                  AI Maths Tutor
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/english-coach"
+                  className="hover:text-white transition-colors"
+                >
+                  AI English Coach
                 </Link>
               </li>
             </ul>
@@ -150,12 +202,28 @@ export default function Footer() {
             <div className="text-xs text-white/40 space-y-2">
               <div className="flex items-center gap-2">
                 <Mail className="h-3 w-3" />
-                <span>info@gyantatang.edu.in</span>
+                <span>info@gyantarang.edu.in</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-3 w-3" />
                 <span>Helpline: 1800-XXX-XXXX (Toll Free)</span>
               </div>
+            </div>
+
+            {/* NEP 2020 */}
+            <div
+              className="mt-4 p-3 rounded-xl border border-white/10"
+              style={{
+                background: "oklch(0.56 0.18 145 / 0.1)",
+                borderColor: "oklch(0.56 0.18 145 / 0.25)",
+              }}
+            >
+              <p className="text-xs text-white/80 font-semibold mb-1">
+                🏛️ NEP 2020 Compliant
+              </p>
+              <p className="text-[10px] text-white/50">
+                National Education Policy 2020 guidelines followed
+              </p>
             </div>
           </div>
         </div>
@@ -179,7 +247,7 @@ export default function Footer() {
               className="h-3 w-3"
               style={{ color: "oklch(0.72 0.18 55)" }}
             />
-            <span>Bharat Ka Education Platform</span>
+            <span>Bharat Ka #1 Free Education Platform</span>
           </div>
         </div>
       </div>
