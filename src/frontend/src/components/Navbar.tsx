@@ -112,8 +112,11 @@ export default function Navbar() {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full border-b border-border/50 shadow-sm"
-      style={{ background: "oklch(0.18 0.10 260)" }}
+      className="sticky top-0 z-50 w-full shadow-sm"
+      style={{
+        background: "white",
+        borderBottom: "2px solid oklch(0.65 0.22 350 / 0.2)",
+      }}
     >
       <div className="tricolor-bar" />
       <div className="container mx-auto px-4">
@@ -136,16 +139,16 @@ export default function Navbar() {
               }}
             />
             <div
-              style={{ display: "none", background: "oklch(0.72 0.18 55)" }}
+              style={{ display: "none", background: "oklch(0.65 0.22 350)" }}
               className="h-10 w-10 rounded-full items-center justify-center text-white font-black text-sm"
             >
               GT
             </div>
             <div className="hidden sm:block">
-              <div className="font-display text-sm font-bold text-white leading-tight">
+              <div className="font-display text-sm font-bold text-gray-900 leading-tight">
                 Gyan Tarang
               </div>
-              <div className="text-[10px] text-white/60 leading-tight">
+              <div className="text-[10px] text-gray-500 leading-tight">
                 Education & Technology
               </div>
             </div>
@@ -157,7 +160,7 @@ export default function Navbar() {
               <Link
                 key={link.to}
                 to={link.to}
-                className="px-3 py-1.5 rounded-md text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                className="px-3 py-1.5 rounded-md text-sm font-medium text-gray-700 hover:text-pink-600 hover:bg-pink-50 transition-colors"
                 data-ocid={`nav.${link.to.slice(1)}.link`}
               >
                 {t(link.labelHi, link.labelEn)}
@@ -169,7 +172,7 @@ export default function Navbar() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-white/80 hover:text-white hover:bg-white/10 gap-1 text-sm font-medium px-3 py-1.5"
+                  className="text-gray-700 hover:text-pink-600 hover:bg-pink-50 gap-1 text-sm font-medium px-3 py-1.5"
                 >
                   {t("और", "More")}
                   <ChevronDown className="h-3 w-3 opacity-60" />
@@ -198,7 +201,7 @@ export default function Navbar() {
             <Button
               variant="ghost"
               size="sm"
-              className="text-white/80 hover:text-white hover:bg-white/10 gap-1.5 text-xs"
+              className="text-gray-600 hover:text-pink-600 hover:bg-pink-50 gap-1.5 text-xs"
               onClick={() => setLanguage(language === "hi" ? "en" : "hi")}
               data-ocid="nav.language.select"
             >
@@ -213,11 +216,11 @@ export default function Navbar() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-white/90 hover:text-white hover:bg-white/10 gap-1.5"
+                    className="text-gray-700 hover:text-pink-600 hover:bg-pink-50 gap-1.5"
                   >
                     <div
                       className="h-7 w-7 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                      style={{ background: "oklch(0.72 0.18 55)" }}
+                      style={{ background: "oklch(0.65 0.22 350)" }}
                     >
                       {currentUser?.name?.charAt(0)?.toUpperCase() || "U"}
                     </div>
@@ -258,7 +261,7 @@ export default function Navbar() {
                         >
                           <Shield
                             className="h-4 w-4"
-                            style={{ color: "oklch(0.72 0.18 55)" }}
+                            style={{ color: "oklch(0.65 0.22 350)" }}
                           />
                           <span className="flex-1">
                             {t("Admin Panel", "Admin Panel")}
@@ -266,7 +269,7 @@ export default function Navbar() {
                           <span
                             className="text-[10px] font-bold px-1.5 py-0.5 rounded-full"
                             style={{
-                              background: "oklch(0.72 0.18 55)",
+                              background: "oklch(0.65 0.22 350)",
                               color: "white",
                             }}
                           >
@@ -290,8 +293,8 @@ export default function Navbar() {
             ) : (
               <Button
                 size="sm"
-                className="text-white font-semibold shadow-saffron text-xs px-3"
-                style={{ background: "oklch(0.72 0.18 55)" }}
+                className="text-white font-semibold text-xs px-3"
+                style={{ background: "oklch(0.65 0.22 350)" }}
                 onClick={() => navigate({ to: "/auth" })}
                 data-ocid="nav.login.button"
               >
@@ -303,7 +306,7 @@ export default function Navbar() {
             <Button
               variant="ghost"
               size="sm"
-              className="xl:hidden text-white/80 hover:text-white hover:bg-white/10"
+              className="xl:hidden text-gray-700 hover:text-pink-600 hover:bg-pink-50"
               onClick={() => setMenuOpen(!menuOpen)}
               data-ocid="nav.menu.toggle"
             >
@@ -320,39 +323,39 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div
-          className="xl:hidden border-t border-white/10"
-          style={{ background: "oklch(0.16 0.09 260)" }}
+          className="xl:hidden border-t border-pink-100"
+          style={{ background: "white" }}
         >
           <nav className="container mx-auto px-4 py-3 flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className="px-3 py-2 rounded-md text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-pink-600 hover:bg-pink-50 transition-colors"
                 onClick={() => setMenuOpen(false)}
                 data-ocid={`nav.mobile.${link.to.slice(1)}.link`}
               >
                 {t(link.labelHi, link.labelEn)}
               </Link>
             ))}
-            <div className="border-t border-white/10 my-1" />
+            <div className="border-t border-pink-100 my-1" />
             {moreLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+                className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-pink-600 hover:bg-pink-50 transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 <link.icon className="h-4 w-4" />
                 {t(link.labelHi, link.labelEn)}
               </Link>
             ))}
-            <div className="pt-2 mt-1 border-t border-white/10">
+            <div className="pt-2 mt-1 border-t border-pink-100">
               {isLoggedIn ? (
                 <>
                   <Link
                     to="/dashboard"
-                    className="block px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-md"
+                    className="block px-3 py-2 text-sm text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-md"
                     onClick={() => setMenuOpen(false)}
                     data-ocid="nav.mobile.dashboard.link"
                   >
@@ -364,21 +367,21 @@ export default function Navbar() {
                       className="flex items-center gap-2 px-3 py-2 text-sm rounded-md font-semibold"
                       onClick={() => setMenuOpen(false)}
                       style={{
-                        background: "oklch(0.72 0.18 55 / 0.15)",
-                        color: "oklch(0.90 0.10 55)",
-                        border: "1px solid oklch(0.72 0.18 55 / 0.3)",
+                        background: "oklch(0.65 0.22 350 / 0.10)",
+                        color: "oklch(0.45 0.18 350)",
+                        border: "1px solid oklch(0.65 0.22 350 / 0.3)",
                       }}
                       data-ocid="nav.mobile.admin.link"
                     >
                       <Shield
                         className="h-4 w-4"
-                        style={{ color: "oklch(0.72 0.18 55)" }}
+                        style={{ color: "oklch(0.65 0.22 350)" }}
                       />
                       {t("Admin Panel", "Admin Panel")}
                       <span
                         className="ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded-full"
                         style={{
-                          background: "oklch(0.72 0.18 55)",
+                          background: "oklch(0.65 0.22 350)",
                           color: "white",
                         }}
                       >
@@ -389,7 +392,7 @@ export default function Navbar() {
                   <button
                     type="button"
                     onClick={handleLogout}
-                    className="w-full text-left px-3 py-2 text-sm text-red-400 hover:bg-white/10 rounded-md"
+                    className="w-full text-left px-3 py-2 text-sm text-red-500 hover:bg-pink-50 rounded-md"
                     data-ocid="nav.mobile.logout.button"
                   >
                     {t("Logout", "Logout")}
@@ -400,7 +403,7 @@ export default function Navbar() {
                   <Button
                     size="sm"
                     className="w-full text-white"
-                    style={{ background: "oklch(0.72 0.18 55)" }}
+                    style={{ background: "oklch(0.65 0.22 350)" }}
                     data-ocid="nav.mobile.login.button"
                   >
                     {t("Login करें", "Login")}
