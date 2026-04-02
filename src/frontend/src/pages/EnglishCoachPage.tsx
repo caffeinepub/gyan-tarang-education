@@ -245,13 +245,13 @@ export default function EnglishCoachPage() {
             <div className="flex items-center gap-3 mb-3">
               <MessageSquare
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t("AI English Coach", "AI English Coach")}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "Grammar, Reading, Speaking Tips aur Vocabulary - sab ek jagah",
                 "Grammar, Reading, Speaking Tips and Vocabulary - all in one place",
@@ -286,7 +286,7 @@ export default function EnglishCoachPage() {
                         <div className="flex items-center justify-between">
                           <Badge
                             style={{
-                              background: "oklch(0.72 0.18 55)",
+                              background: "oklch(0.76 0.12 350)",
                               color: "white",
                             }}
                           >
@@ -302,8 +302,8 @@ export default function EnglishCoachPage() {
                         <div
                           className="p-5 rounded-xl mb-6 border"
                           style={{
-                            background: "oklch(0.22 0.12 260 / 0.05)",
-                            borderColor: "oklch(0.22 0.12 260 / 0.15)",
+                            background: "oklch(0.78 0.18 348 / 0.15)",
+                            borderColor: "oklch(0.78 0.18 348 / 0.25)",
                           }}
                         >
                           <p className="font-display font-bold text-lg text-foreground">
@@ -331,7 +331,7 @@ export default function EnglishCoachPage() {
                                 borderColor:
                                   selectedAnswer !== null
                                     ? idx === currentGrammar.answer
-                                      ? "oklch(0.56 0.18 145)"
+                                      ? "oklch(0.65 0.22 340)"
                                       : selectedAnswer === idx
                                         ? "oklch(0.57 0.25 27)"
                                         : "oklch(0.88 0.02 260)"
@@ -347,7 +347,7 @@ export default function EnglishCoachPage() {
                                   idx === currentGrammar.answer && (
                                     <CheckCircle
                                       className="h-4 w-4 ml-auto"
-                                      style={{ color: "oklch(0.56 0.18 145)" }}
+                                      style={{ color: "oklch(0.65 0.22 340)" }}
                                     />
                                   )}
                                 {selectedAnswer === idx &&
@@ -379,8 +379,8 @@ export default function EnglishCoachPage() {
                                 <div
                                   className="p-4 rounded-xl border"
                                   style={{
-                                    background: "oklch(0.22 0.12 260 / 0.05)",
-                                    borderColor: "oklch(0.22 0.12 260 / 0.2)",
+                                    background: "oklch(0.78 0.18 348 / 0.15)",
+                                    borderColor: "oklch(0.78 0.18 348 / 0.3)",
                                   }}
                                 >
                                   <p className="text-sm font-semibold mb-1">
@@ -392,7 +392,7 @@ export default function EnglishCoachPage() {
                                 </div>
                               )}
                               <Button
-                                className="w-full gap-2 bg-saffron hover:bg-saffron/90 text-white"
+                                className="w-full gap-2 bg-saffron hover:bg-saffron/90 text-foreground"
                                 onClick={handleNextGrammar}
                               >
                                 Next Exercise{" "}
@@ -429,7 +429,7 @@ export default function EnglishCoachPage() {
                       >
                         <CheckCircle
                           className="h-3.5 w-3.5 mt-0.5 shrink-0"
-                          style={{ color: "oklch(0.56 0.18 145)" }}
+                          style={{ color: "oklch(0.65 0.22 340)" }}
                         />
                         {tip}
                       </div>
@@ -447,7 +447,7 @@ export default function EnglishCoachPage() {
                 <div className="flex items-center gap-2">
                   <BookOpen
                     className="h-5 w-5"
-                    style={{ color: "oklch(0.72 0.18 55)" }}
+                    style={{ color: "oklch(0.76 0.12 350)" }}
                   />
                   <CardTitle className="font-display">
                     {readingPassage.title}
@@ -499,12 +499,12 @@ export default function EnglishCoachPage() {
                               style={{
                                 borderColor: readingSubmitted
                                   ? oi === q.answer
-                                    ? "oklch(0.56 0.18 145)"
+                                    ? "oklch(0.65 0.22 340)"
                                     : readingAnswers[qi] === oi
                                       ? "oklch(0.57 0.25 27)"
                                       : "oklch(0.88 0.02 260)"
                                   : readingAnswers[qi] === oi
-                                    ? "oklch(0.72 0.18 55)"
+                                    ? "oklch(0.76 0.12 350)"
                                     : "oklch(0.88 0.02 260)",
                               }}
                             >
@@ -517,7 +517,7 @@ export default function EnglishCoachPage() {
                   </div>
                   {!readingSubmitted ? (
                     <Button
-                      className="mt-4 bg-saffron hover:bg-saffron/90 text-white"
+                      className="mt-4 bg-saffron hover:bg-saffron/90 text-foreground"
                       onClick={handleReadingSubmit}
                     >
                       Submit Answers
@@ -526,7 +526,7 @@ export default function EnglishCoachPage() {
                     <div className="mt-4 p-3 rounded-xl bg-india-green/10 border border-india-green/30">
                       <p
                         className="text-sm font-semibold"
-                        style={{ color: "oklch(0.35 0.15 145)" }}
+                        style={{ color: "oklch(0.99 0 0)" }}
                       >
                         ✅ Score:{" "}
                         {
@@ -555,7 +555,7 @@ export default function EnglishCoachPage() {
                     <CardTitle className="text-base font-display flex items-center gap-2">
                       <Volume2
                         className="h-4 w-4"
-                        style={{ color: "oklch(0.72 0.18 55)" }}
+                        style={{ color: "oklch(0.76 0.12 350)" }}
                       />
                       {section.category}
                     </CardTitle>
@@ -566,8 +566,8 @@ export default function EnglishCoachPage() {
                         {section.tips.map((tip, i) => (
                           <div key={tip.tip} className="flex items-start gap-2">
                             <span
-                              className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 text-white"
-                              style={{ background: "oklch(0.72 0.18 55)" }}
+                              className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 text-foreground"
+                              style={{ background: "oklch(0.76 0.12 350)" }}
                             >
                               {i + 1}
                             </span>
@@ -623,8 +623,8 @@ export default function EnglishCoachPage() {
                       style={{ borderColor: "oklch(0.72 0.18 55 / 0.5)" }}
                     >
                       <div
-                        className="p-2 text-center text-xs font-semibold text-white"
-                        style={{ background: "oklch(0.72 0.18 55)" }}
+                        className="p-2 text-center text-xs font-semibold text-foreground"
+                        style={{ background: "oklch(0.76 0.12 350)" }}
                       >
                         Word {vocabIdx + 1} / {vocabularyWords.length}
                       </div>
@@ -668,7 +668,7 @@ export default function EnglishCoachPage() {
                             ← Previous
                           </Button>
                           <Button
-                            className="flex-1 bg-saffron hover:bg-saffron/90 text-white"
+                            className="flex-1 bg-saffron hover:bg-saffron/90 text-foreground"
                             onClick={() =>
                               setVocabIdx(
                                 (p) => (p + 1) % vocabularyWords.length,
@@ -703,8 +703,8 @@ export default function EnglishCoachPage() {
                       style={
                         vocabIdx === i
                           ? {
-                              background: "oklch(0.22 0.12 260)",
-                              borderColor: "oklch(0.22 0.12 260)",
+                              background: "oklch(0.62 0.28 340)",
+                              borderColor: "oklch(0.62 0.28 340)",
                             }
                           : {}
                       }

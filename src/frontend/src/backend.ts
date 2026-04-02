@@ -89,6 +89,12 @@ export class ExternalBlob {
         return this;
     }
 }
+export interface GroupView {
+    id: string;
+    members: Array<string>;
+    name: string;
+    description: string;
+}
 export interface _CaffeineStorageRefillInformation {
     proposed_top_up_amount?: bigint;
 }
@@ -108,6 +114,12 @@ export interface ContentItem {
 export interface _CaffeineStorageCreateCertificateResult {
     method: string;
     blob_hash: string;
+}
+export interface PerformanceData {
+    topic: string;
+    total: bigint;
+    score: bigint;
+    timestamp: bigint;
 }
 export interface UserProfile {
     classOrBranch: string;
@@ -134,38 +146,43 @@ export interface backendInterface {
     _caffeineStorageRefillCashier(refillInformation: _CaffeineStorageRefillInformation | null): Promise<_CaffeineStorageRefillResult>;
     _caffeineStorageUpdateGatewayPrincipals(): Promise<void>;
     _initializeAccessControlWithSecret(userSecret: string): Promise<void>;
+    addBadge(badge: string): Promise<void>;
     addContentItem(item: ContentItem): Promise<void>;
+    addMemberToGroup(groupId: string, member: string): Promise<void>;
     addQuote(quote: string): Promise<void>;
+    addXP(points: bigint): Promise<void>;
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
     createGroup(id: string, name: string, description: string): Promise<void>;
     deleteContentItem(id: string): Promise<void>;
     getAllContentItems(): Promise<Array<ContentItem>>;
+    getAllGroups(): Promise<Array<GroupView>>;
+    getAllPerformanceData(): Promise<Array<PerformanceData>>;
     getAllQuotes(): Promise<Array<string>>;
     getAllUserProfiles(): Promise<Array<UserProfile>>;
+    getBadges(user: Principal): Promise<Array<string>>;
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
-    getContentItem(id: string): Promise<{
-        url: string;
-        title: string;
-        subject: string;
-        contentType: string;
-        file?: ExternalBlob;
-        description: string;
-        language: string;
-        category: string;
-        classLevel: string;
-        governmentApproved: boolean;
-    }>;
+    getContentItem(id: string): Promise<ContentItem | null>;
     getContentItemsByCategory(category: string): Promise<Array<ContentItem>>;
     getContentItemsByClassLevel(classLevel: string): Promise<Array<ContentItem>>;
+    getGroup(id: string): Promise<GroupView | null>;
+    getPerformanceData(user: Principal): Promise<Array<PerformanceData>>;
     getQuizScore(user: Principal): Promise<bigint | null>;
+    getRandomContentItemByCategory(category: string): Promise<ContentItem | null>;
+    getRandomQuote(): Promise<string | null>;
+    getRecentPerformanceData(limit: bigint): Promise<Array<PerformanceData>>;
+    getStudyPlan(user: Principal): Promise<string | null>;
+    getTopPerformanceData(limit: bigint): Promise<Array<PerformanceData>>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
+    getXP(user: Principal): Promise<bigint | null>;
     isCallerAdmin(): Promise<boolean>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    savePerformanceData(topic: string, score: bigint, total: bigint): Promise<void>;
     saveQuizScore(score: bigint): Promise<void>;
+    saveStudyPlan(plan: string): Promise<void>;
     updateContentItem(item: ContentItem): Promise<void>;
 }
-import type { ContentItem as _ContentItem, ExternalBlob as _ExternalBlob, UserProfile as _UserProfile, UserRole as _UserRole, _CaffeineStorageRefillInformation as __CaffeineStorageRefillInformation, _CaffeineStorageRefillResult as __CaffeineStorageRefillResult } from "./declarations/backend.did.d.ts";
+import type { ContentItem as _ContentItem, ExternalBlob as _ExternalBlob, GroupView as _GroupView, UserProfile as _UserProfile, UserRole as _UserRole, _CaffeineStorageRefillInformation as __CaffeineStorageRefillInformation, _CaffeineStorageRefillResult as __CaffeineStorageRefillResult } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
     async _caffeineStorageBlobIsLive(arg0: Uint8Array): Promise<boolean> {
@@ -266,6 +283,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async addBadge(arg0: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.addBadge(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.addBadge(arg0);
+            return result;
+        }
+    }
     async addContentItem(arg0: ContentItem): Promise<void> {
         if (this.processError) {
             try {
@@ -280,6 +311,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async addMemberToGroup(arg0: string, arg1: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.addMemberToGroup(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.addMemberToGroup(arg0, arg1);
+            return result;
+        }
+    }
     async addQuote(arg0: string): Promise<void> {
         if (this.processError) {
             try {
@@ -291,6 +336,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.addQuote(arg0);
+            return result;
+        }
+    }
+    async addXP(arg0: bigint): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.addXP(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.addXP(arg0);
             return result;
         }
     }
@@ -350,6 +409,34 @@ export class Backend implements backendInterface {
             return from_candid_vec_n13(this._uploadFile, this._downloadFile, result);
         }
     }
+    async getAllGroups(): Promise<Array<GroupView>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllGroups();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllGroups();
+            return result;
+        }
+    }
+    async getAllPerformanceData(): Promise<Array<PerformanceData>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllPerformanceData();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllPerformanceData();
+            return result;
+        }
+    }
     async getAllQuotes(): Promise<Array<string>> {
         if (this.processError) {
             try {
@@ -375,6 +462,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.getAllUserProfiles();
+            return result;
+        }
+    }
+    async getBadges(arg0: Principal): Promise<Array<string>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getBadges(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getBadges(arg0);
             return result;
         }
     }
@@ -406,29 +507,18 @@ export class Backend implements backendInterface {
             return from_candid_UserRole_n19(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getContentItem(arg0: string): Promise<{
-        url: string;
-        title: string;
-        subject: string;
-        contentType: string;
-        file?: ExternalBlob;
-        description: string;
-        language: string;
-        category: string;
-        classLevel: string;
-        governmentApproved: boolean;
-    }> {
+    async getContentItem(arg0: string): Promise<ContentItem | null> {
         if (this.processError) {
             try {
                 const result = await this.actor.getContentItem(arg0);
-                return from_candid_record_n21(this._uploadFile, this._downloadFile, result);
+                return from_candid_opt_n21(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getContentItem(arg0);
-            return from_candid_record_n21(this._uploadFile, this._downloadFile, result);
+            return from_candid_opt_n21(this._uploadFile, this._downloadFile, result);
         }
     }
     async getContentItemsByCategory(arg0: string): Promise<Array<ContentItem>> {
@@ -459,6 +549,34 @@ export class Backend implements backendInterface {
             return from_candid_vec_n13(this._uploadFile, this._downloadFile, result);
         }
     }
+    async getGroup(arg0: string): Promise<GroupView | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getGroup(arg0);
+                return from_candid_opt_n22(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getGroup(arg0);
+            return from_candid_opt_n22(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getPerformanceData(arg0: Principal): Promise<Array<PerformanceData>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getPerformanceData(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getPerformanceData(arg0);
+            return result;
+        }
+    }
     async getQuizScore(arg0: Principal): Promise<bigint | null> {
         if (this.processError) {
             try {
@@ -473,6 +591,76 @@ export class Backend implements backendInterface {
             return from_candid_opt_n7(this._uploadFile, this._downloadFile, result);
         }
     }
+    async getRandomContentItemByCategory(arg0: string): Promise<ContentItem | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getRandomContentItemByCategory(arg0);
+                return from_candid_opt_n21(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getRandomContentItemByCategory(arg0);
+            return from_candid_opt_n21(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getRandomQuote(): Promise<string | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getRandomQuote();
+                return from_candid_opt_n23(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getRandomQuote();
+            return from_candid_opt_n23(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getRecentPerformanceData(arg0: bigint): Promise<Array<PerformanceData>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getRecentPerformanceData(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getRecentPerformanceData(arg0);
+            return result;
+        }
+    }
+    async getStudyPlan(arg0: Principal): Promise<string | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getStudyPlan(arg0);
+                return from_candid_opt_n23(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getStudyPlan(arg0);
+            return from_candid_opt_n23(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getTopPerformanceData(arg0: bigint): Promise<Array<PerformanceData>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getTopPerformanceData(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getTopPerformanceData(arg0);
+            return result;
+        }
+    }
     async getUserProfile(arg0: Principal): Promise<UserProfile | null> {
         if (this.processError) {
             try {
@@ -485,6 +673,20 @@ export class Backend implements backendInterface {
         } else {
             const result = await this.actor.getUserProfile(arg0);
             return from_candid_opt_n18(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getXP(arg0: Principal): Promise<bigint | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getXP(arg0);
+                return from_candid_opt_n7(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getXP(arg0);
+            return from_candid_opt_n7(this._uploadFile, this._downloadFile, result);
         }
     }
     async isCallerAdmin(): Promise<boolean> {
@@ -515,6 +717,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async savePerformanceData(arg0: string, arg1: bigint, arg2: bigint): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.savePerformanceData(arg0, arg1, arg2);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.savePerformanceData(arg0, arg1, arg2);
+            return result;
+        }
+    }
     async saveQuizScore(arg0: bigint): Promise<void> {
         if (this.processError) {
             try {
@@ -526,6 +742,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.saveQuizScore(arg0);
+            return result;
+        }
+    }
+    async saveStudyPlan(arg0: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.saveStudyPlan(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.saveStudyPlan(arg0);
             return result;
         }
     }
@@ -562,6 +792,15 @@ async function from_candid_opt_n16(_uploadFile: (file: ExternalBlob) => Promise<
 function from_candid_opt_n18(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_UserProfile]): UserProfile | null {
     return value.length === 0 ? null : value[0];
 }
+async function from_candid_opt_n21(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_ContentItem]): Promise<ContentItem | null> {
+    return value.length === 0 ? null : await from_candid_ContentItem_n14(_uploadFile, _downloadFile, value[0]);
+}
+function from_candid_opt_n22(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_GroupView]): GroupView | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_opt_n23(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [string]): string | null {
+    return value.length === 0 ? null : value[0];
+}
 function from_candid_opt_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [boolean]): boolean | null {
     return value.length === 0 ? null : value[0];
 }
@@ -595,42 +834,6 @@ async function from_candid_record_n15(_uploadFile: (file: ExternalBlob) => Promi
 }> {
     return {
         id: value.id,
-        url: value.url,
-        title: value.title,
-        subject: value.subject,
-        contentType: value.contentType,
-        file: record_opt_to_undefined(await from_candid_opt_n16(_uploadFile, _downloadFile, value.file)),
-        description: value.description,
-        language: value.language,
-        category: value.category,
-        classLevel: value.classLevel,
-        governmentApproved: value.governmentApproved
-    };
-}
-async function from_candid_record_n21(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
-    url: string;
-    title: string;
-    subject: string;
-    contentType: string;
-    file: [] | [_ExternalBlob];
-    description: string;
-    language: string;
-    category: string;
-    classLevel: string;
-    governmentApproved: boolean;
-}): Promise<{
-    url: string;
-    title: string;
-    subject: string;
-    contentType: string;
-    file?: ExternalBlob;
-    description: string;
-    language: string;
-    category: string;
-    classLevel: string;
-    governmentApproved: boolean;
-}> {
-    return {
         url: value.url,
         title: value.title,
         subject: value.subject,

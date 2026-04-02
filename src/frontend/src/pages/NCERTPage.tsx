@@ -370,13 +370,13 @@ export default function NCERTPage() {
             <div className="flex items-center gap-3 mb-3">
               <BookOpen
                 className="h-8 w-8 text-saffron"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t("NCERT Books & Notes", "NCERT Books & Notes")}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "Class 1 से 12 तक सभी NCERT किताबें - सरकारी वेबसाइट से सीधे",
                 "All NCERT books from Class 1-12 - directly from official website",
@@ -410,7 +410,7 @@ export default function NCERTPage() {
                 }`}
                 style={
                   selectedClass === cls
-                    ? { background: "oklch(0.72 0.18 55)" }
+                    ? { background: "oklch(0.76 0.12 350)" }
                     : {}
                 }
                 data-ocid="ncert.class.select"
@@ -451,14 +451,14 @@ export default function NCERTPage() {
                           <Card className="card-hover border border-border/50 overflow-hidden h-full">
                             <div
                               className="h-2"
-                              style={{ background: "oklch(0.72 0.18 55)" }}
+                              style={{ background: "oklch(0.76 0.12 350)" }}
                             />
                             <CardContent className="p-5">
                               <div className="flex items-start gap-3 mb-4">
                                 <div className="p-2.5 rounded-xl bg-saffron/10 flex-shrink-0">
                                   <FileText
                                     className="h-5 w-5"
-                                    style={{ color: "oklch(0.72 0.18 55)" }}
+                                    style={{ color: "oklch(0.76 0.12 350)" }}
                                   />
                                 </div>
                                 <div>
@@ -487,7 +487,7 @@ export default function NCERTPage() {
                               <div className="flex gap-2">
                                 <Button
                                   size="sm"
-                                  className="flex-1 bg-saffron hover:bg-saffron/90 text-white gap-1.5 text-xs"
+                                  className="flex-1 bg-saffron hover:bg-saffron/90 text-foreground gap-1.5 text-xs"
                                   onClick={() =>
                                     window.open(book.url, "_blank")
                                   }

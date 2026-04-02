@@ -296,8 +296,8 @@ function NotesCard({ card, idx }: { card: NoteCard; idx: number }) {
           style={{
             background:
               card.badgeColor === "navy"
-                ? "oklch(0.22 0.12 260)"
-                : "oklch(0.72 0.18 55)",
+                ? "oklch(0.62 0.28 340)"
+                : "oklch(0.76 0.12 350)",
           }}
         />
         <CardContent className="p-4 flex flex-col flex-1">
@@ -308,7 +308,7 @@ function NotesCard({ card, idx }: { card: NoteCard; idx: number }) {
             >
               <FileText
                 className="h-4 w-4"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
             </div>
             <div className="min-w-0">
@@ -329,15 +329,15 @@ function NotesCard({ card, idx }: { card: NoteCard; idx: number }) {
               style={{
                 background:
                   card.badgeColor === "navy"
-                    ? "oklch(0.22 0.12 260 / 0.12)"
+                    ? "oklch(0.78 0.18 348 / 0.2)"
                     : "oklch(0.72 0.18 55 / 0.12)",
                 color:
                   card.badgeColor === "navy"
-                    ? "oklch(0.22 0.12 260)"
+                    ? "oklch(0.62 0.28 340)"
                     : "oklch(0.65 0.18 55)",
                 borderColor:
                   card.badgeColor === "navy"
-                    ? "oklch(0.22 0.12 260 / 0.3)"
+                    ? "oklch(0.78 0.18 348 / 0.35)"
                     : "oklch(0.72 0.18 55 / 0.3)",
               }}
             >
@@ -348,7 +348,7 @@ function NotesCard({ card, idx }: { card: NoteCard; idx: number }) {
               className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[10px] font-semibold border"
               style={{
                 background: "oklch(0.56 0.18 145 / 0.08)",
-                color: "oklch(0.35 0.15 145)",
+                color: "oklch(0.99 0 0)",
                 borderColor: "oklch(0.56 0.18 145 / 0.25)",
               }}
             >
@@ -359,7 +359,7 @@ function NotesCard({ card, idx }: { card: NoteCard; idx: number }) {
           <div className="flex gap-2">
             <Button
               className="flex-1 gap-1.5 text-xs font-semibold"
-              style={{ background: "oklch(0.22 0.12 260)", color: "white" }}
+              style={{ background: "oklch(0.62 0.28 340)", color: "white" }}
               size="sm"
               onClick={() => window.open(card.url, "_blank")}
               data-ocid={`notes.item.${idx + 1}`}
@@ -398,13 +398,13 @@ export default function NotesPage() {
             <div className="flex items-center gap-3 mb-3">
               <FileText
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t("Notes & Study Materials", "Notes & Study Materials")}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "सरकारी अनुमोदित Handwriting Notes PDF - Class 1 से BTech तक",
                 "Government Approved Study Notes PDF - Class 1 to BTech",
@@ -420,7 +420,7 @@ export default function NotesPage() {
                 className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold border"
                 style={{
                   background: "oklch(0.72 0.18 55 / 0.15)",
-                  color: "oklch(0.95 0 0)",
+                  color: "white",
                   borderColor: "oklch(0.72 0.18 55 / 0.3)",
                 }}
               >
@@ -479,7 +479,7 @@ export default function NotesPage() {
             >
               <Shield
                 className="h-4 w-4 shrink-0 mt-0.5"
-                style={{ color: "oklch(0.56 0.18 145)" }}
+                style={{ color: "oklch(0.65 0.22 340)" }}
               />
               <div>
                 <p className="text-sm font-semibold text-foreground mb-1">
@@ -504,12 +504,12 @@ export default function NotesPage() {
               className="mb-5 p-4 rounded-xl border flex items-start gap-3"
               style={{
                 borderColor: "oklch(0.22 0.12 260 / 0.25)",
-                background: "oklch(0.22 0.12 260 / 0.05)",
+                background: "oklch(0.78 0.18 348 / 0.15)",
               }}
             >
               <GraduationCap
                 className="h-4 w-4 shrink-0 mt-0.5"
-                style={{ color: "oklch(0.22 0.12 260)" }}
+                style={{ color: "oklch(0.62 0.28 340)" }}
               />
               <div>
                 <p className="text-sm font-semibold text-foreground mb-1">
@@ -539,7 +539,7 @@ export default function NotesPage() {
             >
               <Shield
                 className="h-4 w-4 shrink-0 mt-0.5"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
               <div>
                 <p className="text-sm font-semibold text-foreground mb-1">
@@ -569,7 +569,7 @@ export default function NotesPage() {
             >
               <FileText
                 className="h-4 w-4 shrink-0 mt-0.5"
-                style={{ color: "oklch(0.56 0.18 145)" }}
+                style={{ color: "oklch(0.65 0.22 340)" }}
               />
               <div>
                 <p className="text-sm font-semibold text-foreground mb-1">
@@ -594,7 +594,7 @@ export default function NotesPage() {
           <div className="flex items-start gap-3">
             <Shield
               className="h-5 w-5 mt-0.5 shrink-0"
-              style={{ color: "oklch(0.56 0.18 145)" }}
+              style={{ color: "oklch(0.65 0.22 340)" }}
             />
             <div>
               <p className="font-semibold text-sm text-foreground mb-1">

@@ -267,16 +267,16 @@ export default function GovernmentPage() {
             <div className="flex items-center gap-3 mb-3">
               <Building2
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t(
                   "Government Jobs, Scholarships & Schemes",
                   "Government Jobs, Scholarships & Schemes",
                 )}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "सभी सरकारी नौकरियाँ, छात्रवृत्तियाँ और योजनाएं - Official Links",
                 "All government jobs, scholarships and schemes - Official Links",
@@ -344,7 +344,7 @@ export default function GovernmentPage() {
                     {!job.urgent && (
                       <div
                         className="h-1.5"
-                        style={{ background: "oklch(0.22 0.12 260)" }}
+                        style={{ background: "oklch(0.62 0.28 340)" }}
                       />
                     )}
                     <CardContent className="p-4">
@@ -369,7 +369,7 @@ export default function GovernmentPage() {
                           size="sm"
                           className="text-xs gap-1.5 h-8 font-semibold"
                           style={{
-                            background: "oklch(0.56 0.18 145)",
+                            background: "oklch(0.65 0.22 340)",
                             color: "white",
                           }}
                           onClick={() => window.open(job.url, "_blank")}
@@ -409,8 +409,8 @@ export default function GovernmentPage() {
                 hain.
               </p>
               <Button
-                className="gap-2 bg-india-green hover:bg-india-green/90 text-white text-xs h-8"
-                style={{ background: "oklch(0.56 0.18 145)" }}
+                className="gap-2 bg-india-green hover:bg-india-green/90 text-foreground text-xs h-8"
+                style={{ background: "oklch(0.65 0.22 340)" }}
                 onClick={() =>
                   window.open("https://scholarships.gov.in", "_blank")
                 }
@@ -439,7 +439,7 @@ export default function GovernmentPage() {
                             className="text-[10px] shrink-0"
                             style={{
                               background: "oklch(0.56 0.18 145 / 0.12)",
-                              color: "oklch(0.35 0.15 145)",
+                              color: "oklch(0.99 0 0)",
                               borderColor: "oklch(0.56 0.18 145 / 0.3)",
                             }}
                           >
@@ -476,7 +476,7 @@ export default function GovernmentPage() {
                         size="sm"
                         className="w-full gap-1.5 text-xs"
                         style={{
-                          background: "oklch(0.22 0.12 260)",
+                          background: "oklch(0.62 0.28 340)",
                           color: "white",
                         }}
                         onClick={() => window.open(s.url, "_blank")}
@@ -511,7 +511,7 @@ export default function GovernmentPage() {
                         >
                           <Award
                             className="h-4 w-4"
-                            style={{ color: "oklch(0.72 0.18 55)" }}
+                            style={{ color: "oklch(0.76 0.12 350)" }}
                           />
                         </div>
                         <div>
@@ -559,7 +559,7 @@ export default function GovernmentPage() {
                   </p>
                 </div>
                 <Button
-                  className="gap-2 bg-saffron hover:bg-saffron/90 text-white"
+                  className="gap-2 bg-saffron hover:bg-saffron/90 text-foreground"
                   onClick={() =>
                     window.open("https://www.india.gov.in", "_blank")
                   }
@@ -576,13 +576,13 @@ export default function GovernmentPage() {
             <div
               className="mb-5 p-4 rounded-xl border flex items-start gap-3"
               style={{
-                borderColor: "oklch(0.22 0.12 260 / 0.3)",
+                borderColor: "oklch(0.78 0.18 348 / 0.35)",
                 background: "oklch(0.22 0.12 260 / 0.04)",
               }}
             >
               <BookOpen
                 className="h-4 w-4 shrink-0 mt-0.5"
-                style={{ color: "oklch(0.22 0.12 260)" }}
+                style={{ color: "oklch(0.62 0.28 340)" }}
               />
               <div>
                 <p className="text-sm font-semibold text-foreground mb-0.5">
@@ -608,18 +608,18 @@ export default function GovernmentPage() {
                     {!book.urgent && (
                       <div
                         className="h-1.5"
-                        style={{ background: "oklch(0.22 0.12 260)" }}
+                        style={{ background: "oklch(0.62 0.28 340)" }}
                       />
                     )}
                     <CardContent className="p-4 flex flex-col flex-1">
                       <div className="flex items-start gap-3 mb-2">
                         <div
                           className="flex-shrink-0 p-2 rounded-lg mt-0.5"
-                          style={{ background: "oklch(0.22 0.12 260 / 0.1)" }}
+                          style={{ background: "oklch(0.78 0.18 348 / 0.2)" }}
                         >
                           <BookOpen
                             className="h-4 w-4"
-                            style={{ color: "oklch(0.22 0.12 260)" }}
+                            style={{ color: "oklch(0.62 0.28 340)" }}
                           />
                         </div>
                         <div className="min-w-0">
@@ -639,7 +639,7 @@ export default function GovernmentPage() {
                           className="text-[10px] px-1.5 py-0"
                           style={{
                             background: "oklch(0.72 0.18 55 / 0.1)",
-                            color: "oklch(0.55 0.18 55)",
+                            color: "oklch(0.68 0.18 350)",
                             borderColor: "oklch(0.72 0.18 55 / 0.3)",
                           }}
                         >
@@ -654,7 +654,7 @@ export default function GovernmentPage() {
                           className="flex-1 gap-1.5 text-xs font-semibold"
                           size="sm"
                           style={{
-                            background: "oklch(0.22 0.12 260)",
+                            background: "oklch(0.62 0.28 340)",
                             color: "white",
                           }}
                           onClick={() => window.open(book.url, "_blank")}
@@ -693,7 +693,7 @@ export default function GovernmentPage() {
                 </div>
                 <Button
                   className="gap-2 font-semibold"
-                  style={{ background: "oklch(0.22 0.12 260)", color: "white" }}
+                  style={{ background: "oklch(0.62 0.28 340)", color: "white" }}
                   onClick={() => window.open("https://nta.ac.in", "_blank")}
                   data-ocid="govt.nta.button"
                 >

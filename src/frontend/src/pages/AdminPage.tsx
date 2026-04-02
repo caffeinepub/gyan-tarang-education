@@ -234,19 +234,19 @@ export default function AdminPage() {
     info: {
       bg: "oklch(0.45 0.18 220 / 0.1)",
       border: "oklch(0.45 0.18 220 / 0.4)",
-      text: "oklch(0.35 0.18 220)",
+      text: "oklch(0.99 0 0)",
       label: "Info",
     },
     success: {
       bg: "oklch(0.56 0.18 145 / 0.1)",
       border: "oklch(0.56 0.18 145 / 0.4)",
-      text: "oklch(0.35 0.18 145)",
+      text: "oklch(0.99 0 0)",
       label: "Success",
     },
     warning: {
       bg: "oklch(0.72 0.18 55 / 0.1)",
       border: "oklch(0.72 0.18 55 / 0.4)",
-      text: "oklch(0.55 0.18 55)",
+      text: "oklch(0.68 0.18 350)",
       label: "Warning",
     },
   };
@@ -262,21 +262,21 @@ export default function AdminPage() {
       label: "Total Content",
       value: totalContent,
       icon: FileText,
-      color: "oklch(0.72 0.18 55)",
+      color: "oklch(0.76 0.12 350)",
       bg: "oklch(0.72 0.18 55 / 0.1)",
     },
     {
       label: "Registered Users",
       value: totalUsers,
       icon: Users,
-      color: "oklch(0.45 0.18 220)",
+      color: "oklch(0.70 0.18 220)",
       bg: "oklch(0.45 0.18 220 / 0.1)",
     },
     {
       label: "Motivational Quotes",
       value: totalQuotes,
       icon: Quote,
-      color: "oklch(0.56 0.18 145)",
+      color: "oklch(0.65 0.22 340)",
       bg: "oklch(0.56 0.18 145 / 0.1)",
     },
     {
@@ -300,16 +300,16 @@ export default function AdminPage() {
             <div className="flex items-center gap-3 mb-3">
               <Settings
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 Admin Panel
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               Content Manager, Users, Quotes aur Announcements manage karein
             </p>
-            <Badge className="mt-2 bg-saffron/20 border-saffron/30 text-white">
+            <Badge className="mt-2 bg-saffron/20 border-saffron/30 text-foreground">
               Admin Access
             </Badge>
           </motion.div>
@@ -513,10 +513,10 @@ export default function AdminPage() {
                     </div>
                   </div>
                   <Button
-                    className="w-full text-white gap-2"
+                    className="w-full text-foreground gap-2"
                     style={{
                       background:
-                        "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.65 0.15 40))",
+                        "linear-gradient(135deg, oklch(0.76 0.12 350), oklch(0.65 0.20 350))",
                     }}
                     onClick={handleAddContent}
                     disabled={addingContent}
@@ -538,7 +538,7 @@ export default function AdminPage() {
                   <CardTitle className="text-base font-display flex items-center gap-2">
                     <TrendingUp
                       className="h-4 w-4"
-                      style={{ color: "oklch(0.72 0.18 55)" }}
+                      style={{ color: "oklch(0.76 0.12 350)" }}
                     />
                     Content Library ({contentItems?.length || 0})
                   </CardTitle>
@@ -607,7 +607,7 @@ export default function AdminPage() {
                 <CardTitle className="text-base font-display flex items-center gap-2">
                   <Users
                     className="h-4 w-4"
-                    style={{ color: "oklch(0.45 0.18 220)" }}
+                    style={{ color: "oklch(0.70 0.18 220)" }}
                   />
                   Registered Users ({userProfiles?.length || 0})
                 </CardTitle>
@@ -660,7 +660,7 @@ export default function AdminPage() {
                                     style={
                                       currentRole === "admin"
                                         ? {
-                                            background: "oklch(0.72 0.18 55)",
+                                            background: "oklch(0.76 0.12 350)",
                                             color: "white",
                                             border: "none",
                                           }
@@ -731,10 +731,10 @@ export default function AdminPage() {
                     data-ocid="admin.quotes.textarea"
                   />
                   <Button
-                    className="w-full text-white gap-2"
+                    className="w-full text-foreground gap-2"
                     style={{
                       background:
-                        "linear-gradient(135deg, oklch(0.56 0.18 145), oklch(0.45 0.18 145))",
+                        "linear-gradient(135deg, oklch(0.65 0.22 340), oklch(0.45 0.18 145))",
                     }}
                     onClick={handleAddQuote}
                     disabled={addingQuote}
@@ -863,10 +863,10 @@ export default function AdminPage() {
                     />
                   </div>
                   <Button
-                    className="w-full text-white gap-2"
+                    className="w-full text-foreground gap-2"
                     style={{
                       background:
-                        "linear-gradient(135deg, oklch(0.65 0.18 30), oklch(0.72 0.18 55))",
+                        "linear-gradient(135deg, oklch(0.65 0.18 30), oklch(0.76 0.12 350))",
                     }}
                     onClick={handleAddAnnouncement}
                     data-ocid="admin.announcement.add_button"

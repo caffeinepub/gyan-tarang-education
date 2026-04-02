@@ -50,7 +50,7 @@ const examConfigs: ExamConfig[] = [
     name: "CBSE Class 10",
     nameHi: "CBSE कक्षा 10",
     icon: "📚",
-    color: "oklch(0.72 0.18 55)",
+    color: "oklch(0.76 0.12 350)",
     timeMinutes: 15,
     questions: [
       {
@@ -132,7 +132,7 @@ const examConfigs: ExamConfig[] = [
     name: "JEE Main Practice",
     nameHi: "JEE Main अभ्यास",
     icon: "🔬",
-    color: "oklch(0.22 0.12 260)",
+    color: "oklch(0.62 0.28 340)",
     timeMinutes: 15,
     questions: [
       {
@@ -208,7 +208,7 @@ const examConfigs: ExamConfig[] = [
     name: "NEET Practice",
     nameHi: "NEET अभ्यास",
     icon: "🩺",
-    color: "oklch(0.56 0.18 145)",
+    color: "oklch(0.65 0.22 340)",
     timeMinutes: 15,
     questions: [
       {
@@ -303,7 +303,7 @@ const examConfigs: ExamConfig[] = [
     name: "UPSC Practice",
     nameHi: "UPSC अभ्यास",
     icon: "🏛️",
-    color: "oklch(0.45 0.18 220)",
+    color: "oklch(0.70 0.18 220)",
     timeMinutes: 15,
     questions: [
       {
@@ -895,13 +895,13 @@ export default function MockTestsPage() {
             <div className="flex items-center gap-3 mb-3">
               <Trophy
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t("Mock Tests", "Mock Tests")}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "CBSE, JEE, NEET, UPSC, SSC, Banking, Railway, Bihar Police - सरकारी अनुमोदित प्रश्न",
                 "CBSE, JEE, NEET, UPSC, SSC, Banking, Railway, Bihar Police - Government approved questions",
@@ -994,7 +994,7 @@ export default function MockTestsPage() {
                       </div>
                       <div className="flex gap-2">
                         <Button
-                          className="font-bold gap-2 text-white"
+                          className="font-bold gap-2 text-foreground"
                           style={{ background: selectedExam.color }}
                           onClick={startTest}
                           data-ocid="mock_tests.start_button"
@@ -1100,7 +1100,7 @@ export default function MockTestsPage() {
                         className="p-5 rounded-xl mb-6 border"
                         style={{
                           background: "oklch(0.22 0.12 260 / 0.04)",
-                          borderColor: "oklch(0.22 0.12 260 / 0.12)",
+                          borderColor: "oklch(0.78 0.18 348 / 0.2)",
                         }}
                       >
                         <p className="font-display font-bold text-lg text-foreground leading-relaxed">
@@ -1130,7 +1130,7 @@ export default function MockTestsPage() {
                                 style={{
                                   borderColor: answered
                                     ? isCorrect
-                                      ? "oklch(0.56 0.18 145)"
+                                      ? "oklch(0.65 0.22 340)"
                                       : isSelected
                                         ? "oklch(0.57 0.25 27)"
                                         : "oklch(0.88 0.02 260)"
@@ -1156,7 +1156,7 @@ export default function MockTestsPage() {
                                     style={{
                                       background:
                                         answered && isCorrect
-                                          ? "oklch(0.56 0.18 145)"
+                                          ? "oklch(0.65 0.22 340)"
                                           : answered && isSelected
                                             ? "oklch(0.57 0.25 27)"
                                             : "oklch(0.92 0.01 80)",
@@ -1174,7 +1174,7 @@ export default function MockTestsPage() {
                                   {answered && isCorrect && (
                                     <CheckCircle
                                       className="h-4 w-4 ml-auto shrink-0"
-                                      style={{ color: "oklch(0.56 0.18 145)" }}
+                                      style={{ color: "oklch(0.65 0.22 340)" }}
                                     />
                                   )}
                                   {answered && isSelected && !isCorrect && (
@@ -1225,7 +1225,7 @@ export default function MockTestsPage() {
                           )}
 
                           <Button
-                            className="w-full font-bold gap-2 text-white"
+                            className="w-full font-bold gap-2 text-foreground"
                             style={{ background: selectedExam.color }}
                             onClick={handleNext}
                             data-ocid="mock_tests.next_button"
@@ -1332,7 +1332,7 @@ export default function MockTestsPage() {
                         {selectedAnswers[idx] === q.answer ? (
                           <CheckCircle
                             className="h-4 w-4 shrink-0"
-                            style={{ color: "oklch(0.56 0.18 145)" }}
+                            style={{ color: "oklch(0.65 0.22 340)" }}
                           />
                         ) : (
                           <X className="h-4 w-4 shrink-0 text-destructive" />
@@ -1351,7 +1351,7 @@ export default function MockTestsPage() {
 
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
                     <Button
-                      className="font-bold gap-2 text-white"
+                      className="font-bold gap-2 text-foreground"
                       style={{ background: selectedExam.color }}
                       onClick={() => {
                         handleSubmitScore();

@@ -20,6 +20,7 @@ export default {
         body: ['"Plus Jakarta Sans"', "sans-serif"],
         ui: ['"Sora"', "sans-serif"],
         sans: ['"Plus Jakarta Sans"', "sans-serif"],
+        mono: ['"JetBrains Mono"', "monospace"],
       },
       colors: {
         border: "oklch(var(--border))",
@@ -72,11 +73,24 @@ export default {
           border: "oklch(var(--sidebar-border))",
           ring: "oklch(var(--sidebar-ring))",
         },
-        // Brand tokens
+        // Brand tokens - multicolor
         saffron: "oklch(var(--saffron) / <alpha-value>)",
         navy: "oklch(var(--navy) / <alpha-value>)",
         "india-green": "oklch(var(--india-green) / <alpha-value>)",
         cream: "oklch(var(--cream) / <alpha-value>)",
+        "neon-cyan": "oklch(var(--neon-cyan) / <alpha-value>)",
+        "neon-green": "oklch(var(--neon-green) / <alpha-value>)",
+        "cosmic-bg": "oklch(var(--cosmic-bg) / <alpha-value>)",
+        "cosmic-card": "oklch(var(--cosmic-card) / <alpha-value>)",
+        // Accent category colors
+        "brand-pink": "oklch(var(--brand-pink) / <alpha-value>)",
+        "brand-purple": "oklch(var(--brand-purple) / <alpha-value>)",
+        "brand-blue": "oklch(var(--brand-blue) / <alpha-value>)",
+        "brand-green": "oklch(var(--brand-green) / <alpha-value>)",
+        "brand-orange": "oklch(var(--brand-orange) / <alpha-value>)",
+        "brand-red": "oklch(var(--brand-red) / <alpha-value>)",
+        "brand-teal": "oklch(var(--brand-teal) / <alpha-value>)",
+        "brand-indigo": "oklch(var(--brand-indigo) / <alpha-value>)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -87,10 +101,10 @@ export default {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        card: "0 2px 12px oklch(0.22 0.12 260 / 0.08)",
-        "card-hover": "0 8px 25px oklch(0.22 0.12 260 / 0.15)",
-        saffron: "0 4px 15px oklch(0.72 0.18 55 / 0.3)",
-        navy: "0 4px 15px oklch(0.22 0.12 260 / 0.3)",
+        card: "0 2px 12px oklch(0.55 0.22 310 / 0.08)",
+        "card-hover": "0 8px 25px oklch(0.55 0.22 310 / 0.15)",
+        "neon-cyan": "0 4px 16px oklch(0.55 0.22 230 / 0.3), 0 2px 6px oklch(0.55 0.22 230 / 0.12)",
+        "neon-green": "0 4px 16px oklch(0.50 0.20 145 / 0.3), 0 2px 6px oklch(0.50 0.20 145 / 0.12)",
       },
       keyframes: {
         "accordion-down": {
@@ -113,6 +127,14 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-8px)" },
         },
+        twinkle: {
+          "0%, 100%": { opacity: "0.2" },
+          "50%": { opacity: "1" },
+        },
+        "color-pulse": {
+          "0%, 100%": { boxShadow: "0 4px 16px oklch(0.55 0.22 310 / 0.15)" },
+          "50%": { boxShadow: "0 4px 24px oklch(0.55 0.22 310 / 0.4), 0 8px 40px oklch(0.55 0.22 310 / 0.2)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -120,6 +142,8 @@ export default {
         shimmer: "shimmer 2s infinite linear",
         "wave-pulse": "wave-pulse 2s ease-in-out infinite",
         float: "float 3s ease-in-out infinite",
+        twinkle: "twinkle 3s ease-in-out infinite",
+        "neon-pulse": "color-pulse 2s ease-in-out infinite",
       },
     },
   },

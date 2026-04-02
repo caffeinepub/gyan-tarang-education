@@ -293,7 +293,7 @@ function PYQCard({ card, idx }: { card: PYQCard; idx: number }) {
         {!card.urgent && (
           <div
             className="h-1.5"
-            style={{ background: "oklch(0.22 0.12 260)" }}
+            style={{ background: "oklch(0.62 0.28 340)" }}
           />
         )}
         <CardContent className="p-4 flex flex-col flex-1">
@@ -339,7 +339,7 @@ function PYQCard({ card, idx }: { card: PYQCard; idx: number }) {
               className="text-[10px] px-1.5 py-0"
               style={{
                 background: "oklch(0.72 0.18 55 / 0.1)",
-                color: "oklch(0.55 0.18 55)",
+                color: "oklch(0.68 0.18 350)",
                 borderColor: "oklch(0.72 0.18 55 / 0.3)",
               }}
             >
@@ -352,7 +352,7 @@ function PYQCard({ card, idx }: { card: PYQCard; idx: number }) {
             <Button
               className="flex-1 gap-1.5 text-xs font-semibold"
               size="sm"
-              style={{ background: "oklch(0.22 0.12 260)", color: "white" }}
+              style={{ background: "oklch(0.62 0.28 340)", color: "white" }}
               onClick={() => window.open(card.paperUrl, "_blank")}
               data-ocid={`pyq.paper.button.${idx + 1}`}
             >
@@ -365,7 +365,7 @@ function PYQCard({ card, idx }: { card: PYQCard; idx: number }) {
               className="flex-1 gap-1.5 text-xs"
               style={{
                 borderColor: "oklch(0.56 0.18 145 / 0.4)",
-                color: "oklch(0.35 0.15 145)",
+                color: "oklch(0.99 0 0)",
               }}
               onClick={() => window.open(card.answerUrl, "_blank")}
               data-ocid={`pyq.answer.button.${idx + 1}`}
@@ -395,16 +395,16 @@ export default function PreviousYearPage() {
             <div className="flex items-center gap-3 mb-3">
               <ClipboardList
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t(
                   "Previous Year Papers & Answer Keys",
                   "Previous Year Papers & Answer Keys",
                 )}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "CBSE, JEE, NEET, UPSC, SSC, Railway, Bihar Police - Official Sources",
                 "CBSE, JEE, NEET, UPSC, SSC, Railway, Bihar Police - Official Sources",
@@ -477,7 +477,7 @@ export default function PreviousYearPage() {
             >
               <Shield
                 className="h-4 w-4 shrink-0 mt-0.5"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
               <div>
                 <p className="text-sm font-semibold text-foreground mb-0.5">
@@ -501,13 +501,13 @@ export default function PreviousYearPage() {
             <div
               className="mb-5 p-4 rounded-xl border flex items-start gap-3"
               style={{
-                borderColor: "oklch(0.22 0.12 260 / 0.3)",
+                borderColor: "oklch(0.78 0.18 348 / 0.35)",
                 background: "oklch(0.22 0.12 260 / 0.04)",
               }}
             >
               <GraduationCap
                 className="h-4 w-4 shrink-0 mt-0.5"
-                style={{ color: "oklch(0.22 0.12 260)" }}
+                style={{ color: "oklch(0.62 0.28 340)" }}
               />
               <div>
                 <p className="text-sm font-semibold text-foreground mb-0.5">
@@ -537,7 +537,7 @@ export default function PreviousYearPage() {
             >
               <Shield
                 className="h-4 w-4 shrink-0 mt-0.5"
-                style={{ color: "oklch(0.56 0.18 145)" }}
+                style={{ color: "oklch(0.65 0.22 340)" }}
               />
               <div>
                 <p className="text-sm font-semibold text-foreground mb-0.5">
@@ -567,7 +567,7 @@ export default function PreviousYearPage() {
             >
               <FileText
                 className="h-4 w-4 shrink-0 mt-0.5"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
               <div>
                 <p className="text-sm font-semibold text-foreground mb-0.5">
@@ -597,7 +597,7 @@ export default function PreviousYearPage() {
             >
               <ClipboardList
                 className="h-4 w-4 shrink-0 mt-0.5"
-                style={{ color: "oklch(0.56 0.18 145)" }}
+                style={{ color: "oklch(0.65 0.22 340)" }}
               />
               <div>
                 <p className="text-sm font-semibold text-foreground mb-0.5">

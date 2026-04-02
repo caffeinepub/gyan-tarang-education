@@ -123,9 +123,9 @@ const timetableSlots = [
 ];
 
 const typeColors: Record<string, string> = {
-  study: "oklch(0.22 0.12 260)",
-  health: "oklch(0.56 0.18 145)",
-  break: "oklch(0.72 0.18 55)",
+  study: "oklch(0.62 0.28 340)",
+  health: "oklch(0.65 0.22 340)",
+  break: "oklch(0.76 0.12 350)",
   routine: "oklch(0.50 0.08 260)",
 };
 
@@ -150,13 +150,13 @@ export default function WellnessPage() {
             <div className="flex items-center gap-3 mb-3">
               <Heart
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t("Student Wellness Hub", "Student Wellness Hub")}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "Health, Motivation, Time Management aur Study Tips - sab ek jagah",
                 "Health, Motivation, Time Management and Study Tips - all in one place",
@@ -195,7 +195,7 @@ export default function WellnessPage() {
                               tip.color === "saffron"
                                 ? "oklch(0.72 0.18 55 / 0.12)"
                                 : tip.color === "navy"
-                                  ? "oklch(0.22 0.12 260 / 0.1)"
+                                  ? "oklch(0.78 0.18 348 / 0.2)"
                                   : "oklch(0.56 0.18 145 / 0.12)",
                           }}
                         >
@@ -204,10 +204,10 @@ export default function WellnessPage() {
                             style={{
                               color:
                                 tip.color === "saffron"
-                                  ? "oklch(0.72 0.18 55)"
+                                  ? "oklch(0.76 0.12 350)"
                                   : tip.color === "navy"
-                                    ? "oklch(0.22 0.12 260)"
-                                    : "oklch(0.56 0.18 145)",
+                                    ? "oklch(0.62 0.28 340)"
+                                    : "oklch(0.65 0.22 340)",
                             }}
                           />
                         </div>
@@ -245,7 +245,7 @@ export default function WellnessPage() {
                     desc: "Din ke aakhir mein 5 minute likhein - mind clear hoga",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="p-3 bg-white/50 rounded-xl">
+                  <div key={item.title} className="p-3 bg-card/50 rounded-xl">
                     <p className="font-semibold text-sm text-foreground mb-1">
                       {item.title}
                     </p>
@@ -324,25 +324,25 @@ export default function WellnessPage() {
                 animate={{ opacity: 1, scale: 1 }}
               >
                 <Card
-                  className="border-0 text-white overflow-hidden"
+                  className="border-0 text-foreground overflow-hidden"
                   style={{
                     background:
-                      "linear-gradient(135deg, oklch(0.18 0.10 260), oklch(0.22 0.12 260))",
+                      "linear-gradient(135deg, oklch(0.68 0.22 345), oklch(0.62 0.28 340))",
                   }}
                   data-ocid="wellness.quotes.card"
                 >
                   <CardContent className="p-8 text-center">
                     <Star
                       className="h-8 w-8 mx-auto mb-4 opacity-60"
-                      style={{ color: "oklch(0.72 0.18 55)" }}
+                      style={{ color: "oklch(0.76 0.12 350)" }}
                     />
-                    <blockquote className="font-display text-xl md:text-2xl font-bold text-white leading-relaxed mb-4">
+                    <blockquote className="font-display text-xl md:text-2xl font-bold text-foreground leading-relaxed mb-4">
                       "{allQuotes[quoteIdx]}"
                     </blockquote>
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="text-white/60 hover:text-white hover:bg-white/10 gap-2"
+                      className="text-foreground/60 hover:text-foreground hover:bg-card/10 gap-2"
                       onClick={() =>
                         setQuoteIdx((p) => (p + 1) % allQuotes.length)
                       }
@@ -393,7 +393,7 @@ export default function WellnessPage() {
                       <CardTitle className="text-base font-display flex items-center gap-2">
                         <BookOpen
                           className="h-4 w-4"
-                          style={{ color: "oklch(0.72 0.18 55)" }}
+                          style={{ color: "oklch(0.76 0.12 350)" }}
                         />
                         {sub.subject} - {category}
                       </CardTitle>
@@ -406,7 +406,7 @@ export default function WellnessPage() {
                         >
                           <Lightbulb
                             className="h-3.5 w-3.5 mt-0.5 shrink-0"
-                            style={{ color: "oklch(0.72 0.18 55)" }}
+                            style={{ color: "oklch(0.76 0.12 350)" }}
                           />
                           {tip}
                         </div>

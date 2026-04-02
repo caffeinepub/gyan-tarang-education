@@ -24,7 +24,7 @@ const categories = [
     descHi: "School aur College textbooks",
     descEn: "School and College textbooks",
     url: "https://ndl.gov.in/browse?category=textbooks",
-    color: "oklch(0.72 0.18 55)",
+    color: "oklch(0.76 0.12 350)",
   },
   {
     icon: Microscope,
@@ -33,7 +33,7 @@ const categories = [
     descHi: "Scientific research journals",
     descEn: "Scientific research journals",
     url: "https://ndl.gov.in/browse?category=journals",
-    color: "oklch(0.22 0.12 260)",
+    color: "oklch(0.62 0.28 340)",
   },
   {
     icon: Film,
@@ -42,7 +42,7 @@ const categories = [
     descHi: "Educational videos aur audio",
     descEn: "Educational videos and audio",
     url: "https://ndl.gov.in/browse?category=audio-visual",
-    color: "oklch(0.56 0.18 145)",
+    color: "oklch(0.65 0.22 340)",
   },
   {
     icon: BookMarked,
@@ -87,7 +87,7 @@ const categories = [
     descHi: "Social sciences, humanities",
     descEn: "Social sciences, humanities",
     url: "https://ndl.gov.in/browse?category=social-sciences",
-    color: "oklch(0.55 0.12 260)",
+    color: "oklch(0.70 0.14 260)",
   },
 ];
 
@@ -135,24 +135,24 @@ export default function NdlPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white/80 text-sm font-semibold mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/10 border border-white/20 text-foreground/80 text-sm font-semibold mb-6">
               <Shield
                 className="h-4 w-4"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
               Government of India - Ministry of Education
             </div>
 
-            <h1 className="font-display text-4xl md:text-5xl font-black text-white mb-4">
+            <h1 className="font-display text-4xl md:text-5xl font-black text-foreground mb-4">
               National Digital Library
             </h1>
             <p
               className="font-display text-2xl font-bold mb-6"
-              style={{ color: "oklch(0.72 0.18 55)" }}
+              style={{ color: "oklch(0.76 0.12 350)" }}
             >
               राष्ट्रीय डिजिटल पुस्तकालय
             </p>
-            <p className="text-white/70 text-base md:text-lg max-w-2xl mx-auto mb-8">
+            <p className="text-foreground/70 text-base md:text-lg max-w-2xl mx-auto mb-8">
               {t(
                 "India ka sabse bada digital library - 70 lakh+ books, journals, videos, aur study materials - bilkul MUFT!",
                 "India's largest digital library - 7 million+ books, journals, videos, and study materials - completely FREE!",
@@ -163,7 +163,7 @@ export default function NdlPage() {
               <span className="badge-govt">✅ Govt of India</span>
               <span className="badge-govt">📚 70 Lakh+ Resources</span>
               <span className="badge-made-in-india">🇮🇳 Made in India</span>
-              <span className="flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white/80 border border-white/20">
+              <span className="flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-card/10 text-foreground/80 border border-white/20">
                 🆓 Free Forever
               </span>
             </div>
@@ -171,10 +171,10 @@ export default function NdlPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="font-bold px-8 py-6 text-base gap-2 rounded-xl text-white"
+                className="font-bold px-8 py-6 text-base gap-2 rounded-xl text-foreground"
                 style={{
                   background:
-                    "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.65 0.15 40))",
+                    "linear-gradient(135deg, oklch(0.76 0.12 350), oklch(0.65 0.20 350))",
                   boxShadow: "0 0 30px oklch(0.72 0.18 55 / 0.5)",
                 }}
                 onClick={() =>
@@ -192,7 +192,7 @@ export default function NdlPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="font-bold px-8 py-6 text-base gap-2 rounded-xl border-white/30 text-white hover:bg-white/10"
+                className="font-bold px-8 py-6 text-base gap-2 rounded-xl border-white/30 text-foreground hover:bg-card/10"
                 onClick={() =>
                   window.open(
                     "https://ndl.gov.in/registration",
@@ -223,19 +223,19 @@ export default function NdlPage() {
               value: "70 Lakh+",
               labelHi: "Resources",
               labelEn: "Resources",
-              color: "oklch(0.72 0.18 55)",
+              color: "oklch(0.76 0.12 350)",
             },
             {
               value: "200+",
               labelHi: "Languages",
               labelEn: "Languages",
-              color: "oklch(0.22 0.12 260)",
+              color: "oklch(0.62 0.28 340)",
             },
             {
               value: "1 Crore+",
               labelHi: "Students",
               labelEn: "Students",
-              color: "oklch(0.56 0.18 145)",
+              color: "oklch(0.65 0.22 340)",
             },
             {
               value: "100%",
@@ -263,17 +263,17 @@ export default function NdlPage() {
           className="mb-12 p-8 rounded-2xl"
           style={{
             background:
-              "linear-gradient(135deg, oklch(0.18 0.10 260), oklch(0.22 0.12 260))",
+              "linear-gradient(135deg, oklch(0.68 0.22 345), oklch(0.62 0.28 340))",
           }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-2xl font-black text-white mb-4">
+            <h2 className="font-display text-2xl font-black text-foreground mb-4">
               {t("NDL kya hai?", "What is NDL?")}
             </h2>
-            <p className="text-white/70 text-base leading-relaxed">
+            <p className="text-foreground/70 text-base leading-relaxed">
               {t(
                 "National Digital Library of India (NDLI) - IIT Kharagpur aur Ministry of Education, Govt of India ka project hai. Isme Class 1 se PhD tak ke sab levels ke liye study material freely available hai.",
                 "National Digital Library of India (NDLI) is a project by IIT Kharagpur and Ministry of Education, Govt of India. It has free study material for all levels from Class 1 to PhD.",
@@ -304,10 +304,10 @@ export default function NdlPage() {
               ].map((item) => (
                 <div
                   key={item.textEn}
-                  className="p-3 rounded-xl bg-white/10 text-center"
+                  className="p-3 rounded-xl bg-card/10 text-center"
                 >
                   <div className="text-2xl mb-1">{item.emoji}</div>
-                  <div className="text-xs text-white/80 font-semibold">
+                  <div className="text-xs text-foreground/80 font-semibold">
                     {t(item.textHi, item.textEn)}
                   </div>
                 </div>
@@ -400,9 +400,9 @@ export default function NdlPage() {
               <div key={step.step} className="relative">
                 <div className="p-5 rounded-2xl border border-border/50 bg-card text-center">
                   <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-white font-black text-lg mx-auto mb-3"
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-foreground font-black text-lg mx-auto mb-3"
                     style={{
-                      background: "oklch(0.72 0.18 55)",
+                      background: "oklch(0.76 0.12 350)",
                     }}
                   >
                     {step.step}
@@ -452,9 +452,9 @@ export default function NdlPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              className="font-bold px-8 gap-2 text-white"
+              className="font-bold px-8 gap-2 text-foreground"
               style={{
-                background: "oklch(0.72 0.18 55)",
+                background: "oklch(0.76 0.12 350)",
                 boxShadow: "0 0 20px oklch(0.72 0.18 55 / 0.4)",
               }}
               onClick={() =>

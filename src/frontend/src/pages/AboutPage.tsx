@@ -73,21 +73,23 @@ export default function AboutPage() {
               className="h-20 w-20 mx-auto rounded-full mb-6 shadow-2xl"
               style={{ boxShadow: "0 0 40px oklch(0.72 0.18 55 / 0.4)" }}
             />
-            <h1 className="font-display text-4xl md:text-5xl font-black text-white mb-3">
+            <h1 className="font-display text-4xl md:text-5xl font-black text-foreground mb-3">
               Gyan Tarang
             </h1>
             <p
               className="font-display text-2xl font-bold mb-2"
-              style={{ color: "oklch(0.72 0.18 55)" }}
+              style={{ color: "oklch(0.76 0.12 350)" }}
             >
               नहीं आता है? सीखो!
             </p>
-            <p className="text-white/70 text-lg mb-6">Education & Technology</p>
+            <p className="text-foreground/70 text-lg mb-6">
+              Education & Technology
+            </p>
             <div className="flex flex-wrap justify-center gap-2">
               <span className="badge-made-in-india">🇮🇳 Made in India</span>
               <span className="badge-govt">100% Free Forever</span>
               <span className="badge-govt">NEP 2020 Compliant</span>
-              <span className="flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white/80 border border-white/20">
+              <span className="flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-card/10 text-foreground/80 border border-white/20">
                 <Shield className="h-3 w-3" /> Fully Secure
               </span>
             </div>
@@ -117,16 +119,16 @@ export default function AboutPage() {
               className="h-2"
               style={{
                 background:
-                  "linear-gradient(90deg, oklch(0.72 0.18 55), oklch(0.99 0 0), oklch(0.56 0.18 145))",
+                  "linear-gradient(90deg, oklch(0.76 0.12 350), oklch(0.99 0 0), oklch(0.65 0.22 340))",
               }}
             />
             <CardContent className="p-8">
               <div className="flex flex-col sm:flex-row items-center gap-6">
                 <div
-                  className="h-24 w-24 rounded-full flex items-center justify-center text-3xl font-black text-white font-display flex-shrink-0"
+                  className="h-24 w-24 rounded-full flex items-center justify-center text-3xl font-black text-foreground font-display flex-shrink-0"
                   style={{
                     background:
-                      "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.22 0.12 260))",
+                      "linear-gradient(135deg, oklch(0.76 0.12 350), oklch(0.62 0.28 340))",
                   }}
                 >
                   MP
@@ -140,7 +142,7 @@ export default function AboutPage() {
                   </p>
                   <blockquote
                     className="text-foreground/80 italic border-l-4 pl-4 text-sm leading-relaxed"
-                    style={{ borderColor: "oklch(0.72 0.18 55)" }}
+                    style={{ borderColor: "oklch(0.76 0.12 350)" }}
                   >
                     "Har ghar tak quality education pahunchana humara sapna aur
                     mission dono hai. Gyan Tarang ke zariye hum chahte hain ki
@@ -174,7 +176,7 @@ export default function AboutPage() {
         >
           <Badge
             className="bg-india-green/10 text-india-green border-india-green/20 mb-4"
-            style={{ color: "oklch(0.35 0.15 145)" }}
+            style={{ color: "oklch(0.99 0 0)" }}
           >
             Our Mission
           </Badge>
@@ -219,7 +221,7 @@ export default function AboutPage() {
                       item.color === "saffron"
                         ? "oklch(0.72 0.18 55 / 0.12)"
                         : item.color === "navy"
-                          ? "oklch(0.22 0.12 260 / 0.1)"
+                          ? "oklch(0.78 0.18 348 / 0.2)"
                           : "oklch(0.56 0.18 145 / 0.12)",
                   }}
                 >
@@ -228,10 +230,10 @@ export default function AboutPage() {
                     style={{
                       color:
                         item.color === "saffron"
-                          ? "oklch(0.72 0.18 55)"
+                          ? "oklch(0.76 0.12 350)"
                           : item.color === "navy"
-                            ? "oklch(0.22 0.12 260)"
-                            : "oklch(0.56 0.18 145)",
+                            ? "oklch(0.62 0.28 340)"
+                            : "oklch(0.65 0.22 340)",
                     }}
                   />
                 </div>
@@ -269,7 +271,7 @@ export default function AboutPage() {
               >
                 <CheckCircle
                   className="h-5 w-5 mt-0.5 shrink-0"
-                  style={{ color: "oklch(0.56 0.18 145)" }}
+                  style={{ color: "oklch(0.65 0.22 340)" }}
                 />
                 <div>
                   <h3 className="font-semibold text-sm text-foreground mb-1">
@@ -302,7 +304,7 @@ export default function AboutPage() {
               >
                 <Star
                   className="h-4 w-4 shrink-0"
-                  style={{ color: "oklch(0.72 0.18 55)" }}
+                  style={{ color: "oklch(0.76 0.12 350)" }}
                 />
                 <span className="text-sm text-foreground">{feature}</span>
               </div>
@@ -323,7 +325,7 @@ export default function AboutPage() {
         >
           <Heart
             className="h-8 w-8 mx-auto mb-3"
-            style={{ color: "oklch(0.72 0.18 55)" }}
+            style={{ color: "oklch(0.76 0.12 350)" }}
           />
           <h3 className="font-display text-xl font-bold text-foreground mb-2">
             {t("Hamse Milen", "Contact Us")}

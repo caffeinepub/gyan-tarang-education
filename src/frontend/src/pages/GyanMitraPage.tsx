@@ -293,16 +293,16 @@ export default function GyanMitraPage() {
                 className="w-10 h-10 rounded-xl flex items-center justify-center"
                 style={{
                   background:
-                    "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.65 0.15 40))",
+                    "linear-gradient(135deg, oklch(0.50 0.22 290), oklch(0.45 0.20 145))",
                 }}
               >
-                <Brain className="h-6 w-6 text-white" />
+                <Brain className="h-6 w-6 text-foreground" />
               </div>
               <div>
-                <h1 className="font-display text-3xl font-black text-white">
+                <h1 className="font-display text-3xl font-black text-foreground">
                   Gyan Mitra
                 </h1>
-                <p className="text-white/60 text-sm">
+                <p className="text-foreground/60 text-sm">
                   {t(
                     "आपका AI Study Partner - 24/7 Doubt Solver",
                     "Your AI Study Partner - 24/7 Doubt Solver",
@@ -317,7 +317,7 @@ export default function GyanMitraPage() {
                 className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold border"
                 style={{
                   background: "oklch(1 0 0 / 0.08)",
-                  color: "oklch(0.95 0 0)",
+                  color: "white",
                   borderColor: "oklch(1 0 0 / 0.2)",
                 }}
               >
@@ -338,7 +338,7 @@ export default function GyanMitraPage() {
                 <CardTitle className="text-sm font-display flex items-center gap-2">
                   <BookOpen
                     className="h-4 w-4"
-                    style={{ color: "oklch(0.72 0.18 55)" }}
+                    style={{ color: "oklch(0.50 0.22 290)" }}
                   />
                   {t("Subject चुनें", "Select Subject")}
                 </CardTitle>
@@ -354,12 +354,12 @@ export default function GyanMitraPage() {
                       style={
                         selectedSubject === sub.id
                           ? {
-                              background: "oklch(0.72 0.18 55)",
+                              background: "oklch(0.50 0.22 290)",
                               color: "white",
                               fontWeight: 600,
                             }
                           : {
-                              color: "oklch(0.40 0.04 260)",
+                              color: "white",
                             }
                       }
                       data-ocid={`gyan_mitra.subject.${sub.id}.button`}
@@ -383,7 +383,7 @@ export default function GyanMitraPage() {
                 className="flex items-center gap-3 px-4 py-3 border-b border-border/50 shrink-0"
                 style={{
                   background:
-                    "linear-gradient(135deg, oklch(0.72 0.18 55 / 0.08), oklch(0.56 0.18 145 / 0.05))",
+                    "linear-gradient(135deg, oklch(0.85 0.20 195 / 0.08), oklch(0.85 0.25 145 / 0.05))",
                 }}
               >
                 <div
@@ -408,7 +408,7 @@ export default function GyanMitraPage() {
                     className="text-xs"
                     style={{
                       background: "oklch(0.72 0.18 55 / 0.15)",
-                      color: "oklch(0.55 0.18 55)",
+                      color: "oklch(0.50 0.22 290)",
                       border: "1px solid oklch(0.72 0.18 55 / 0.3)",
                     }}
                   >
@@ -440,18 +440,18 @@ export default function GyanMitraPage() {
                             background:
                               msg.role === "ai"
                                 ? "oklch(0.72 0.18 55 / 0.15)"
-                                : "oklch(0.22 0.12 260 / 0.15)",
+                                : "oklch(0.50 0.22 290 / 0.15)",
                           }}
                         >
                           {msg.role === "ai" ? (
                             <Bot
                               className="h-4 w-4"
-                              style={{ color: "oklch(0.72 0.18 55)" }}
+                              style={{ color: "oklch(0.50 0.22 290)" }}
                             />
                           ) : (
                             <User
                               className="h-4 w-4"
-                              style={{ color: "oklch(0.22 0.12 260)" }}
+                              style={{ color: "oklch(0.45 0.20 145)" }}
                             />
                           )}
                         </div>
@@ -462,14 +462,15 @@ export default function GyanMitraPage() {
                           style={
                             msg.role === "ai"
                               ? {
-                                  background: "oklch(0.97 0.005 80)",
-                                  border: "1px solid oklch(0.90 0.02 260)",
-                                  color: "oklch(0.20 0.02 260)",
+                                  background: "oklch(0.98 0.01 270)",
+                                  border:
+                                    "1px solid oklch(0.50 0.22 290 / 0.25)",
+                                  color: "oklch(0.92 0 0)",
                                   borderRadius: "4px 16px 16px 16px",
                                 }
                               : {
                                   background:
-                                    "linear-gradient(135deg, oklch(0.22 0.12 260), oklch(0.18 0.10 260))",
+                                    "linear-gradient(135deg, oklch(0.50 0.22 290), oklch(0.45 0.20 145))",
                                   color: "white",
                                   borderRadius: "16px 4px 16px 16px",
                                 }
@@ -483,7 +484,7 @@ export default function GyanMitraPage() {
                             style={{
                               color:
                                 msg.role === "ai"
-                                  ? "oklch(0.50 0.04 260)"
+                                  ? "oklch(0.99 0 0 / 0.6)"
                                   : "white",
                             }}
                           >
@@ -511,19 +512,19 @@ export default function GyanMitraPage() {
                       >
                         <Bot
                           className="h-4 w-4"
-                          style={{ color: "oklch(0.72 0.18 55)" }}
+                          style={{ color: "oklch(0.50 0.22 290)" }}
                         />
                       </div>
                       <div
                         className="px-4 py-3 rounded-2xl flex items-center gap-2"
                         style={{
-                          background: "oklch(0.97 0.005 80)",
-                          border: "1px solid oklch(0.90 0.02 260)",
+                          background: "oklch(0.98 0.01 270)",
+                          border: "1px solid oklch(0.50 0.22 290 / 0.25)",
                         }}
                       >
                         <Loader2
                           className="h-4 w-4 animate-spin"
-                          style={{ color: "oklch(0.72 0.18 55)" }}
+                          style={{ color: "oklch(0.50 0.22 290)" }}
                         />
                         <span className="text-sm text-muted-foreground">
                           Gyan Mitra soch raha hai...
@@ -573,8 +574,8 @@ export default function GyanMitraPage() {
                     className="h-auto px-4 font-bold shrink-0"
                     style={{
                       background:
-                        "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.65 0.15 40))",
-                      color: "white",
+                        "linear-gradient(135deg, oklch(0.50 0.22 290), oklch(0.45 0.20 145))",
+                      color: "oklch(0.99 0 0)",
                     }}
                     onClick={handleSend}
                     disabled={!question.trim() || isLoading}
@@ -615,7 +616,7 @@ export default function GyanMitraPage() {
                     className="px-3 py-1.5 rounded-full text-xs font-medium transition-all hover:opacity-80"
                     style={{
                       background: "oklch(0.72 0.18 55 / 0.1)",
-                      color: "oklch(0.55 0.18 55)",
+                      color: "oklch(0.50 0.22 290)",
                       border: "1px solid oklch(0.72 0.18 55 / 0.25)",
                     }}
                   >
@@ -634,25 +635,25 @@ export default function GyanMitraPage() {
               icon: Brain,
               title: "12+ Subjects",
               desc: "Maths, Science, English, GK aur bahut kuch",
-              color: "oklch(0.72 0.18 55)",
+              color: "oklch(0.50 0.22 290)",
             },
             {
               icon: MessageCircle,
               title: "Step-by-Step",
               desc: "Detailed explanations with examples",
-              color: "oklch(0.22 0.12 260)",
+              color: "oklch(0.45 0.20 145)",
             },
             {
               icon: GraduationCap,
               title: "Class 1-BTech",
               desc: "Sab levels ke liye content",
-              color: "oklch(0.56 0.18 145)",
+              color: "oklch(0.55 0.22 55)",
             },
             {
               icon: Sparkles,
               title: "Hindi + English",
               desc: "Dono languages mein help",
-              color: "oklch(0.65 0.18 30)",
+              color: "oklch(0.45 0.22 290)",
             },
           ].map((feat) => (
             <Card

@@ -18,14 +18,18 @@ import {
   GraduationCap,
   Heart,
   Library,
+  LineChart,
   LogOut,
+  Map as MapIcon,
   Menu,
   Shield,
+  Sparkles,
   Trophy,
   User,
   Users,
   Video,
   X,
+  Zap,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -39,7 +43,7 @@ const navLinks = [
   { to: "/btech", labelHi: "BTech", labelEn: "BTech" },
 ];
 
-const moreLinks = [
+const aiLinks = [
   {
     to: "/gyan-mitra",
     labelHi: "Gyan Mitra AI",
@@ -47,10 +51,34 @@ const moreLinks = [
     icon: Brain,
   },
   {
-    to: "/mock-tests",
-    labelHi: "Mock Tests",
-    labelEn: "Mock Tests",
-    icon: Trophy,
+    to: "/ai-study-planner",
+    labelHi: "Study Planner AI",
+    labelEn: "Study Planner AI",
+    icon: MapIcon,
+  },
+  {
+    to: "/ai-quiz-generator",
+    labelHi: "Quiz Generator AI",
+    labelEn: "Quiz Generator AI",
+    icon: Zap,
+  },
+  {
+    to: "/ai-performance",
+    labelHi: "Performance AI",
+    labelEn: "Performance AI",
+    icon: LineChart,
+  },
+  {
+    to: "/ai-career",
+    labelHi: "Career Counselor AI",
+    labelEn: "Career Counselor AI",
+    icon: GraduationCap,
+  },
+  {
+    to: "/ai-summarizer",
+    labelHi: "AI Summarizer",
+    labelEn: "AI Summarizer",
+    icon: Sparkles,
   },
   {
     to: "/maths-tutor",
@@ -63,6 +91,15 @@ const moreLinks = [
     labelHi: "AI English Coach",
     labelEn: "AI English Coach",
     icon: Globe,
+  },
+];
+
+const moreLinks = [
+  {
+    to: "/mock-tests",
+    labelHi: "Mock Tests",
+    labelEn: "Mock Tests",
+    icon: Trophy,
   },
   {
     to: "/placement",
@@ -112,10 +149,13 @@ export default function Navbar() {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full shadow-sm"
+      className="sticky top-0 z-50 w-full"
       style={{
-        background: "white",
-        borderBottom: "2px solid oklch(0.65 0.22 350 / 0.2)",
+        background: "rgba(255, 255, 255, 0.97)",
+        borderBottom: "1px solid oklch(0.90 0.02 300)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        boxShadow: "0 1px 12px oklch(0.55 0.22 310 / 0.08)",
       }}
     >
       <div className="tricolor-bar" />
@@ -139,16 +179,24 @@ export default function Navbar() {
               }}
             />
             <div
-              style={{ display: "none", background: "oklch(0.65 0.22 350)" }}
-              className="h-10 w-10 rounded-full items-center justify-center text-white font-black text-sm"
+              style={{
+                display: "none",
+                background:
+                  "linear-gradient(135deg, oklch(0.55 0.22 350 / 0.15), oklch(0.55 0.22 290 / 0.15))",
+                border: "1px solid oklch(0.55 0.22 310 / 0.3)",
+              }}
+              className="h-10 w-10 rounded-full items-center justify-center font-black text-sm"
             >
-              GT
+              <span className="text-neon-gradient">GT</span>
             </div>
             <div className="hidden sm:block">
-              <div className="font-display text-sm font-bold text-gray-900 leading-tight">
+              <div className="font-display text-sm font-bold text-neon-gradient leading-tight">
                 Gyan Tarang
               </div>
-              <div className="text-[10px] text-gray-500 leading-tight">
+              <div
+                className="text-[10px] leading-tight"
+                style={{ color: "oklch(0.50 0.04 260)" }}
+              >
                 Education & Technology
               </div>
             </div>
@@ -160,19 +208,56 @@ export default function Navbar() {
               <Link
                 key={link.to}
                 to={link.to}
-                className="px-3 py-1.5 rounded-md text-sm font-medium text-gray-700 hover:text-pink-600 hover:bg-pink-50 transition-colors"
+                className="px-3 py-1.5 rounded-md text-sm font-medium transition-colors hover:bg-purple-50"
+                style={{ color: "oklch(0.25 0.04 260)" }}
                 data-ocid={`nav.${link.to.slice(1)}.link`}
               >
                 {t(link.labelHi, link.labelEn)}
               </Link>
             ))}
+
+            {/* AI Tools dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="gap-1 text-sm font-medium px-3 py-1.5"
+                  style={{ color: "oklch(0.40 0.22 290)" }}
+                  data-ocid="nav.ai_tools.dropdown_menu"
+                >
+                  <Sparkles className="h-3.5 w-3.5" />
+                  {t("AI Tools", "AI Tools")}
+                  <ChevronDown className="h-3 w-3 opacity-60" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                {aiLinks.map((link) => (
+                  <DropdownMenuItem key={link.to} asChild>
+                    <Link
+                      to={link.to}
+                      className="flex items-center gap-2"
+                      data-ocid={`nav.ai.${link.to.slice(1)}.link`}
+                    >
+                      <link.icon
+                        className="h-4 w-4"
+                        style={{ color: "oklch(0.40 0.22 290)" }}
+                      />
+                      {t(link.labelHi, link.labelEn)}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             {/* More dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-gray-700 hover:text-pink-600 hover:bg-pink-50 gap-1 text-sm font-medium px-3 py-1.5"
+                  className="gap-1 text-sm font-medium px-3 py-1.5"
+                  style={{ color: "oklch(0.25 0.04 260)" }}
                 >
                   {t("और", "More")}
                   <ChevronDown className="h-3 w-3 opacity-60" />
@@ -198,39 +283,59 @@ export default function Navbar() {
           {/* Right controls */}
           <div className="flex items-center gap-2">
             {/* Language Toggle */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-gray-600 hover:text-pink-600 hover:bg-pink-50 gap-1.5 text-xs"
+            <button
+              type="button"
               onClick={() => setLanguage(language === "hi" ? "en" : "hi")}
-              data-ocid="nav.language.select"
+              className="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-all"
+              style={{
+                background: "oklch(0.55 0.22 290 / 0.10)",
+                color: "oklch(0.40 0.22 290)",
+                border: "1px solid oklch(0.55 0.22 290 / 0.25)",
+              }}
+              data-ocid="nav.language.toggle"
             >
-              <Globe className="h-3.5 w-3.5" />
+              <Globe className="h-3 w-3" />
               {language === "hi" ? "EN" : "हि"}
-            </Button>
+            </button>
 
-            {/* Auth */}
             {isLoggedIn ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-gray-700 hover:text-pink-600 hover:bg-pink-50 gap-1.5"
+                    className="gap-2"
+                    style={{ color: "oklch(0.25 0.04 260)" }}
+                    data-ocid="nav.user.dropdown_menu"
                   >
                     <div
-                      className="h-7 w-7 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                      style={{ background: "oklch(0.65 0.22 350)" }}
+                      className="h-7 w-7 rounded-full flex items-center justify-center text-xs font-bold"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, oklch(0.55 0.22 350), oklch(0.55 0.22 290))",
+                        color: "white",
+                      }}
                     >
-                      {currentUser?.name?.charAt(0)?.toUpperCase() || "U"}
+                      {currentUser?.name?.[0]?.toUpperCase()}
                     </div>
-                    <span className="hidden sm:block text-xs max-w-[80px] truncate">
-                      {currentUser?.name}
+                    <span className="hidden sm:block text-sm">
+                      {currentUser?.name?.split(" ")[0]}
                     </span>
-                    <ChevronDown className="h-3 w-3 opacity-60" />
+                    {currentUser?.role === "admin" && (
+                      <Badge
+                        className="text-[10px] px-1.5 py-0"
+                        style={{
+                          background: "oklch(0.55 0.22 290 / 0.12)",
+                          color: "oklch(0.35 0.22 290)",
+                          borderColor: "oklch(0.55 0.22 290 / 0.3)",
+                        }}
+                      >
+                        Admin
+                      </Badge>
+                    )}
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-52">
+                <DropdownMenuContent align="end" className="w-48">
                   <DropdownMenuItem asChild>
                     <Link
                       to="/dashboard"
@@ -238,180 +343,130 @@ export default function Navbar() {
                       data-ocid="nav.dashboard.link"
                     >
                       <User className="h-4 w-4" />
-                      {t("Dashboard", "Dashboard")}
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link
-                      to="/study-tracker"
-                      className="flex items-center gap-2"
-                    >
-                      <BarChart3 className="h-4 w-4" />
-                      {t("Study Tracker", "Study Tracker")}
+                      {t("डैशबोर्ड", "Dashboard")}
                     </Link>
                   </DropdownMenuItem>
                   {currentUser?.role === "admin" && (
-                    <>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem asChild>
-                        <Link
-                          to="/admin"
-                          className="flex items-center gap-2"
-                          data-ocid="nav.admin.link"
-                        >
-                          <Shield
-                            className="h-4 w-4"
-                            style={{ color: "oklch(0.65 0.22 350)" }}
-                          />
-                          <span className="flex-1">
-                            {t("Admin Panel", "Admin Panel")}
-                          </span>
-                          <span
-                            className="text-[10px] font-bold px-1.5 py-0.5 rounded-full"
-                            style={{
-                              background: "oklch(0.65 0.22 350)",
-                              color: "white",
-                            }}
-                          >
-                            Admin
-                          </span>
-                        </Link>
-                      </DropdownMenuItem>
-                    </>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        to="/admin"
+                        className="flex items-center gap-2"
+                        data-ocid="nav.admin.link"
+                      >
+                        <Shield
+                          className="h-4 w-4"
+                          style={{ color: "oklch(0.40 0.22 290)" }}
+                        />
+                        {t("एडमिन पैनल", "Admin Panel")}
+                      </Link>
+                    </DropdownMenuItem>
                   )}
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     onClick={handleLogout}
-                    className="text-destructive focus:text-destructive"
+                    className="text-red-500 focus:text-red-500"
                     data-ocid="nav.logout.button"
                   >
                     <LogOut className="h-4 w-4 mr-2" />
-                    {t("Logout", "Logout")}
+                    {t("लॉगआउट", "Logout")}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button
-                size="sm"
-                className="text-white font-semibold text-xs px-3"
-                style={{ background: "oklch(0.65 0.22 350)" }}
-                onClick={() => navigate({ to: "/auth" })}
-                data-ocid="nav.login.button"
-              >
-                {t("Login करें", "Login")}
-              </Button>
+              <Link to="/auth" data-ocid="nav.login.button">
+                <Button
+                  size="sm"
+                  className="text-sm font-semibold text-white"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, oklch(0.55 0.22 350), oklch(0.50 0.22 290))",
+                  }}
+                >
+                  {t("लॉगिन", "Login")}
+                </Button>
+              </Link>
             )}
 
-            {/* Mobile Menu Toggle */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="xl:hidden text-gray-700 hover:text-pink-600 hover:bg-pink-50"
+            {/* Mobile hamburger */}
+            <button
+              type="button"
+              className="xl:hidden p-2 rounded-md transition-colors hover:bg-gray-100"
+              style={{ color: "oklch(0.30 0.04 260)" }}
               onClick={() => setMenuOpen(!menuOpen)}
-              data-ocid="nav.menu.toggle"
+              aria-label="Toggle menu"
+              data-ocid="nav.mobile.toggle"
             >
               {menuOpen ? (
                 <X className="h-5 w-5" />
               ) : (
                 <Menu className="h-5 w-5" />
               )}
-            </Button>
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {menuOpen && (
         <div
-          className="xl:hidden border-t border-pink-100"
-          style={{ background: "white" }}
+          className="xl:hidden border-t px-4 py-4 space-y-1"
+          style={{
+            background: "oklch(0.99 0 0)",
+            borderColor: "oklch(0.90 0.02 300)",
+          }}
         >
-          <nav className="container mx-auto px-4 py-3 flex flex-col gap-1">
-            {navLinks.map((link) => (
+          {navLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className="block px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-purple-50"
+              style={{ color: "oklch(0.25 0.04 260)" }}
+              onClick={() => setMenuOpen(false)}
+              data-ocid={`nav.mobile.${link.to.slice(1)}.link`}
+            >
+              {t(link.labelHi, link.labelEn)}
+            </Link>
+          ))}
+          <div
+            className="pt-2 border-t"
+            style={{ borderColor: "oklch(0.90 0.02 300)" }}
+          >
+            <p
+              className="px-3 py-1 text-xs font-bold"
+              style={{ color: "oklch(0.40 0.22 290)" }}
+            >
+              ✨ AI Tools
+            </p>
+            {aiLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-pink-600 hover:bg-pink-50 transition-colors"
+                className="block px-3 py-2 rounded-md text-sm transition-colors hover:bg-purple-50"
+                style={{ color: "oklch(0.25 0.04 260)" }}
                 onClick={() => setMenuOpen(false)}
-                data-ocid={`nav.mobile.${link.to.slice(1)}.link`}
+                data-ocid={`nav.mobile.ai.${link.to.slice(1).replace("/", "")}.link`}
               >
                 {t(link.labelHi, link.labelEn)}
               </Link>
             ))}
-            <div className="border-t border-pink-100 my-1" />
-            {moreLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-pink-600 hover:bg-pink-50 transition-colors"
-                onClick={() => setMenuOpen(false)}
+          </div>
+          {!isLoggedIn && (
+            <Link
+              to="/auth"
+              className="block mt-2"
+              onClick={() => setMenuOpen(false)}
+            >
+              <Button
+                className="w-full text-white"
+                style={{
+                  background:
+                    "linear-gradient(135deg, oklch(0.55 0.22 350), oklch(0.50 0.22 290))",
+                }}
               >
-                <link.icon className="h-4 w-4" />
-                {t(link.labelHi, link.labelEn)}
-              </Link>
-            ))}
-            <div className="pt-2 mt-1 border-t border-pink-100">
-              {isLoggedIn ? (
-                <>
-                  <Link
-                    to="/dashboard"
-                    className="block px-3 py-2 text-sm text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-md"
-                    onClick={() => setMenuOpen(false)}
-                    data-ocid="nav.mobile.dashboard.link"
-                  >
-                    {t("Dashboard", "Dashboard")}
-                  </Link>
-                  {currentUser?.role === "admin" && (
-                    <Link
-                      to="/admin"
-                      className="flex items-center gap-2 px-3 py-2 text-sm rounded-md font-semibold"
-                      onClick={() => setMenuOpen(false)}
-                      style={{
-                        background: "oklch(0.65 0.22 350 / 0.10)",
-                        color: "oklch(0.45 0.18 350)",
-                        border: "1px solid oklch(0.65 0.22 350 / 0.3)",
-                      }}
-                      data-ocid="nav.mobile.admin.link"
-                    >
-                      <Shield
-                        className="h-4 w-4"
-                        style={{ color: "oklch(0.65 0.22 350)" }}
-                      />
-                      {t("Admin Panel", "Admin Panel")}
-                      <span
-                        className="ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded-full"
-                        style={{
-                          background: "oklch(0.65 0.22 350)",
-                          color: "white",
-                        }}
-                      >
-                        Admin
-                      </span>
-                    </Link>
-                  )}
-                  <button
-                    type="button"
-                    onClick={handleLogout}
-                    className="w-full text-left px-3 py-2 text-sm text-red-500 hover:bg-pink-50 rounded-md"
-                    data-ocid="nav.mobile.logout.button"
-                  >
-                    {t("Logout", "Logout")}
-                  </button>
-                </>
-              ) : (
-                <Link to="/auth" onClick={() => setMenuOpen(false)}>
-                  <Button
-                    size="sm"
-                    className="w-full text-white"
-                    style={{ background: "oklch(0.65 0.22 350)" }}
-                    data-ocid="nav.mobile.login.button"
-                  >
-                    {t("Login करें", "Login")}
-                  </Button>
-                </Link>
-              )}
-            </div>
-          </nav>
+                {t("लॉगिन / Register", "Login / Register")}
+              </Button>
+            </Link>
+          )}
         </div>
       )}
     </header>

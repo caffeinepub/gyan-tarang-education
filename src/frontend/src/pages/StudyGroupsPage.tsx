@@ -257,13 +257,13 @@ export default function StudyGroupsPage() {
             <div className="flex items-center gap-3 mb-3">
               <Users
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t("Study Groups", "Study Groups")}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "Students ek doosre ke saath study groups mein join karein aur baat karein",
                 "Students join study groups and communicate with each other",
@@ -292,7 +292,7 @@ export default function StudyGroupsPage() {
                 <DialogTrigger asChild>
                   <Button
                     size="sm"
-                    className="gap-1.5 bg-saffron hover:bg-saffron/90 text-white h-9 px-3"
+                    className="gap-1.5 bg-saffron hover:bg-saffron/90 text-foreground h-9 px-3"
                     data-ocid="study_groups.open_modal_button"
                   >
                     <Plus className="h-3.5 w-3.5" />
@@ -339,7 +339,7 @@ export default function StudyGroupsPage() {
                         Cancel
                       </Button>
                       <Button
-                        className="flex-1 bg-saffron hover:bg-saffron/90 text-white"
+                        className="flex-1 bg-saffron hover:bg-saffron/90 text-foreground"
                         onClick={handleCreateGroup}
                         data-ocid="study_groups.confirm_button"
                       >
@@ -365,7 +365,7 @@ export default function StudyGroupsPage() {
                     }`}
                     style={
                       activeGroup.id === group.id
-                        ? { background: "oklch(0.22 0.12 260)" }
+                        ? { background: "oklch(0.62 0.28 340)" }
                         : {}
                     }
                     data-ocid={`study_groups.item.${idx + 1}`}
@@ -382,7 +382,7 @@ export default function StudyGroupsPage() {
                       >
                         <Hash
                           className="h-4 w-4"
-                          style={{ color: "oklch(0.72 0.18 55)" }}
+                          style={{ color: "oklch(0.76 0.12 350)" }}
                         />
                       </div>
                       <div className="min-w-0">
@@ -420,7 +420,7 @@ export default function StudyGroupsPage() {
             {/* Group Header */}
             <div
               className="p-4 border-b border-border/50 flex items-center justify-between"
-              style={{ background: "oklch(0.18 0.10 260)" }}
+              style={{ background: "oklch(0.68 0.22 345)" }}
             >
               <div className="flex items-center gap-3">
                 <div
@@ -429,20 +429,20 @@ export default function StudyGroupsPage() {
                 >
                   <Hash
                     className="h-4 w-4"
-                    style={{ color: "oklch(0.72 0.18 55)" }}
+                    style={{ color: "oklch(0.76 0.12 350)" }}
                   />
                 </div>
                 <div>
-                  <div className="font-display font-bold text-white text-sm">
+                  <div className="font-display font-bold text-foreground text-sm">
                     {activeGroup.name}
                   </div>
-                  <div className="text-xs text-white/50">
+                  <div className="text-xs text-foreground/50">
                     {activeGroup.members.toLocaleString()} members •{" "}
                     {activeGroup.category}
                   </div>
                 </div>
               </div>
-              <Badge className="bg-india-green/20 border-india-green/30 text-white text-xs">
+              <Badge className="bg-india-green/20 border-india-green/30 text-foreground text-xs">
                 {t("Active", "Active")}
               </Badge>
             </div>
@@ -459,11 +459,11 @@ export default function StudyGroupsPage() {
                     className={`flex gap-2 ${msg.isMe ? "flex-row-reverse" : "flex-row"}`}
                   >
                     <div
-                      className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
+                      className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-foreground flex-shrink-0"
                       style={{
                         background: msg.isMe
-                          ? "oklch(0.72 0.18 55)"
-                          : "oklch(0.22 0.12 260)",
+                          ? "oklch(0.76 0.12 350)"
+                          : "oklch(0.62 0.28 340)",
                       }}
                     >
                       {msg.sender.charAt(0).toUpperCase()}
@@ -480,7 +480,7 @@ export default function StudyGroupsPage() {
                         className="px-3 py-2 rounded-xl text-sm"
                         style={{
                           background: msg.isMe
-                            ? "oklch(0.72 0.18 55)"
+                            ? "oklch(0.76 0.12 350)"
                             : "oklch(0.95 0.01 80)",
                           color: msg.isMe ? "white" : "oklch(0.15 0.02 260)",
                         }}
@@ -528,7 +528,7 @@ export default function StudyGroupsPage() {
               />
               <Button
                 size="sm"
-                className="bg-saffron hover:bg-saffron/90 text-white px-3"
+                className="bg-saffron hover:bg-saffron/90 text-foreground px-3"
                 onClick={handleSendMessage}
                 disabled={!messageText.trim() || !isLoggedIn}
                 data-ocid="study_groups.send.button"

@@ -319,7 +319,7 @@ export default function AuthPage() {
       className="min-h-screen flex items-center justify-center py-12 px-4 relative overflow-hidden"
       style={{
         background:
-          "linear-gradient(135deg, oklch(0.15 0.12 260) 0%, oklch(0.20 0.10 260) 60%, oklch(0.18 0.08 240) 100%)",
+          "linear-gradient(135deg, oklch(0.62 0.28 340) 0%, oklch(0.65 0.25 340) 60%, oklch(0.68 0.22 345) 100%)",
       }}
     >
       {/* Animated floating particles */}
@@ -351,15 +351,15 @@ export default function AuthPage() {
         {/* Large glowing blobs */}
         <div
           className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full blur-3xl opacity-20"
-          style={{ background: "oklch(0.72 0.18 55)" }}
+          style={{ background: "oklch(0.76 0.12 350)" }}
         />
         <div
           className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-10"
-          style={{ background: "oklch(0.56 0.18 145)" }}
+          style={{ background: "oklch(0.65 0.22 340)" }}
         />
         <div
           className="absolute top-3/4 left-1/2 w-48 h-48 rounded-full blur-2xl opacity-15"
-          style={{ background: "oklch(0.72 0.18 55)" }}
+          style={{ background: "oklch(0.76 0.12 350)" }}
         />
       </div>
 
@@ -392,28 +392,28 @@ export default function AuthPage() {
             <div
               style={{
                 display: "none",
-                background: "oklch(0.72 0.18 55)",
+                background: "oklch(0.76 0.12 350)",
                 boxShadow: "0 0 40px oklch(0.72 0.18 55 / 0.5)",
               }}
-              className="h-20 w-20 mx-auto rounded-full items-center justify-center text-white font-black text-2xl font-display"
+              className="h-20 w-20 mx-auto rounded-full items-center justify-center text-foreground font-black text-2xl font-display"
             >
               GT
             </div>
           </motion.div>
-          <h1 className="font-display text-2xl font-black text-white">
+          <h1 className="font-display text-2xl font-black text-foreground">
             Gyan Tarang
           </h1>
-          <p className="text-white/60 text-sm mt-1 font-display">
+          <p className="text-foreground/60 text-sm mt-1 font-display">
             नहीं आता है? सीखो!
           </p>
           <div className="flex justify-center gap-2 mt-2 flex-wrap">
             <span className="badge-made-in-india text-[10px]">
               🇮🇳 Made in India
             </span>
-            <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/10 text-white/70">
+            <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-card/10 text-foreground/70">
               <Shield className="h-2.5 w-2.5" /> Fully Secure
             </span>
-            <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/10 text-white/70">
+            <span className="flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-card/10 text-foreground/70">
               🎓 UGC Approved
             </span>
           </div>
@@ -426,7 +426,7 @@ export default function AuthPage() {
             background: "oklch(0.99 0 0 / 0.97)",
             backdropFilter: "blur(20px)",
             boxShadow:
-              "0 25px 60px oklch(0.10 0.08 260 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.1)",
+              "0 25px 60px oklch(0.55 0.24 340 / 0.3), 0 0 0 1px oklch(1 0 0 / 0.1)",
           }}
         >
           {/* Top tricolor accent */}
@@ -455,11 +455,11 @@ export default function AuthPage() {
                       style={
                         loginMethod === method
                           ? {
-                              background: "oklch(0.22 0.12 260)",
+                              background: "oklch(0.62 0.28 340)",
                               color: "white",
-                              boxShadow: "0 2px 8px oklch(0.22 0.12 260 / 0.4)",
+                              boxShadow: "0 2px 8px oklch(0.75 0.20 348 / 0.4)",
                             }
-                          : { color: "oklch(0.45 0.04 260)" }
+                          : { color: "oklch(0.99 0 0 / 0.7)" }
                       }
                       data-ocid={`auth.login.${method}.tab`}
                     >
@@ -537,7 +537,7 @@ export default function AuthPage() {
                         disabled={loginLoading}
                         data-ocid="auth.submit_button"
                         style={{
-                          background: "oklch(0.72 0.18 55)",
+                          background: "oklch(0.76 0.12 350)",
                           color: "white",
                         }}
                       >
@@ -567,10 +567,10 @@ export default function AuthPage() {
                       <div
                         className="p-3 rounded-xl flex items-start gap-2 text-xs"
                         style={{
-                          background: "oklch(0.72 0.18 55 / 0.08)",
+                          background: "oklch(0.75 0.20 348 / 0.15)",
                           borderColor: "oklch(0.72 0.18 55 / 0.25)",
                           border: "1px solid",
-                          color: "oklch(0.45 0.08 55)",
+                          color: "oklch(0.99 0 0)",
                         }}
                       >
                         <Smartphone className="h-4 w-4 mt-0.5 shrink-0" />
@@ -611,7 +611,7 @@ export default function AuthPage() {
                         disabled={phoneLoginLoading}
                         data-ocid="auth.phone.submit_button"
                         style={{
-                          background: "oklch(0.22 0.12 260)",
+                          background: "oklch(0.62 0.28 340)",
                           color: "white",
                         }}
                       >
@@ -645,7 +645,7 @@ export default function AuthPage() {
                         style={{
                           background: "oklch(0.56 0.18 145 / 0.07)",
                           border: "1px solid oklch(0.56 0.18 145 / 0.25)",
-                          color: "oklch(0.35 0.10 145)",
+                          color: "oklch(0.99 0 0)",
                         }}
                       >
                         <CheckCircle className="h-4 w-4 mt-0.5 shrink-0" />
@@ -660,7 +660,7 @@ export default function AuthPage() {
                         type="button"
                         className="w-full gap-3 font-semibold h-12 text-sm"
                         style={{
-                          background: "white",
+                          background: "oklch(0.62 0.28 340)",
                           color: "#3c4043",
                           border: "1px solid #dadce0",
                           boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
@@ -845,13 +845,13 @@ export default function AuthPage() {
                           style={
                             signupVerifyMethod === m
                               ? {
-                                  background: "oklch(0.56 0.18 145 / 0.12)",
-                                  borderColor: "oklch(0.56 0.18 145)",
-                                  color: "oklch(0.35 0.15 145)",
+                                  background: "oklch(0.78 0.16 348 / 0.2)",
+                                  borderColor: "oklch(0.65 0.22 340)",
+                                  color: "oklch(0.99 0 0)",
                                 }
                               : {
                                   borderColor: "oklch(0.88 0.02 260)",
-                                  color: "oklch(0.50 0.04 260)",
+                                  color: "oklch(0.99 0 0 / 0.6)",
                                 }
                           }
                           data-ocid={`auth.signup.verify.${m}.toggle`}
@@ -868,7 +868,7 @@ export default function AuthPage() {
                     disabled={signupLoading}
                     data-ocid="auth.submit_button"
                     style={{
-                      background: "oklch(0.72 0.18 55)",
+                      background: "oklch(0.76 0.12 350)",
                       color: "white",
                     }}
                   >
@@ -897,10 +897,10 @@ export default function AuthPage() {
 
         {/* Footer security note */}
         <div className="text-center mt-4 space-y-1">
-          <p className="text-xs text-white/50">
+          <p className="text-xs text-foreground/50">
             🔒 Secured by Gyan Tarang | Made in India | UGC Approved
           </p>
-          <p className="text-[10px] text-white/30">
+          <p className="text-[10px] text-foreground/30">
             End-to-end encrypted | 100% Free Forever
           </p>
         </div>
@@ -923,12 +923,12 @@ export default function AuthPage() {
                 {otpContext === "phone-login" ? (
                   <Smartphone
                     className="h-7 w-7"
-                    style={{ color: "oklch(0.72 0.18 55)" }}
+                    style={{ color: "oklch(0.76 0.12 350)" }}
                   />
                 ) : (
                   <CheckCircle
                     className="h-7 w-7"
-                    style={{ color: "oklch(0.56 0.18 145)" }}
+                    style={{ color: "oklch(0.65 0.22 340)" }}
                   />
                 )}
               </div>
@@ -970,7 +970,7 @@ export default function AuthPage() {
                     style={
                       otpValues[idx]
                         ? {
-                            borderColor: "oklch(0.56 0.18 145)",
+                            borderColor: "oklch(0.65 0.22 340)",
                             background: "oklch(0.56 0.18 145 / 0.06)",
                           }
                         : {}
@@ -986,7 +986,7 @@ export default function AuthPage() {
                 onClick={handleVerifyOtp}
                 disabled={otpVerifying}
                 data-ocid="auth.confirm_button"
-                style={{ background: "oklch(0.56 0.18 145)", color: "white" }}
+                style={{ background: "oklch(0.65 0.22 340)", color: "white" }}
               >
                 {otpVerifying ? (
                   <>

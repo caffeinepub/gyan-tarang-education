@@ -341,13 +341,13 @@ export default function QuizzesPage() {
             <div className="flex items-center gap-3 mb-3">
               <Zap
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t("Interactive Quizzes", "Interactive Quizzes")}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "सभी subjects के MCQ quizzes - timer के साथ instant scoring",
                 "MCQ quizzes for all subjects - instant scoring with timer",
@@ -450,7 +450,7 @@ export default function QuizzesPage() {
                   </div>
 
                   <Button
-                    className="w-full bg-saffron hover:bg-saffron/90 text-white font-semibold py-5 gap-2"
+                    className="w-full bg-saffron hover:bg-saffron/90 text-foreground font-semibold py-5 gap-2"
                     onClick={startQuiz}
                     data-ocid="quiz.start.button"
                     disabled={totalQ === 0}
@@ -500,8 +500,8 @@ export default function QuizzesPage() {
                   <div
                     className="p-5 rounded-xl mb-6 border"
                     style={{
-                      background: "oklch(0.22 0.12 260 / 0.05)",
-                      borderColor: "oklch(0.22 0.12 260 / 0.15)",
+                      background: "oklch(0.78 0.18 348 / 0.15)",
+                      borderColor: "oklch(0.78 0.18 348 / 0.25)",
                     }}
                   >
                     <p className="font-display font-bold text-lg text-foreground">
@@ -529,7 +529,7 @@ export default function QuizzesPage() {
                           borderColor:
                             selectedAnswer !== null
                               ? idx === questions[currentQ].answer
-                                ? "oklch(0.56 0.18 145)"
+                                ? "oklch(0.65 0.22 340)"
                                 : selectedAnswer === idx
                                   ? "oklch(0.57 0.25 27)"
                                   : "oklch(0.88 0.02 260)"
@@ -546,7 +546,7 @@ export default function QuizzesPage() {
                             idx === questions[currentQ].answer && (
                               <CheckCircle
                                 className="h-4 w-4 ml-auto"
-                                style={{ color: "oklch(0.56 0.18 145)" }}
+                                style={{ color: "oklch(0.65 0.22 340)" }}
                               />
                             )}
                           {selectedAnswer === idx &&
@@ -560,7 +560,7 @@ export default function QuizzesPage() {
 
                   {selectedAnswer !== null && (
                     <Button
-                      className="w-full bg-saffron hover:bg-saffron/90 text-white font-semibold"
+                      className="w-full bg-saffron hover:bg-saffron/90 text-foreground font-semibold"
                       onClick={handleNext}
                     >
                       {currentQ < totalQ - 1
@@ -585,14 +585,14 @@ export default function QuizzesPage() {
                   className="p-8 text-center"
                   style={{
                     background:
-                      "linear-gradient(135deg, oklch(0.18 0.10 260), oklch(0.22 0.12 260))",
+                      "linear-gradient(135deg, oklch(0.68 0.22 345), oklch(0.62 0.28 340))",
                   }}
                 >
                   <Trophy
                     className="h-16 w-16 mx-auto mb-4"
-                    style={{ color: "oklch(0.72 0.18 55)" }}
+                    style={{ color: "oklch(0.76 0.12 350)" }}
                   />
-                  <h2 className="font-display text-3xl font-black text-white mb-2">
+                  <h2 className="font-display text-3xl font-black text-foreground mb-2">
                     Quiz Completed!
                   </h2>
                   <div
@@ -600,13 +600,13 @@ export default function QuizzesPage() {
                     style={{
                       color:
                         percentage >= 70
-                          ? "oklch(0.56 0.18 145)"
-                          : "oklch(0.72 0.18 55)",
+                          ? "oklch(0.65 0.22 340)"
+                          : "oklch(0.76 0.12 350)",
                     }}
                   >
                     {percentage}%
                   </div>
-                  <p className="text-white/70">
+                  <p className="text-foreground/70">
                     {score} out of {totalQ} correct
                   </p>
                 </div>
@@ -627,7 +627,7 @@ export default function QuizzesPage() {
                             style={{
                               color:
                                 answers[idx] === q.answer
-                                  ? "oklch(0.56 0.18 145)"
+                                  ? "oklch(0.65 0.22 340)"
                                   : "oklch(0.57 0.25 27)",
                             }}
                           >
@@ -639,7 +639,7 @@ export default function QuizzesPage() {
                             </p>
                             <p
                               className="text-xs font-semibold mt-0.5"
-                              style={{ color: "oklch(0.56 0.18 145)" }}
+                              style={{ color: "oklch(0.65 0.22 340)" }}
                             >
                               ✓ {q.options[q.answer]}
                             </p>
@@ -658,7 +658,7 @@ export default function QuizzesPage() {
                       New Quiz
                     </Button>
                     <Button
-                      className="flex-1 gap-2 bg-saffron hover:bg-saffron/90 text-white"
+                      className="flex-1 gap-2 bg-saffron hover:bg-saffron/90 text-foreground"
                       onClick={startQuiz}
                     >
                       <Zap className="h-4 w-4" />

@@ -9,7 +9,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useAppContext } from "@/context/AppContext";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  BADGE_LIST,
+  MOCK_LEADERBOARD,
+  useAppContext,
+} from "@/context/AppContext";
 import { Link, useNavigate } from "@tanstack/react-router";
 import {
   BarChart3,
@@ -19,13 +24,17 @@ import {
   Building2,
   ChevronRight,
   Clock,
+  Crown,
   FileText,
   GraduationCap,
   Heart,
   Library,
+  LineChart,
+  Map as MapIcon,
   MessageSquare,
   Settings,
   Shield,
+  Sparkles,
   Star,
   TrendingUp,
   Trophy,
@@ -40,7 +49,7 @@ const navItems = [
     icon: BookOpen,
     labelHi: "NCERT Books",
     labelEn: "NCERT Books",
-    color: "saffron",
+    color: "oklch(0.50 0.22 290)",
     badge: "Class 1-12",
     ocid: "dashboard.ncert.link",
   },
@@ -49,7 +58,7 @@ const navItems = [
     icon: Video,
     labelHi: "Video Lectures",
     labelEn: "Video Lectures",
-    color: "navy",
+    color: "oklch(0.45 0.20 145)",
     badge: "Official NCERT",
     ocid: "dashboard.videos.link",
   },
@@ -58,7 +67,7 @@ const navItems = [
     icon: Trophy,
     labelHi: "Competitive Exams",
     labelEn: "Competitive Exams",
-    color: "saffron",
+    color: "oklch(0.55 0.22 55)",
     badge: "50+ Exams",
     ocid: "dashboard.exams.link",
   },
@@ -67,16 +76,70 @@ const navItems = [
     icon: Briefcase,
     labelHi: "Placement Prep",
     labelEn: "Placement Prep",
-    color: "india-green",
+    color: "oklch(0.45 0.22 290)",
     badge: "BTech All Branches",
     ocid: "dashboard.placement.link",
+  },
+  {
+    to: "/gyan-mitra",
+    icon: Brain,
+    labelHi: "Gyan Mitra AI",
+    labelEn: "Gyan Mitra AI",
+    color: "oklch(0.50 0.22 290)",
+    badge: "AI Doubt Solver",
+    ocid: "dashboard.gyan_mitra.link",
+  },
+  {
+    to: "/ai-study-planner",
+    icon: MapIcon,
+    labelHi: "Study Planner AI",
+    labelEn: "Study Planner AI",
+    color: "oklch(0.45 0.20 145)",
+    badge: "AI Powered",
+    ocid: "dashboard.study_planner.link",
+  },
+  {
+    to: "/ai-quiz-generator",
+    icon: Zap,
+    labelHi: "Quiz Generator AI",
+    labelEn: "Quiz Generator AI",
+    color: "oklch(0.55 0.22 55)",
+    badge: "AI Powered",
+    ocid: "dashboard.quiz_gen.link",
+  },
+  {
+    to: "/ai-performance",
+    icon: LineChart,
+    labelHi: "Performance AI",
+    labelEn: "Performance AI",
+    color: "oklch(0.45 0.22 290)",
+    badge: "AI Analytics",
+    ocid: "dashboard.performance.link",
+  },
+  {
+    to: "/ai-career",
+    icon: GraduationCap,
+    labelHi: "Career Counselor AI",
+    labelEn: "Career Counselor AI",
+    color: "oklch(0.50 0.22 290)",
+    badge: "AI Powered",
+    ocid: "dashboard.career_ai.link",
+  },
+  {
+    to: "/ai-summarizer",
+    icon: Sparkles,
+    labelHi: "AI Summarizer",
+    labelEn: "AI Summarizer",
+    color: "oklch(0.45 0.20 145)",
+    badge: "AI Powered",
+    ocid: "dashboard.summarizer.link",
   },
   {
     to: "/maths-tutor",
     icon: Brain,
     labelHi: "AI Maths Tutor",
     labelEn: "AI Maths Tutor",
-    color: "navy",
+    color: "oklch(0.55 0.22 55)",
     badge: "AI Powered",
     ocid: "dashboard.maths.link",
   },
@@ -85,7 +148,7 @@ const navItems = [
     icon: MessageSquare,
     labelHi: "AI English Coach",
     labelEn: "AI English Coach",
-    color: "saffron",
+    color: "oklch(0.50 0.22 290)",
     badge: "AI Powered",
     ocid: "dashboard.english.link",
   },
@@ -94,52 +157,16 @@ const navItems = [
     icon: Zap,
     labelHi: "Interactive Quizzes",
     labelEn: "Interactive Quizzes",
-    color: "india-green",
+    color: "oklch(0.45 0.20 145)",
     badge: "All Subjects",
     ocid: "dashboard.quizzes.link",
-  },
-  {
-    to: "/study-groups",
-    icon: MessageSquare,
-    labelHi: "Study Groups",
-    labelEn: "Study Groups",
-    color: "navy",
-    badge: "Chat",
-    ocid: "dashboard.study-groups.link",
-  },
-  {
-    to: "/wellness",
-    icon: Heart,
-    labelHi: "Wellness Hub",
-    labelEn: "Wellness Hub",
-    color: "saffron",
-    badge: "Health & Mind",
-    ocid: "dashboard.wellness.link",
-  },
-  {
-    to: "/government",
-    icon: Building2,
-    labelHi: "Govt Jobs & Schemes",
-    labelEn: "Govt Jobs & Schemes",
-    color: "india-green",
-    badge: "Official Links",
-    ocid: "dashboard.govt.link",
-  },
-  {
-    to: "/gyan-mitra",
-    icon: Brain,
-    labelHi: "Gyan Mitra AI",
-    labelEn: "Gyan Mitra AI",
-    color: "saffron",
-    badge: "AI Doubt Solver",
-    ocid: "dashboard.gyan_mitra.link",
   },
   {
     to: "/mock-tests",
     icon: Trophy,
     labelHi: "Mock Tests",
     labelEn: "Mock Tests",
-    color: "india-green",
+    color: "oklch(0.55 0.22 55)",
     badge: "8 Exams",
     ocid: "dashboard.mock_tests.link",
   },
@@ -148,7 +175,7 @@ const navItems = [
     icon: FileText,
     labelHi: "Notes & PDFs",
     labelEn: "Notes & PDFs",
-    color: "navy",
+    color: "oklch(0.45 0.22 290)",
     badge: "Download Free",
     ocid: "dashboard.notes.link",
   },
@@ -157,7 +184,7 @@ const navItems = [
     icon: GraduationCap,
     labelHi: "BTech Dashboard",
     labelEn: "BTech Dashboard",
-    color: "navy",
+    color: "oklch(0.50 0.22 290)",
     badge: "All Branches",
     ocid: "dashboard.btech.link",
   },
@@ -166,7 +193,7 @@ const navItems = [
     icon: BarChart3,
     labelHi: "Study Tracker",
     labelEn: "Study Tracker",
-    color: "india-green",
+    color: "oklch(0.45 0.20 145)",
     badge: "Track Progress",
     ocid: "dashboard.tracker.link",
   },
@@ -175,23 +202,58 @@ const navItems = [
     icon: Library,
     labelHi: "Digital Library",
     labelEn: "Digital Library",
-    color: "saffron",
+    color: "oklch(0.55 0.22 55)",
     badge: "70 Lakh+ Books",
     ocid: "dashboard.ndl.link",
   },
+  {
+    to: "/wellness",
+    icon: Heart,
+    labelHi: "Wellness Hub",
+    labelEn: "Wellness Hub",
+    color: "oklch(0.45 0.22 290)",
+    badge: "Health & Mind",
+    ocid: "dashboard.wellness.link",
+  },
+  {
+    to: "/government",
+    icon: Building2,
+    labelHi: "Govt Jobs & Schemes",
+    labelEn: "Govt Jobs & Schemes",
+    color: "oklch(0.50 0.22 290)",
+    badge: "Official Links",
+    ocid: "dashboard.govt.link",
+  },
 ];
+
+const badgeIcons: Record<string, string> = {
+  "First Login": "👋",
+  "Quiz Master": "🌟",
+  "7-Day Streak": "🔥",
+  "AI Explorer": "🤖",
+  "Perfect Score": "🎊",
+  "Study Champion": "🏆",
+};
 
 const container = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.06 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.05 } },
 };
 const item = {
   hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
 };
 
 export default function DashboardPage() {
-  const { t, currentUser, isLoggedIn, setLanguage, language } = useAppContext();
+  const {
+    t,
+    currentUser,
+    isLoggedIn,
+    setLanguage,
+    language,
+    xpPoints,
+    badges,
+  } = useAppContext();
   const navigate = useNavigate();
 
   if (!isLoggedIn) {
@@ -200,38 +262,52 @@ export default function DashboardPage() {
   }
 
   const isAdmin = currentUser?.role === "admin";
-  const allItems = navItems;
+  const xpMax = 1000;
+  const xpProgress = Math.min(((xpPoints % xpMax) / xpMax) * 100, 100);
+  const xpLevel = Math.floor(xpPoints / xpMax) + 1;
 
   return (
-    <div className="min-h-screen bg-background page-enter">
+    <div
+      className="min-h-screen page-enter"
+      style={{ background: "oklch(0.99 0 0)" }}
+    >
       {/* Welcome Banner */}
-      <div className="bg-hero-pattern py-8 px-4">
+      <div className="relative overflow-hidden py-8 px-4 bg-hero-pattern">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div>
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <p
+                className="text-sm mb-1"
+                style={{ color: "oklch(0.50 0.22 290 / 0.60)" }}
               >
-                <p className="text-white/60 text-sm mb-1">🙏 Swagat hai!</p>
-                <h1 className="font-display text-3xl font-black text-white">
-                  Namaste, {currentUser?.name}!
-                </h1>
-                <p className="text-white/70 mt-1">
-                  {t("आज क्या पढ़ना है?", "What will you study today?")}
-                </p>
-              </motion.div>
-            </div>
+                🙏 Swagat hai!
+              </p>
+              <h1 className="font-display text-3xl font-black text-foreground">
+                Namaste, {currentUser?.name}!
+              </h1>
+              <p className="mt-1" style={{ color: "oklch(0.35 0.03 260)" }}>
+                {t("आज क्या पढ़ना है?", "What will you study today?")}
+              </p>
+            </motion.div>
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 text-white/80 text-sm">
-                <span>Language:</span>
+              <div
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm"
+                style={{
+                  background: "oklch(0.98 0.01 270)",
+                  border: "1px solid oklch(0.88 0.02 270)",
+                }}
+              >
+                <span style={{ color: "oklch(0.40 0.03 260)" }}>Language:</span>
                 <Select
                   value={language}
                   onValueChange={(v) => setLanguage(v as "hi" | "en")}
                 >
                   <SelectTrigger
-                    className="h-7 border-0 bg-transparent text-white p-0 gap-1 w-auto"
+                    className="h-7 border-0 bg-transparent p-0 gap-1 w-auto text-foreground"
                     data-ocid="nav.language.select"
                   >
                     <SelectValue />
@@ -243,14 +319,20 @@ export default function DashboardPage() {
                 </Select>
               </div>
               {currentUser?.classOrBranch && (
-                <Badge className="bg-saffron/20 text-saffron border-saffron/30">
+                <Badge
+                  style={{
+                    background: "oklch(0.50 0.22 290 / 0.15)",
+                    color: "oklch(0.50 0.22 290)",
+                    borderColor: "oklch(0.50 0.22 290 / 0.25)",
+                  }}
+                >
                   {currentUser.classOrBranch}
                 </Badge>
               )}
             </div>
           </div>
 
-          {/* Progress summary */}
+          {/* Progress */}
           <motion.div
             className="mt-6 grid grid-cols-3 gap-4"
             initial={{ opacity: 0, y: 20 }}
@@ -264,6 +346,7 @@ export default function DashboardPage() {
                 labelEn: "Progress",
                 value: "65%",
                 prog: 65,
+                color: "oklch(0.50 0.22 290)",
               },
               {
                 icon: Clock,
@@ -271,6 +354,7 @@ export default function DashboardPage() {
                 labelEn: "Today's Time",
                 value: "2h 30m",
                 prog: 40,
+                color: "oklch(0.45 0.20 145)",
               },
               {
                 icon: Star,
@@ -278,219 +362,380 @@ export default function DashboardPage() {
                 labelEn: "Quiz Score",
                 value: "8/10",
                 prog: 80,
+                color: "oklch(0.55 0.22 55)",
               },
             ].map((stat) => (
-              <div key={stat.labelEn} className="bg-white/10 rounded-xl p-4">
+              <div
+                key={stat.labelEn}
+                className="rounded-xl p-4"
+                style={{
+                  background: "oklch(0.96 0.02 260)",
+                  border: "1px solid oklch(0.88 0.02 270 / 0.6)",
+                }}
+              >
                 <div className="flex items-center gap-2 mb-2">
-                  <stat.icon className="h-4 w-4 text-white/60" />
-                  <span className="text-xs text-white/60">
+                  <stat.icon
+                    className="h-4 w-4"
+                    style={{ color: stat.color }}
+                  />
+                  <span
+                    className="text-xs"
+                    style={{ color: "oklch(0.40 0.03 260)" }}
+                  >
                     {t(stat.labelHi, stat.labelEn)}
                   </span>
                 </div>
-                <div className="text-xl font-display font-bold text-white mb-2">
+                <div className="text-xl font-display font-bold text-foreground mb-2">
                   {stat.value}
                 </div>
-                <Progress value={stat.prog} className="h-1.5 bg-white/20" />
+                <Progress value={stat.prog} className="h-1.5" />
               </div>
             ))}
           </motion.div>
         </div>
       </div>
 
-      {/* Quick Nav Grid */}
+      {/* Gamification Section */}
       <div className="container mx-auto px-4 py-8">
-        {/* Admin Tools Section - Only for Admin Users */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+        >
+          <Card
+            className="cosmic-card mb-8"
+            style={{ borderColor: "oklch(0.50 0.22 290 / 0.25)" }}
+          >
+            <CardContent className="p-6">
+              <Tabs defaultValue="xp">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="font-display text-lg font-bold text-neon-gradient flex items-center gap-2">
+                    <Trophy
+                      className="h-5 w-5"
+                      style={{ color: "oklch(0.55 0.22 55)" }}
+                    />
+                    Your Progress & Achievements
+                  </h2>
+                  <TabsList style={{ background: "oklch(0.97 0.01 260)" }}>
+                    <TabsTrigger value="xp" data-ocid="dashboard.xp.tab">
+                      XP & Level
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="badges"
+                      data-ocid="dashboard.badges.tab"
+                    >
+                      Badges
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="leaderboard"
+                      data-ocid="dashboard.leaderboard.tab"
+                    >
+                      Leaderboard
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
+
+                <TabsContent value="xp">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div
+                      className="h-14 w-14 rounded-full flex items-center justify-center font-black text-xl"
+                      style={{
+                        background: "oklch(0.50 0.22 290 / 0.15)",
+                        border: "2px solid oklch(0.50 0.22 290 / 0.40)",
+                      }}
+                    >
+                      <span style={{ color: "oklch(0.50 0.22 290)" }}>
+                        L{xpLevel}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-sm font-semibold text-foreground">
+                          Level {xpLevel} Explorer
+                        </span>
+                        <span
+                          className="text-sm font-bold"
+                          style={{ color: "oklch(0.50 0.22 290)" }}
+                        >
+                          {xpPoints} XP
+                        </span>
+                      </div>
+                      <div
+                        className="w-full h-3 rounded-full overflow-hidden"
+                        style={{ background: "oklch(0.95 0.02 260)" }}
+                      >
+                        <motion.div
+                          className="h-full rounded-full xp-bar-gradient"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${xpProgress}%` }}
+                          transition={{ duration: 1, ease: "easeOut" }}
+                        />
+                      </div>
+                      <p
+                        className="text-xs mt-1"
+                        style={{ color: "oklch(0.40 0.03 260)" }}
+                      >
+                        {xpPoints % xpMax} / {xpMax} XP to next level
+                      </p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+                    {[
+                      {
+                        label: "Quiz XP",
+                        value: Math.floor(xpPoints * 0.6),
+                        color: "oklch(0.45 0.20 145)",
+                      },
+                      {
+                        label: "AI Tools XP",
+                        value: Math.floor(xpPoints * 0.25),
+                        color: "oklch(0.50 0.22 290)",
+                      },
+                      {
+                        label: "Study Plans",
+                        value: Math.floor(xpPoints * 0.1),
+                        color: "oklch(0.55 0.22 55)",
+                      },
+                      {
+                        label: "Badges Earned",
+                        value: badges.length,
+                        color: "oklch(0.45 0.22 290)",
+                      },
+                    ].map((s) => (
+                      <div
+                        key={s.label}
+                        className="rounded-lg p-3 text-center"
+                        style={{ background: "oklch(0.97 0.01 260)" }}
+                      >
+                        <p
+                          className="text-xl font-black"
+                          style={{ color: s.color }}
+                        >
+                          {s.value}
+                        </p>
+                        <p
+                          className="text-xs"
+                          style={{ color: "oklch(0.40 0.03 260)" }}
+                        >
+                          {s.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="badges">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+                    {BADGE_LIST.map((badge) => {
+                      const earned = badges.includes(badge);
+                      return (
+                        <motion.div
+                          key={badge}
+                          whileHover={{ scale: 1.05 }}
+                          className="flex flex-col items-center gap-2 p-3 rounded-xl text-center"
+                          style={{
+                            background: earned
+                              ? "oklch(0.55 0.22 55 / 0.10)"
+                              : "oklch(0.97 0.01 260)",
+                            border: `1px solid ${earned ? "oklch(0.55 0.22 55 / 0.35)" : "oklch(0.88 0.02 270)"}`,
+                            opacity: earned ? 1 : 0.5,
+                          }}
+                          data-ocid={`dashboard.badge.${badge.toLowerCase().replace(/\s/g, "_")}.panel`}
+                        >
+                          <span className="text-3xl">
+                            {earned ? badgeIcons[badge] : "🔒"}
+                          </span>
+                          <span
+                            className="text-xs font-semibold"
+                            style={{
+                              color: earned
+                                ? "oklch(0.55 0.22 55)"
+                                : "oklch(0.45 0.03 260)",
+                            }}
+                          >
+                            {badge}
+                          </span>
+                          {earned && (
+                            <Badge
+                              className="text-[9px] px-1"
+                              style={{
+                                background: "oklch(0.45 0.20 145 / 0.15)",
+                                color: "oklch(0.45 0.20 145)",
+                              }}
+                            >
+                              Earned!
+                            </Badge>
+                          )}
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                  {badges.length === 0 && (
+                    <p
+                      className="text-center text-sm mt-4"
+                      style={{ color: "oklch(0.45 0.03 260)" }}
+                    >
+                      Complete quizzes and use AI tools to earn badges!
+                    </p>
+                  )}
+                </TabsContent>
+
+                <TabsContent value="leaderboard">
+                  <div className="space-y-2">
+                    {MOCK_LEADERBOARD.map((student, i) => (
+                      <motion.div
+                        key={student.rank}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.05 }}
+                        className="flex items-center gap-3 p-3 rounded-lg"
+                        style={{
+                          background:
+                            i < 3
+                              ? "oklch(0.82 0.18 55 / 0.08)"
+                              : "oklch(0.97 0.01 260)",
+                          border: `1px solid ${i < 3 ? "oklch(0.82 0.18 55 / 0.2)" : "oklch(0.88 0.02 270)"}`,
+                        }}
+                        data-ocid={`dashboard.leaderboard.item.${i + 1}`}
+                      >
+                        <div
+                          className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0"
+                          style={{
+                            background:
+                              i === 0
+                                ? "oklch(0.55 0.22 55)"
+                                : i === 1
+                                  ? "oklch(0.50 0.03 260)"
+                                  : i === 2
+                                    ? "oklch(0.65 0.15 55)"
+                                    : "oklch(0.95 0.02 260)",
+                            color:
+                              i < 3
+                                ? "oklch(0.99 0 0)"
+                                : "oklch(0.40 0.03 260)",
+                          }}
+                        >
+                          {i < 3 ? <Crown className="h-4 w-4" /> : student.rank}
+                        </div>
+                        <span className="flex-1 text-sm font-medium text-foreground">
+                          {student.name}
+                        </span>
+                        <span
+                          className="text-sm font-bold"
+                          style={{ color: "oklch(0.50 0.22 290)" }}
+                        >
+                          {student.xp.toLocaleString()} XP
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Admin Card */}
         {isAdmin && (
           <motion.div
-            initial={{ opacity: 0, y: -12 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
             className="mb-8"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div
-                className="flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold"
+            <Link to="/admin" data-ocid="dashboard.admin.link">
+              <Card
+                className="cursor-pointer neon-pulse"
                 style={{
-                  background: "oklch(0.72 0.18 55 / 0.15)",
-                  border: "1px solid oklch(0.72 0.18 55 / 0.35)",
-                  color: "oklch(0.55 0.18 55)",
+                  background: "oklch(0.85 0.20 195 / 0.08)",
+                  borderColor: "oklch(0.50 0.22 290 / 0.40)",
                 }}
               >
-                <Shield className="h-3 w-3" />
-                Admin Tools
-              </div>
-              <div
-                className="h-px flex-1"
-                style={{ background: "oklch(0.72 0.18 55 / 0.2)" }}
-              />
-            </div>
-            <Link to="/admin" data-ocid="dashboard.admin.link">
-              <div className="admin-card-glow cursor-pointer rounded-2xl p-5 transition-all duration-300 group">
-                <div className="flex items-center gap-5">
-                  <div
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, oklch(0.72 0.18 55), oklch(0.65 0.15 40))",
-                      boxShadow: "0 4px 20px oklch(0.72 0.18 55 / 0.4)",
-                    }}
-                  >
-                    <Shield className="h-8 w-8 text-white" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-display text-lg font-black text-foreground">
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-4">
+                    <div
+                      className="h-12 w-12 rounded-full flex items-center justify-center neon-glow-cyan"
+                      style={{ background: "oklch(0.50 0.22 290 / 0.15)" }}
+                    >
+                      <Shield
+                        className="h-6 w-6"
+                        style={{ color: "oklch(0.50 0.22 290)" }}
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-display text-lg font-bold text-neon-cyan">
                         Admin Panel
                       </h3>
-                      <Badge
-                        className="text-[10px] font-bold"
-                        style={{
-                          background: "oklch(0.72 0.18 55)",
-                          color: "white",
-                          border: "none",
-                        }}
+                      <p
+                        className="text-sm"
+                        style={{ color: "oklch(0.40 0.03 260)" }}
                       >
-                        Admin Only
-                      </Badge>
+                        Content, Users, Mock Tests, Announcements management
+                      </p>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      {t(
-                        "Content, Users & Announcements manage karein",
-                        "Manage Content, Users & Announcements",
-                      )}
-                    </p>
-                    <div className="flex items-center gap-4 mt-2">
-                      <span
-                        className="text-xs"
-                        style={{ color: "oklch(0.56 0.18 145)" }}
-                      >
-                        ● Content Manager
-                      </span>
-                      <span
-                        className="text-xs"
-                        style={{ color: "oklch(0.45 0.18 220)" }}
-                      >
-                        ● User Management
-                      </span>
-                      <span
-                        className="text-xs"
-                        style={{ color: "oklch(0.72 0.18 55)" }}
-                      >
-                        ● Announcements
-                      </span>
-                    </div>
+                    <ChevronRight
+                      className="h-5 w-5"
+                      style={{ color: "oklch(0.50 0.22 290)" }}
+                    />
                   </div>
-                  <ChevronRight
-                    className="h-6 w-6 flex-shrink-0 group-hover:translate-x-1 transition-transform"
-                    style={{ color: "oklch(0.72 0.18 55)" }}
-                  />
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </Link>
           </motion.div>
         )}
 
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="font-display text-xl font-bold text-foreground">
-            {t("सभी Sections", "All Sections")}
+        {/* Quick Nav Grid */}
+        <div className="mb-6">
+          <h2 className="font-display text-xl font-black mb-4 text-neon-gradient">
+            All Resources
           </h2>
-          <span className="badge-govt">✅ Government Approved</span>
-        </div>
-
-        <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
-          variants={container}
-          initial="hidden"
-          animate="show"
-        >
-          {allItems.map((navItem) => (
-            <motion.div key={navItem.to + navItem.labelEn} variants={item}>
-              <Link to={navItem.to} data-ocid={navItem.ocid}>
-                <Card className="card-vibrant cursor-pointer border border-border/50 h-full group">
-                  <CardContent className="p-4 flex flex-col gap-3">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110"
-                      style={{
-                        background:
-                          navItem.color === "saffron"
-                            ? "oklch(0.72 0.18 55 / 0.15)"
-                            : navItem.color === "navy"
-                              ? "oklch(0.22 0.12 260 / 0.12)"
-                              : "oklch(0.56 0.18 145 / 0.12)",
-                      }}
-                    >
-                      <navItem.icon
-                        className="h-6 w-6"
-                        style={{
-                          color:
-                            navItem.color === "saffron"
-                              ? "oklch(0.72 0.18 55)"
-                              : navItem.color === "navy"
-                                ? "oklch(0.22 0.12 260)"
-                                : "oklch(0.56 0.18 145)",
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <div className="font-display font-semibold text-sm text-foreground leading-tight">
-                        {t(navItem.labelHi, navItem.labelEn)}
+          <motion.div
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3"
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            {navItems.map((navItem) => (
+              <motion.div key={navItem.to} variants={item}>
+                <Link to={navItem.to} data-ocid={navItem.ocid}>
+                  <Card
+                    className="card-vibrant h-full cursor-pointer"
+                    style={{
+                      background: "oklch(0.97 0.01 260)",
+                      border: "1px solid oklch(0.88 0.02 270)",
+                      minHeight: "100px",
+                    }}
+                  >
+                    <CardContent className="p-4 flex flex-col gap-2">
+                      <div
+                        className="h-8 w-8 rounded-lg flex items-center justify-center"
+                        style={{ background: `${navItem.color}22` }}
+                      >
+                        <navItem.icon
+                          className="h-4 w-4"
+                          style={{ color: navItem.color }}
+                        />
                       </div>
-                      <div className="text-xs text-muted-foreground mt-0.5">
-                        {navItem.badge}
+                      <div>
+                        <p className="text-sm font-semibold text-foreground leading-tight">
+                          {t(navItem.labelHi, navItem.labelEn)}
+                        </p>
+                        <Badge
+                          className="text-[10px] mt-1 px-1.5 py-0"
+                          style={{
+                            background: `${navItem.color}18`,
+                            color: navItem.color,
+                            borderColor: `${navItem.color}30`,
+                          }}
+                        >
+                          {navItem.badge}
+                        </Badge>
                       </div>
-                    </div>
-                    <div className="mt-auto flex items-center justify-between">
-                      <span className="text-xs text-muted-foreground">
-                        Free
-                      </span>
-                      <ChevronRight className="h-3 w-3 text-muted-foreground group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Quick Access */}
-        <div
-          className="mt-8 p-6 rounded-2xl"
-          style={{
-            background:
-              "linear-gradient(135deg, oklch(0.72 0.18 55 / 0.1), oklch(0.56 0.18 145 / 0.08))",
-            border: "1px solid oklch(0.72 0.18 55 / 0.2)",
-          }}
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <h3 className="font-display text-lg font-bold text-foreground mb-1">
-                🎯 {t("आज का लक्ष्य", "Today's Goal")}
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                {t(
-                  "Quiz दें और अपनी progress track करें",
-                  "Take a quiz and track your progress",
-                )}
-              </p>
-            </div>
-            <div className="flex gap-3">
-              <Link to="/quizzes">
-                <Button
-                  className="bg-saffron hover:bg-saffron/90 text-white gap-2"
-                  data-ocid="dashboard.quizzes.link"
-                >
-                  <Zap className="h-4 w-4" />
-                  {t("Quiz Shuru Karein", "Start Quiz")}
-                </Button>
-              </Link>
-              <Link to="/maths-tutor">
-                <Button variant="outline" className="gap-2">
-                  <Brain className="h-4 w-4" />
-                  AI Tutor
-                </Button>
-              </Link>
-            </div>
-          </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </div>

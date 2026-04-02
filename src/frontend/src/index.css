@@ -28,70 +28,89 @@
 
 @layer base {
   :root {
-    --radius: 0.5rem;
+    --radius: 0.625rem;
 
-    /* ─── Gyan Tarang Brand: White & Pink Theme ─── */
-    /* Primary Pink: oklch(0.65 0.22 350) */
-    /* Light Pink:   oklch(0.92 0.06 350) */
-    /* White:        oklch(0.99 0 0) */
+    /* ─── Gyan Tarang Brand: Light Bright Multicolor Theme ─── */
+    /* Background: Pure white */
+    /* Primary accent: Vibrant Pink-Purple */
+    /* Secondary accent: Bright Green */
+    /* Text: Dark slate */
 
     --background: 0.99 0 0;
-    --foreground: 0.15 0.01 0;
+    --foreground: 0.15 0.02 250;
 
-    --card: 1.0 0 0;
-    --card-foreground: 0.15 0.01 0;
+    --card: 1 0 0;
+    --card-foreground: 0.15 0.02 250;
 
-    --popover: 1.0 0 0;
-    --popover-foreground: 0.15 0.01 0;
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0.02 250;
 
-    /* Primary = Pink */
-    --primary: 0.65 0.22 350;
-    --primary-foreground: 0.99 0 0;
+    /* Primary = Vibrant Pink-Purple */
+    --primary: 0.55 0.22 310;
+    --primary-foreground: 1 0 0;
 
-    /* Secondary = Light Pink */
-    --secondary: 0.92 0.06 350;
-    --secondary-foreground: 0.35 0.15 350;
+    /* Secondary = Bright Violet */
+    --secondary: 0.6 0.2 280;
+    --secondary-foreground: 1 0 0;
 
-    --muted: 0.96 0.02 350;
-    --muted-foreground: 0.55 0.03 0;
+    --muted: 0.96 0.01 240;
+    --muted-foreground: 0.45 0.04 240;
 
-    /* Accent = Soft Pink */
-    --accent: 0.88 0.08 350;
-    --accent-foreground: 0.2 0.05 350;
+    /* Accent = Soft Purple tint */
+    --accent: 0.94 0.03 300;
+    --accent-foreground: 0.55 0.22 310;
 
-    --destructive: 0.57 0.25 27;
+    --destructive: 0.55 0.25 27;
     --destructive-foreground: 0.99 0 0;
 
-    --border: 0.88 0.03 350;
-    --input: 0.95 0.02 350;
-    --ring: 0.65 0.22 350;
+    --border: 0.9 0.02 260;
+    --input: 0.94 0.02 260;
+    --ring: 0.55 0.22 310;
 
-    /* Chart colors */
-    --chart-1: 0.65 0.22 350;
-    --chart-2: 0.55 0.2 340;
-    --chart-3: 0.75 0.18 330;
-    --chart-4: 0.8 0.14 20;
-    --chart-5: 0.7 0.16 360;
+    /* Chart colors - vibrant multicolor */
+    --chart-1: 0.55 0.22 310;
+    --chart-2: 0.55 0.22 145;
+    --chart-3: 0.55 0.22 220;
+    --chart-4: 0.65 0.22 55;
+    --chart-5: 0.55 0.22 15;
 
     /* Sidebar */
-    --sidebar: 0.96 0.04 350;
-    --sidebar-foreground: 0.15 0.01 0;
-    --sidebar-primary: 0.65 0.22 350;
-    --sidebar-primary-foreground: 0.99 0 0;
-    --sidebar-accent: 0.9 0.06 350;
-    --sidebar-accent-foreground: 0.2 0.05 350;
-    --sidebar-border: 0.88 0.03 350;
-    --sidebar-ring: 0.65 0.22 350;
+    --sidebar: 0.97 0.01 260;
+    --sidebar-foreground: 0.15 0.02 250;
+    --sidebar-primary: 0.55 0.22 310;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.94 0.03 300;
+    --sidebar-accent-foreground: 0.55 0.22 310;
+    --sidebar-border: 0.9 0.02 260;
+    --sidebar-ring: 0.55 0.22 310;
 
     /* Custom brand tokens */
-    --saffron: 0.72 0.18 55;
-    --navy: 0.22 0.12 260;
-    --india-green: 0.56 0.18 145;
-    --cream: 0.97 0.02 80;
+    --brand-pink: 0.55 0.22 350;
+    --brand-purple: 0.55 0.22 290;
+    --brand-blue: 0.55 0.22 230;
+    --brand-green: 0.5 0.2 145;
+    --brand-orange: 0.65 0.22 55;
+    --brand-red: 0.55 0.25 27;
+    --brand-teal: 0.55 0.18 195;
+    --brand-indigo: 0.5 0.22 265;
+
+    /* Legacy compat tokens */
+    --neon-cyan: 0.55 0.22 230;
+    --neon-green: 0.5 0.2 145;
+    --cosmic-bg: 0.99 0 0;
+    --cosmic-card: 1 0 0;
+    --saffron: 0.65 0.22 55;
+    --navy: 0.15 0.02 250;
+    --india-green: 0.5 0.2 145;
+    --cream: 0.97 0.01 260;
   }
 
   * {
     @apply border-border;
+  }
+
+  html {
+    color-scheme: light;
   }
 
   body {
@@ -99,6 +118,7 @@
     font-family: "Plus Jakarta Sans", "Sora", sans-serif;
     font-feature-settings: "kern" 1, "liga" 1;
     -webkit-font-smoothing: antialiased;
+    background-color: oklch(0.99 0 0);
   }
 
   h1,
@@ -107,6 +127,7 @@
   h4 {
     font-family: "Bricolage Grotesque", sans-serif;
     font-weight: 700;
+    color: oklch(0.15 0.02 250);
   }
 }
 
@@ -121,98 +142,142 @@
     font-family: "Sora", sans-serif;
   }
 
-  /* Pink gradient backgrounds */
+  /* Light page backgrounds */
+  .bg-cosmic {
+    background: linear-gradient(
+      135deg,
+      oklch(0.98 0.01 300) 0%,
+      oklch(0.97 0.02 270) 50%,
+      oklch(0.98 0.01 230) 100%
+    );
+  }
+
+  /* Legacy compat - maps to light gradients */
   .bg-saffron-gradient {
     background: linear-gradient(
       135deg,
-      oklch(0.65 0.22 350) 0%,
-      oklch(0.55 0.2 340) 100%
+      oklch(0.65 0.22 55) 0%,
+      oklch(0.55 0.22 310) 100%
     );
   }
   .bg-navy-gradient {
     background: linear-gradient(
       135deg,
-      oklch(0.92 0.06 350) 0%,
-      oklch(0.88 0.08 350) 100%
+      oklch(0.5 0.22 265) 0%,
+      oklch(0.55 0.22 290) 100%
     );
   }
   .bg-india-gradient {
     background: linear-gradient(
       135deg,
-      oklch(0.65 0.22 350) 0%,
-      oklch(0.99 0 0) 50%,
-      oklch(0.75 0.18 330) 100%
+      oklch(0.65 0.22 55) 0%,
+      oklch(0.55 0.22 310) 50%,
+      oklch(0.55 0.22 290) 100%
     );
   }
+  .bg-page-warm {
+    background-color: oklch(0.98 0.01 60);
+  }
   .bg-hero-pattern {
-    background-color: oklch(0.99 0 0);
+    background-color: oklch(0.97 0.02 290);
     background-image: radial-gradient(
         circle at 15% 25%,
-        oklch(0.65 0.22 350 / 0.18) 0%,
+        oklch(0.55 0.22 350 / 0.12) 0%,
         transparent 50%
       ),
       radial-gradient(
         circle at 85% 75%,
-        oklch(0.75 0.18 330 / 0.14) 0%,
+        oklch(0.55 0.22 230 / 0.1) 0%,
         transparent 50%
       ),
       radial-gradient(
         circle at 65% 10%,
-        oklch(0.65 0.22 350 / 0.1) 0%,
+        oklch(0.55 0.22 145 / 0.08) 0%,
         transparent 40%
       ),
       radial-gradient(
         circle at 40% 90%,
-        oklch(0.8 0.14 20 / 0.1) 0%,
+        oklch(0.65 0.22 55 / 0.08) 0%,
         transparent 35%
       );
   }
 
-  /* Government-approved badge style */
+  /* Light card */
+  .cosmic-card {
+    background: oklch(1 0 0);
+    border: 1px solid oklch(0.9 0.02 260);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px oklch(0.55 0.22 310 / 0.06);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s
+      ease;
+  }
+  .cosmic-card:hover {
+    border-color: oklch(0.55 0.22 310 / 0.4);
+    box-shadow: 0 8px 24px oklch(0.55 0.22 310 / 0.12), 0 2px 8px
+      oklch(0.55 0.22 310 / 0.06);
+    transform: translateY(-2px);
+  }
+
+  /* Colorful glow utilities (soft on light bg) */
+  .neon-glow-cyan {
+    box-shadow: 0 4px 16px oklch(0.55 0.22 230 / 0.35), 0 2px 6px
+      oklch(0.55 0.22 230 / 0.15);
+  }
+  .neon-glow-green {
+    box-shadow: 0 4px 16px oklch(0.5 0.2 145 / 0.35), 0 2px 6px
+      oklch(0.5 0.2 145 / 0.15);
+  }
+  .text-neon-cyan {
+    color: oklch(0.5 0.22 230);
+  }
+  .text-neon-green {
+    color: oklch(0.45 0.2 145);
+  }
+
+  /* Badge styles - bright on light bg */
   .badge-govt {
     @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold;
-    background: oklch(0.65 0.22 350 / 0.1);
-    color: oklch(0.45 0.18 350);
-    border: 1px solid oklch(0.65 0.22 350 / 0.3);
+    background: oklch(0.55 0.22 230 / 0.1);
+    color: oklch(0.4 0.22 230);
+    border: 1px solid oklch(0.55 0.22 230 / 0.3);
   }
   .badge-made-in-india {
     @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold;
-    background: linear-gradient(
-      90deg,
-      oklch(0.65 0.22 350 / 0.12),
-      oklch(0.99 0 0 / 0.5),
-      oklch(0.75 0.18 330 / 0.12)
-    );
-    color: oklch(0.35 0.15 350);
-    border: 1px solid oklch(0.88 0.03 350);
+    background: oklch(0.5 0.2 145 / 0.1);
+    color: oklch(0.35 0.2 145);
+    border: 1px solid oklch(0.5 0.2 145 / 0.3);
   }
 
-  /* Pink divider bar */
+  /* Vibrant tricolor bar */
   .tricolor-bar {
-    height: 4px;
+    height: 3px;
     background: linear-gradient(
       90deg,
-      oklch(0.65 0.22 350) 33.33%,
-      white 33.33% 66.66%,
-      oklch(0.75 0.18 330) 66.66%
+      oklch(0.65 0.22 55) 0%,
+      oklch(0.55 0.22 350) 33%,
+      oklch(0.55 0.22 230) 66%,
+      oklch(0.5 0.2 145) 100%
     );
   }
 
   /* Scrollbar styling */
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: oklch(0.96 0.02 350);
+    background: oklch(0.96 0.01 260);
   }
   ::-webkit-scrollbar-thumb {
-    background: oklch(0.65 0.22 350 / 0.5);
+    background: oklch(0.55 0.22 310 / 0.4);
     border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.55 0.22 310 / 0.7);
   }
 
   /* Page transitions */
   .page-enter {
-    animation: pageEnter 0.3s ease-out;
+    animation: pageEnter 0.35s ease-out;
   }
   @keyframes pageEnter {
     from {
@@ -225,14 +290,25 @@
     }
   }
 
-  /* Card hover effect */
-  .card-hover {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* Bubble float animation */
+  @keyframes bubbleFloat {
+    0% {
+      transform: translateY(100vh) scale(0.8);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.4;
+    }
+    90% {
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(-20vh) scale(1.1);
+      opacity: 0;
+    }
   }
-  .card-hover:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px oklch(0.65 0.22 350 / 0.15), 0 2px 8px
-      oklch(0.65 0.22 350 / 0.1);
+  .bubble-animate {
+    animation: bubbleFloat linear infinite;
   }
 
   /* Float animation */
@@ -242,77 +318,122 @@
       transform: translateY(0);
     }
     50% {
-      transform: translateY(-8px);
+      transform: translateY(-10px);
     }
   }
   .animate-float {
-    animation: float 3s ease-in-out infinite;
+    animation: float 4s ease-in-out infinite;
   }
 
-  /* Pink glow */
-  .glow-saffron {
-    box-shadow: 0 0 20px oklch(0.65 0.22 350 / 0.4), 0 0 40px
-      oklch(0.65 0.22 350 / 0.2);
+  /* Color pulse */
+  @keyframes colorPulse {
+    0%,
+    100% {
+      box-shadow: 0 4px 16px oklch(0.55 0.22 310 / 0.2);
+    }
+    50% {
+      box-shadow: 0 4px 24px oklch(0.55 0.22 310 / 0.45), 0 8px 40px
+        oklch(0.55 0.22 310 / 0.2);
+    }
+  }
+  .neon-pulse {
+    animation: colorPulse 2.5s ease-in-out infinite;
   }
 
-  /* Soft pink glow */
-  .glow-green {
-    box-shadow: 0 0 20px oklch(0.75 0.18 330 / 0.35), 0 0 40px
-      oklch(0.75 0.18 330 / 0.18);
+  /* Card hover effects */
+  .card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-
-  /* Vibrant card hover */
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px oklch(0.55 0.22 310 / 0.15), 0 2px 8px
+      oklch(0.55 0.22 310 / 0.08);
+  }
   .card-vibrant {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
   .card-vibrant:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px oklch(0.65 0.22 350 / 0.18), 0 4px 12px
-      oklch(0.65 0.22 350 / 0.12);
+    box-shadow: 0 12px 40px oklch(0.55 0.22 310 / 0.18), 0 4px 12px
+      oklch(0.55 0.22 310 / 0.1);
   }
 
-  /* Warm gradient section */
+  /* Legacy glow compat */
+  .glow-saffron {
+    box-shadow: 0 4px 20px oklch(0.65 0.22 55 / 0.3), 0 2px 8px
+      oklch(0.65 0.22 55 / 0.15);
+  }
+  .glow-green {
+    box-shadow: 0 4px 20px oklch(0.5 0.2 145 / 0.3), 0 2px 8px
+      oklch(0.5 0.2 145 / 0.15);
+  }
+
+  /* Section gradients - light */
   .section-gradient-warm {
     background: linear-gradient(
       135deg,
-      oklch(0.65 0.22 350 / 0.1) 0%,
-      oklch(0.75 0.18 330 / 0.06) 100%
+      oklch(0.97 0.02 300 / 0.8) 0%,
+      oklch(0.96 0.02 270 / 0.6) 100%
     );
   }
-
-  /* Cool/pink gradient section */
   .section-gradient-cool {
     background: linear-gradient(
       135deg,
-      oklch(0.95 0.04 350) 0%,
-      oklch(0.92 0.06 350) 100%
+      oklch(0.97 0.02 230 / 0.8) 0%,
+      oklch(0.96 0.02 200 / 0.6) 100%
     );
   }
 
-  /* Warm page background for internal pages */
-  .bg-page-warm {
+  /* XP bar gradient */
+  .xp-bar-gradient {
     background: linear-gradient(
-      160deg,
-      oklch(0.99 0.01 350) 0%,
-      oklch(0.97 0.03 350) 50%,
-      oklch(0.99 0.01 0) 100%
+      90deg,
+      oklch(0.55 0.22 350) 0%,
+      oklch(0.55 0.22 290) 50%,
+      oklch(0.55 0.22 230) 100%
     );
   }
 
-  /* Admin card glow border */
-  .admin-card-glow {
+  /* Colorful text gradient */
+  .text-neon-gradient {
     background: linear-gradient(
       135deg,
-      oklch(0.65 0.22 350 / 0.1),
-      oklch(0.75 0.18 330 / 0.06)
+      oklch(0.55 0.22 350) 0%,
+      oklch(0.5 0.22 290) 50%,
+      oklch(0.5 0.22 230) 100%
     );
-    border: 1.5px solid oklch(0.65 0.22 350 / 0.4);
-    box-shadow: 0 0 20px oklch(0.65 0.22 350 / 0.15), 0 4px 16px
-      oklch(0.65 0.22 350 / 0.1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  .admin-card-glow:hover {
-    border-color: oklch(0.65 0.22 350 / 0.7);
-    box-shadow: 0 0 32px oklch(0.65 0.22 350 / 0.28), 0 8px 24px
-      oklch(0.65 0.22 350 / 0.16);
+
+  /* Twinkle kept for legacy */
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  .twinkle-star {
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  /* Wave pulse */
+  @keyframes wavePulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+  }
+  .animate-wave-pulse {
+    animation: wavePulse 3s ease-in-out infinite;
   }
 }

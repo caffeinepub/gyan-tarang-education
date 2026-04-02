@@ -39,7 +39,7 @@ const branches: Branch[] = [
     name: "CSE",
     fullName: "Computer Science Engineering",
     icon: Laptop,
-    color: "oklch(0.45 0.18 270)",
+    color: "oklch(0.70 0.18 270)",
     semesters: [
       {
         sem: 1,
@@ -509,9 +509,9 @@ const branches: Branch[] = [
 ];
 
 const typeColors = {
-  core: "oklch(0.22 0.12 260)",
-  lab: "oklch(0.56 0.18 145)",
-  math: "oklch(0.72 0.18 55)",
+  core: "oklch(0.62 0.28 340)",
+  lab: "oklch(0.65 0.22 340)",
+  math: "oklch(0.76 0.12 350)",
 };
 
 export default function BtechPage() {
@@ -533,13 +533,13 @@ export default function BtechPage() {
             <div className="flex items-center gap-3 mb-3">
               <GraduationCap
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t("BTech All Branches", "BTech All Branches")}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "NPTEL + Virtual Labs + SWAYAM - सभी BTech branches के लिए सरकारी content",
                 "NPTEL + Virtual Labs + SWAYAM - Government content for all BTech branches",
@@ -600,18 +600,18 @@ export default function BtechPage() {
           transition={{ duration: 0.3 }}
         >
           <div
-            className="mb-6 p-6 rounded-2xl text-white"
+            className="mb-6 p-6 rounded-2xl text-foreground"
             style={{
               background: `linear-gradient(135deg, ${branch.color}, ${branch.color}80)`,
             }}
           >
             <div className="flex items-center gap-3 mb-2">
-              <branch.icon className="h-8 w-8 text-white/80" />
+              <branch.icon className="h-8 w-8 text-foreground/80" />
               <div>
                 <h2 className="font-display text-2xl font-black">
                   {branch.name} - {branch.fullName}
                 </h2>
-                <p className="text-white/70 text-sm">
+                <p className="text-foreground/70 text-sm">
                   {t(
                     "NPTEL IIT Professor Lectures - UGC/AICTE Approved",
                     "NPTEL IIT Professor Lectures - UGC/AICTE Approved",
@@ -620,13 +620,13 @@ export default function BtechPage() {
               </div>
             </div>
             <div className="flex gap-2 flex-wrap mt-3">
-              <span className="px-2 py-1 rounded-full text-xs font-semibold bg-white/20">
+              <span className="px-2 py-1 rounded-full text-xs font-semibold bg-card/20">
                 ✅ Government Approved
               </span>
-              <span className="px-2 py-1 rounded-full text-xs font-semibold bg-white/20">
+              <span className="px-2 py-1 rounded-full text-xs font-semibold bg-card/20">
                 📚 IIT & NIT Syllabus
               </span>
-              <span className="px-2 py-1 rounded-full text-xs font-semibold bg-white/20">
+              <span className="px-2 py-1 rounded-full text-xs font-semibold bg-card/20">
                 100% Free
               </span>
             </div>
@@ -790,7 +790,7 @@ export default function BtechPage() {
                         </span>
                       </div>
                       <Button
-                        className="gap-2 shrink-0 bg-saffron hover:bg-saffron/90 text-white"
+                        className="gap-2 shrink-0 bg-saffron hover:bg-saffron/90 text-foreground"
                         onClick={() =>
                           window.open(
                             "https://swayam.gov.in",
@@ -863,7 +863,7 @@ export default function BtechPage() {
                         </span>
                       </div>
                       <Button
-                        className="gap-2 shrink-0 bg-secondary hover:bg-secondary/90 text-white"
+                        className="gap-2 shrink-0 bg-secondary hover:bg-secondary/90 text-foreground"
                         onClick={() =>
                           window.open(
                             "https://vlab.co.in",

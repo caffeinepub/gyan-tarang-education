@@ -19,16 +19,16 @@ import { useState } from "react";
 type ClassFilter = "1-5" | "6-8" | "9-10" | "11-12" | "btech";
 
 const subjectColors: Record<string, string> = {
-  Mathematics: "oklch(0.72 0.18 55)",
-  Science: "oklch(0.45 0.18 220)",
-  Physics: "oklch(0.45 0.18 220)",
-  Chemistry: "oklch(0.56 0.18 145)",
-  Biology: "oklch(0.56 0.18 145)",
-  English: "oklch(0.55 0.15 30)",
-  Hindi: "oklch(0.72 0.18 55)",
+  Mathematics: "oklch(0.76 0.12 350)",
+  Science: "oklch(0.70 0.18 220)",
+  Physics: "oklch(0.70 0.18 220)",
+  Chemistry: "oklch(0.65 0.22 340)",
+  Biology: "oklch(0.65 0.22 340)",
+  English: "oklch(0.80 0.18 30)",
+  Hindi: "oklch(0.76 0.12 350)",
   History: "oklch(0.60 0.14 60)",
   "Social Science": "oklch(0.60 0.14 60)",
-  "Programming & Algorithms": "oklch(0.45 0.18 270)",
+  "Programming & Algorithms": "oklch(0.70 0.18 270)",
   Electronics: "oklch(0.55 0.18 200)",
   Thermodynamics: "oklch(0.60 0.14 40)",
   Structures: "oklch(0.55 0.12 100)",
@@ -37,7 +37,7 @@ const subjectColors: Record<string, string> = {
 };
 
 const getSubjectColor = (subject: string) =>
-  subjectColors[subject] ?? "oklch(0.55 0.12 260)";
+  subjectColors[subject] ?? "oklch(0.70 0.14 260)";
 
 const getSubjectIcon = (subject: string) => {
   if (
@@ -327,13 +327,13 @@ export default function VideoLecturesPage() {
             <div className="flex items-center gap-3 mb-3">
               <Video
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t("Video Lectures", "Video Lectures")}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "NCERT Official (School) + NPTEL (BTech) - सरकारी वीडियो लेक्चर, बिल्कुल मुफ्त",
                 "NCERT Official (School) + NPTEL (BTech) - Government video lectures, completely free",
@@ -346,7 +346,7 @@ export default function VideoLecturesPage() {
                 className="flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold border"
                 style={{
                   background: "oklch(1 0 0 / 0.08)",
-                  color: "oklch(0.95 0 0)",
+                  color: "white",
                   borderColor: "oklch(1 0 0 / 0.2)",
                 }}
               >
@@ -374,7 +374,7 @@ export default function VideoLecturesPage() {
         >
           <Info
             className="h-5 w-5 mt-0.5 shrink-0"
-            style={{ color: "oklch(0.72 0.18 55)" }}
+            style={{ color: "oklch(0.76 0.12 350)" }}
           />
           <div>
             <p className="text-sm font-semibold text-foreground mb-1">
@@ -406,9 +406,9 @@ export default function VideoLecturesPage() {
               style={
                 activeFilter === filter.id
                   ? {
-                      background: "oklch(0.22 0.12 260)",
+                      background: "oklch(0.62 0.28 340)",
                       color: "white",
-                      boxShadow: "0 4px 14px oklch(0.22 0.12 260 / 0.4)",
+                      boxShadow: "0 4px 14px oklch(0.75 0.20 348 / 0.4)",
                     }
                   : {
                       background: "oklch(0.96 0.01 80)",
@@ -434,7 +434,7 @@ export default function VideoLecturesPage() {
             <div className="flex items-center gap-3 mb-6">
               <BookOpen
                 className="h-6 w-6"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
               <h2 className="font-display text-xl font-bold text-foreground">
                 {t("NCERT Video Lectures", "NCERT Video Lectures")}
@@ -592,7 +592,7 @@ export default function VideoLecturesPage() {
             <div className="flex items-center gap-3 mb-6">
               <GraduationCap
                 className="h-6 w-6"
-                style={{ color: "oklch(0.22 0.12 260)" }}
+                style={{ color: "oklch(0.62 0.28 340)" }}
               />
               <h2 className="font-display text-xl font-bold text-foreground">
                 {t("BTech Lectures - NPTEL", "BTech Lectures - NPTEL")}
@@ -609,7 +609,7 @@ export default function VideoLecturesPage() {
             >
               <AlertCircle
                 className="h-4 w-4 mt-0.5 shrink-0"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
               <p className="text-sm text-foreground/80">
                 {t(
@@ -656,9 +656,9 @@ export default function VideoLecturesPage() {
                               <Badge
                                 className="text-[10px] px-1.5 py-0 font-semibold"
                                 style={{
-                                  background: "oklch(0.22 0.12 260 / 0.1)",
-                                  color: "oklch(0.22 0.12 260)",
-                                  borderColor: "oklch(0.22 0.12 260 / 0.3)",
+                                  background: "oklch(0.78 0.18 348 / 0.2)",
+                                  color: "oklch(0.62 0.28 340)",
+                                  borderColor: "oklch(0.78 0.18 348 / 0.35)",
                                 }}
                               >
                                 {video.branch}
@@ -683,7 +683,7 @@ export default function VideoLecturesPage() {
                         <Button
                           className="w-full gap-2 font-bold text-sm group-hover:shadow-md transition-shadow"
                           style={{
-                            background: "oklch(0.72 0.18 55)",
+                            background: "oklch(0.76 0.12 350)",
                             color: "white",
                           }}
                           onClick={() =>
@@ -707,7 +707,7 @@ export default function VideoLecturesPage() {
               <div className="flex items-center gap-3">
                 <FlaskConical
                   className="h-6 w-6"
-                  style={{ color: "oklch(0.22 0.12 260)" }}
+                  style={{ color: "oklch(0.62 0.28 340)" }}
                 />
                 <div>
                   <p className="font-display font-bold text-sm text-foreground">
@@ -744,7 +744,7 @@ export default function VideoLecturesPage() {
           <div className="flex items-start gap-3">
             <Shield
               className="h-5 w-5 mt-0.5 flex-shrink-0"
-              style={{ color: "oklch(0.56 0.18 145)" }}
+              style={{ color: "oklch(0.65 0.22 340)" }}
             />
             <div>
               <p className="font-semibold text-sm text-foreground mb-1">

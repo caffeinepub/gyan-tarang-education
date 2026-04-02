@@ -68,20 +68,20 @@ const subjects = [
 ];
 
 const subjectColors: Record<string, string> = {
-  Mathematics: "oklch(0.72 0.18 55)",
-  Physics: "oklch(0.45 0.18 220)",
-  Chemistry: "oklch(0.56 0.18 145)",
-  Biology: "oklch(0.50 0.18 150)",
-  English: "oklch(0.55 0.15 30)",
-  Hindi: "oklch(0.65 0.16 50)",
-  "Computer Science": "oklch(0.45 0.18 270)",
-  "JEE Prep": "oklch(0.72 0.18 55)",
-  "NEET Prep": "oklch(0.56 0.18 145)",
-  "UPSC Prep": "oklch(0.22 0.12 260)",
+  Mathematics: "oklch(0.76 0.12 350)",
+  Physics: "oklch(0.70 0.18 220)",
+  Chemistry: "oklch(0.65 0.22 340)",
+  Biology: "oklch(0.68 0.20 340)",
+  English: "oklch(0.80 0.18 30)",
+  Hindi: "oklch(0.80 0.16 50)",
+  "Computer Science": "oklch(0.70 0.18 270)",
+  "JEE Prep": "oklch(0.76 0.12 350)",
+  "NEET Prep": "oklch(0.65 0.22 340)",
+  "UPSC Prep": "oklch(0.62 0.28 340)",
 };
 
 const getSubjectColor = (sub: string) =>
-  subjectColors[sub] ?? "oklch(0.55 0.12 260)";
+  subjectColors[sub] ?? "oklch(0.70 0.14 260)";
 
 const STORAGE_KEY = "gt-study-sessions";
 const GOAL_KEY = "gt-daily-goal";
@@ -216,13 +216,13 @@ export default function StudyTrackerPage() {
             <div className="flex items-center gap-3 mb-3">
               <BarChart3
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t("Study Tracker", "Study Tracker")}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "अपनी पढ़ाई track करें, streak बनाएं, goals achieve करें",
                 "Track your study, build streak, achieve goals",
@@ -245,21 +245,21 @@ export default function StudyTrackerPage() {
               icon: Flame,
               label: t("Study Streak", "Study Streak"),
               value: `${streak} ${t("दिन", "days")}`,
-              color: "oklch(0.72 0.18 55)",
+              color: "oklch(0.76 0.12 350)",
               bg: "oklch(0.72 0.18 55 / 0.1)",
             },
             {
               icon: Clock,
               label: t("आज की पढ़ाई", "Today's Study"),
               value: `${todayHours.toFixed(1)}h`,
-              color: "oklch(0.22 0.12 260)",
-              bg: "oklch(0.22 0.12 260 / 0.1)",
+              color: "oklch(0.62 0.28 340)",
+              bg: "oklch(0.78 0.18 348 / 0.2)",
             },
             {
               icon: TrendingUp,
               label: t("Total Hours", "Total Hours"),
               value: `${totalHours.toFixed(1)}h`,
-              color: "oklch(0.56 0.18 145)",
+              color: "oklch(0.65 0.22 340)",
               bg: "oklch(0.56 0.18 145 / 0.1)",
             },
             {
@@ -297,7 +297,7 @@ export default function StudyTrackerPage() {
 
         {/* Today's Progress */}
         <Card className="mb-8 border border-border/50 overflow-hidden">
-          <div className="h-1" style={{ background: "oklch(0.72 0.18 55)" }} />
+          <div className="h-1" style={{ background: "oklch(0.76 0.12 350)" }} />
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-3">
               <h3 className="font-display font-bold text-foreground">
@@ -324,7 +324,7 @@ export default function StudyTrackerPage() {
                 <CardTitle className="font-display text-base flex items-center gap-2">
                   <Plus
                     className="h-4 w-4"
-                    style={{ color: "oklch(0.72 0.18 55)" }}
+                    style={{ color: "oklch(0.76 0.12 350)" }}
                   />
                   {t("Session Log करें", "Log a Session")}
                 </CardTitle>
@@ -386,7 +386,7 @@ export default function StudyTrackerPage() {
                 <Button
                   className="w-full gap-2 font-bold"
                   style={{
-                    background: "oklch(0.72 0.18 55)",
+                    background: "oklch(0.76 0.12 350)",
                     color: "white",
                   }}
                   onClick={addSession}
@@ -426,7 +426,7 @@ export default function StudyTrackerPage() {
                 <CardTitle className="font-display text-base flex items-center gap-2">
                   <Calendar
                     className="h-4 w-4"
-                    style={{ color: "oklch(0.22 0.12 260)" }}
+                    style={{ color: "oklch(0.62 0.28 340)" }}
                   />
                   {t("इस हफ्ते की पढ़ाई", "This Week's Study")}
                 </CardTitle>
@@ -447,10 +447,10 @@ export default function StudyTrackerPage() {
                           height: `${Math.max((day.hours / maxWeeklyHours) * 96, day.hours > 0 ? 8 : 2)}px`,
                           background:
                             day.date === getTodayDate()
-                              ? "oklch(0.72 0.18 55)"
+                              ? "oklch(0.76 0.12 350)"
                               : day.hours > 0
-                                ? "oklch(0.22 0.12 260 / 0.7)"
-                                : "oklch(0.90 0.01 80)",
+                                ? "oklch(0.68 0.22 345)"
+                                : "oklch(0.62 0.28 340)",
                         }}
                       />
                       <span className="text-[10px] text-muted-foreground font-medium">
@@ -463,14 +463,14 @@ export default function StudyTrackerPage() {
                   <div className="flex items-center gap-1">
                     <div
                       className="w-3 h-3 rounded-sm"
-                      style={{ background: "oklch(0.72 0.18 55)" }}
+                      style={{ background: "oklch(0.76 0.12 350)" }}
                     />
                     <span>Today</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <div
                       className="w-3 h-3 rounded-sm"
-                      style={{ background: "oklch(0.22 0.12 260 / 0.7)" }}
+                      style={{ background: "oklch(0.68 0.22 345)" }}
                     />
                     <span>Past days</span>
                   </div>
@@ -485,7 +485,7 @@ export default function StudyTrackerPage() {
                   <CardTitle className="font-display text-base flex items-center gap-2">
                     <BookOpen
                       className="h-4 w-4"
-                      style={{ color: "oklch(0.56 0.18 145)" }}
+                      style={{ color: "oklch(0.65 0.22 340)" }}
                     />
                     {t("Subject Breakdown", "Subject Breakdown")}
                   </CardTitle>
@@ -525,7 +525,7 @@ export default function StudyTrackerPage() {
                 <CardTitle className="font-display text-base flex items-center gap-2">
                   <Clock
                     className="h-4 w-4"
-                    style={{ color: "oklch(0.72 0.18 55)" }}
+                    style={{ color: "oklch(0.76 0.12 350)" }}
                   />
                   {t("Recent Sessions", "Recent Sessions")}
                   <Badge className="ml-auto bg-saffron/10 text-saffron border-saffron/20">

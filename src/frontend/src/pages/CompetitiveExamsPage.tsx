@@ -382,13 +382,13 @@ export default function CompetitiveExamsPage() {
             <div className="flex items-center gap-3 mb-3">
               <Trophy
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t("Competitive Exams", "Competitive Exams")}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "50+ Competitive Exams की free preparation - JEE, NEET, UPSC, SSC, Banking, Railway और बहुत कुछ",
                 "Free preparation for 50+ competitive exams - JEE, NEET, UPSC, SSC, Banking, Railway and more",
@@ -433,7 +433,7 @@ export default function CompetitiveExamsPage() {
               }`}
               style={
                 activeCategory === cat.id
-                  ? { background: "oklch(0.72 0.18 55)" }
+                  ? { background: "oklch(0.76 0.12 350)" }
                   : {}
               }
             >
@@ -466,10 +466,10 @@ export default function CompetitiveExamsPage() {
                   style={{
                     background:
                       exam.color === "saffron"
-                        ? "oklch(0.72 0.18 55)"
+                        ? "oklch(0.76 0.12 350)"
                         : exam.color === "navy"
-                          ? "oklch(0.22 0.12 260)"
-                          : "oklch(0.56 0.18 145)",
+                          ? "oklch(0.62 0.28 340)"
+                          : "oklch(0.65 0.22 340)",
                   }}
                 />
                 <CardContent className="p-4">
@@ -485,14 +485,14 @@ export default function CompetitiveExamsPage() {
                           exam.color === "saffron"
                             ? "oklch(0.72 0.18 55 / 0.4)"
                             : exam.color === "navy"
-                              ? "oklch(0.22 0.12 260 / 0.4)"
+                              ? "oklch(0.75 0.20 348 / 0.4)"
                               : "oklch(0.56 0.18 145 / 0.4)",
                         color:
                           exam.color === "saffron"
-                            ? "oklch(0.72 0.18 55)"
+                            ? "oklch(0.76 0.12 350)"
                             : exam.color === "navy"
-                              ? "oklch(0.22 0.12 260)"
-                              : "oklch(0.56 0.18 145)",
+                              ? "oklch(0.62 0.28 340)"
+                              : "oklch(0.65 0.22 340)",
                       }}
                     >
                       {exam.level}
@@ -508,10 +508,10 @@ export default function CompetitiveExamsPage() {
                       style={{
                         background:
                           exam.color === "saffron"
-                            ? "oklch(0.72 0.18 55)"
+                            ? "oklch(0.76 0.12 350)"
                             : exam.color === "navy"
-                              ? "oklch(0.22 0.12 260)"
-                              : "oklch(0.56 0.18 145)",
+                              ? "oklch(0.62 0.28 340)"
+                              : "oklch(0.65 0.22 340)",
                         color: "white",
                       }}
                       onClick={() => window.open(exam.officialUrl, "_blank")}

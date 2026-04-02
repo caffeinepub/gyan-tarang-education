@@ -1,55 +1,46 @@
 # Gyan Tarang Education & Technology
 
 ## Current State
-- Full-stack Caffeine app with Motoko backend and React frontend
-- Backend has: ContentItem CRUD, UserProfile management, Quiz scores, User roles (admin/user/guest), Groups, Quotes
-- Frontend has multiple pages but has been failing builds due to excessive complexity
-- Previous builds had issues with logo not showing, videos not loading, and too many features causing build failures
+App is running v12 with Cosmic Dark + Neon Cyan/Green theme:
+- Dark space background (deep black/dark blue)
+- Neon cyan/green glowing accents
+- Twinkling starfield animation (StarfieldBackground component)
+- Dark navbar, dark cards, dark footer
+- All 22+ pages, Admin Panel, Gyan Mitra AI, 5 Advanced AI pages, Gamification system
 
 ## Requested Changes (Diff)
 
 ### Add
-- Official Gyan Tarang logo (diya + Ashoka chakra, saffron/navy colors) in navbar and hero
-- Gyan Mitra AI Doubt Solver -- interactive chat-style doubt clearing for all subjects (simulated AI responses for Maths, Science, English, History, GK, Career)
-- Mock Tests section -- CBSE, JEE, NEET, UPSC, SSC (copyright-free, government-approved style questions)
-- Study Tracker page -- daily study log, weekly chart, streak counter
-- Wellness Hub -- Pomodoro timer, health tips, motivation quotes
-- Admin Panel with category-wise sections: Content Management, User Management, Mock Tests Management, Announcements
-- BTech section with all 8 branches (CSE, ECE, ME, CE, EE, IT, Chemical, Biotech) linking to NPTEL
-- Competitive Exams section (30+ exams with official government links)
-- Government Jobs/Scholarships page with NSP, NCS, official links
+- Vibrant multicolor rainbow accents: pink, purple, blue, green, orange used across different sections/components
+- Bright colorful gradient backgrounds on hero sections (white + multicolor gradients)
+- Colorful card borders/accent lines per category (AI features = purple, NCERT = green, Competitive = orange, etc.)
+- Colorful animated floating shapes/bubbles replacing starfield (soft pastel colored circles in background)
 
 ### Modify
-- Video Lectures page: replace iframe embeds with direct YouTube link cards (Hindi + English tabs), use NCERT/DIKSHA/NPTEL/SWAYAM official playlists
-- NCERT Books page: class 1-12 with ncert.nic.in direct links
-- Login page: Email + Phone OTP (simulated) + Internet Identity
-- Dashboard: Admin users see glowing Admin Panel card; all users see personalized welcome with quick links
-- Overall color theme: saffron (#FF6B00) primary, deep navy (#0A1628) secondary, white accents
-- Slogan: "नहीं आता है? सीखो!" visible on hero/landing
+- Background: dark space → clean white/light gray (#f8fafc or white)
+- Navbar: dark/neon → white with colorful gradient logo area and rainbow underline
+- Footer: dark → light white/gray with colorful accent
+- All card backgrounds: dark → white with colorful border accents
+- All text: neon/white-on-dark → dark text (#1e293b) on light backgrounds
+- Buttons: neon glow → bright colorful gradients (pink-to-purple, blue-to-cyan, orange-to-yellow)
+- StarfieldBackground: replace with LightBubbleBackground (soft floating colored circles)
+- Hero sections: dark gradient → white/light with vibrant multicolor gradient accents
+- index.css CSS variables: update all dark theme variables to light bright theme
+- tailwind.config.js: update color palette to bright multicolor
 
 ### Remove
-- No features removed -- simplify implementation to avoid build failures
-- Remove iframe video embeds that cause "not found" errors
+- Starfield/space/dark CSS classes and variables
+- Neon glow effects (box-shadow: neon cyan/green)
+- Dark background colors everywhere
 
 ## Implementation Plan
-
-1. Generate official Gyan Tarang logo image (saffron diya + Ashoka chakra)
-2. Build frontend with these pages (keep each page focused and lean):
-   - `/` -- Landing page with hero, features grid, slogan, logo
-   - `/login` -- Auth page (Email, Phone OTP, Internet Identity)
-   - `/dashboard` -- User dashboard with quick access cards, admin card if admin
-   - `/ncert` -- NCERT Books class 1-12, subject links to ncert.nic.in
-   - `/videos` -- Video Lectures with Hindi/English tabs, YouTube direct links
-   - `/notes` -- Notes & PDF section (NCERT, BTech NPTEL, Competitive)
-   - `/pyq` -- Previous Year Question Papers
-   - `/btech` -- BTech section, 8 branches, NPTEL links
-   - `/competitive` -- 30+ Competitive Exams
-   - `/gyan-mitra` -- AI Doubt Solver chat interface
-   - `/mock-tests` -- Mock Tests with subject selection and quiz UI
-   - `/study-tracker` -- Study log, streak, weekly chart
-   - `/wellness` -- Pomodoro, tips, motivation
-   - `/govt-jobs` -- Government jobs, scholarships, schemes
-   - `/admin` -- Admin Panel (Content, Users, Mock Tests, Announcements tabs)
-3. Wire backend APIs: content items (admin), user profiles, quiz scores, user roles
-4. Apply saffron theme throughout, logo in navbar and hero
-5. All external links open in new tab with rel="noopener noreferrer"
+1. Update index.css - replace all dark/neon CSS variables with light bright multicolor palette
+2. Update tailwind.config.js - add bright multicolor color tokens
+3. Replace StarfieldBackground.tsx with LightBubbleBackground.tsx (animated soft colored floating circles)
+4. Update Navbar.tsx - white background, colorful logo area, rainbow gradient accents
+5. Update Footer.tsx - white/light background, colorful accents
+6. Update LandingPage.tsx - white background, multicolor gradient hero, colorful feature cards
+7. Update DashboardPage.tsx - white background, colorful stat cards
+8. Update all AI pages (AIStudyPlannerPage, AIQuizGeneratorPage, AIPerformancePage, AICareerPage, AISummarizerPage) - light theme
+9. Update all other pages (NCERTPage, VideoLecturesPage, NotesPage, MockTestsPage, etc.) - light theme
+10. Ensure all text is dark (#1e293b) on light backgrounds for readability

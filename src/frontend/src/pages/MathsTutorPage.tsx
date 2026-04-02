@@ -288,13 +288,13 @@ export default function MathsTutorPage() {
             <div className="flex items-center gap-3 mb-3">
               <Brain
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t("AI Maths Tutor", "AI Maths Tutor")}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "Basic से Advanced तक - Step-by-step solutions के साथ Mathematics practice",
                 "From Basic to Advanced - Mathematics practice with step-by-step solutions",
@@ -332,7 +332,7 @@ export default function MathsTutorPage() {
                         }`}
                         style={
                           topic === t
-                            ? { background: "oklch(0.72 0.18 55)" }
+                            ? { background: "oklch(0.76 0.12 350)" }
                             : {}
                         }
                       >
@@ -369,10 +369,10 @@ export default function MathsTutorPage() {
                             ? {
                                 background:
                                   d === "basic"
-                                    ? "oklch(0.56 0.18 145)"
+                                    ? "oklch(0.65 0.22 340)"
                                     : d === "intermediate"
-                                      ? "oklch(0.72 0.18 55)"
-                                      : "oklch(0.22 0.12 260)",
+                                      ? "oklch(0.76 0.12 350)"
+                                      : "oklch(0.62 0.28 340)",
                               }
                             : {}
                         }
@@ -395,7 +395,7 @@ export default function MathsTutorPage() {
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingUp
                     className="h-4 w-4"
-                    style={{ color: "oklch(0.56 0.18 145)" }}
+                    style={{ color: "oklch(0.65 0.22 340)" }}
                   />
                   <span className="text-sm font-semibold text-foreground">
                     Progress
@@ -444,7 +444,7 @@ export default function MathsTutorPage() {
                         <div className="flex items-center gap-2">
                           <Badge
                             style={{
-                              background: "oklch(0.72 0.18 55)",
+                              background: "oklch(0.76 0.12 350)",
                               color: "white",
                             }}
                           >
@@ -467,8 +467,8 @@ export default function MathsTutorPage() {
                       <div
                         className="p-5 rounded-xl mb-6 border"
                         style={{
-                          background: "oklch(0.22 0.12 260 / 0.05)",
-                          borderColor: "oklch(0.22 0.12 260 / 0.15)",
+                          background: "oklch(0.78 0.18 348 / 0.15)",
+                          borderColor: "oklch(0.78 0.18 348 / 0.25)",
                         }}
                       >
                         <p className="font-display font-bold text-lg text-foreground leading-relaxed">
@@ -500,7 +500,7 @@ export default function MathsTutorPage() {
                                 selectedOption === null
                                   ? "oklch(0.88 0.02 260)"
                                   : idx === current.answer
-                                    ? "oklch(0.56 0.18 145)"
+                                    ? "oklch(0.65 0.22 340)"
                                     : selectedOption === idx
                                       ? "oklch(0.57 0.25 27)"
                                       : undefined,
@@ -513,7 +513,7 @@ export default function MathsTutorPage() {
                                   background:
                                     selectedOption !== null &&
                                     idx === current.answer
-                                      ? "oklch(0.56 0.18 145)"
+                                      ? "oklch(0.65 0.22 340)"
                                       : "oklch(0.88 0.02 260)",
                                   color:
                                     selectedOption !== null &&
@@ -529,7 +529,7 @@ export default function MathsTutorPage() {
                                 idx === current.answer && (
                                   <CheckCircle
                                     className="h-4 w-4 ml-auto"
-                                    style={{ color: "oklch(0.56 0.18 145)" }}
+                                    style={{ color: "oklch(0.65 0.22 340)" }}
                                   />
                                 )}
                               {selectedOption === idx &&
@@ -562,8 +562,8 @@ export default function MathsTutorPage() {
                               <div
                                 className="p-4 rounded-xl border"
                                 style={{
-                                  background: "oklch(0.22 0.12 260 / 0.05)",
-                                  borderColor: "oklch(0.22 0.12 260 / 0.2)",
+                                  background: "oklch(0.78 0.18 348 / 0.15)",
+                                  borderColor: "oklch(0.78 0.18 348 / 0.3)",
                                 }}
                               >
                                 <p className="text-sm font-semibold text-foreground mb-2">
@@ -576,7 +576,7 @@ export default function MathsTutorPage() {
                             )}
 
                             <Button
-                              className="w-full gap-2 bg-saffron hover:bg-saffron/90 text-white"
+                              className="w-full gap-2 bg-saffron hover:bg-saffron/90 text-foreground"
                               onClick={handleNext}
                               data-ocid="maths.button"
                             >

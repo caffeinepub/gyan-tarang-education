@@ -359,13 +359,13 @@ export default function PlacementPage() {
             <div className="flex items-center gap-3 mb-3">
               <Briefcase
                 className="h-8 w-8"
-                style={{ color: "oklch(0.72 0.18 55)" }}
+                style={{ color: "oklch(0.76 0.12 350)" }}
               />
-              <h1 className="font-display text-3xl font-black text-white">
+              <h1 className="font-display text-3xl font-black text-foreground">
                 {t("Placement Preparation", "Placement Preparation")}
               </h1>
             </div>
-            <p className="text-white/70">
+            <p className="text-foreground/70">
               {t(
                 "BTech सभी branches के लिए placement preparation - DSA, Core Subjects, Interview Tips",
                 "Placement prep for all BTech branches - DSA, Core Subjects, Interview Tips",
@@ -394,7 +394,7 @@ export default function PlacementPage() {
                 }`}
                 style={
                   selectedBranch === branch
-                    ? { background: "oklch(0.22 0.12 260)" }
+                    ? { background: "oklch(0.62 0.28 340)" }
                     : {}
                 }
                 data-ocid="placement.tab"
@@ -439,7 +439,7 @@ export default function PlacementPage() {
                         <div className="flex items-center gap-3">
                           <Code
                             className="h-5 w-5"
-                            style={{ color: "oklch(0.72 0.18 55)" }}
+                            style={{ color: "oklch(0.76 0.12 350)" }}
                           />
                           <span className="text-sm font-medium text-foreground">
                             {res.name}
@@ -469,7 +469,7 @@ export default function PlacementPage() {
                       >
                         <CheckCircle
                           className="h-3.5 w-3.5 mt-0.5 flex-shrink-0"
-                          style={{ color: "oklch(0.56 0.18 145)" }}
+                          style={{ color: "oklch(0.65 0.22 340)" }}
                         />
                         {tip}
                       </li>
@@ -491,7 +491,7 @@ export default function PlacementPage() {
                     >
                       <Cpu
                         className="h-4 w-4"
-                        style={{ color: "oklch(0.22 0.12 260)" }}
+                        style={{ color: "oklch(0.62 0.28 340)" }}
                       />
                       <span className="text-sm font-medium text-foreground">
                         {subject}
@@ -512,7 +512,7 @@ export default function PlacementPage() {
                         <div className="flex items-center gap-2">
                           <BookOpen
                             className="h-4 w-4"
-                            style={{ color: "oklch(0.56 0.18 145)" }}
+                            style={{ color: "oklch(0.65 0.22 340)" }}
                           />
                           <span className="text-sm">{tool.name}</span>
                         </div>
@@ -563,7 +563,7 @@ export default function PlacementPage() {
                         <div className="flex items-center gap-3">
                           <TrendingUp
                             className="h-5 w-5"
-                            style={{ color: "oklch(0.72 0.18 55)" }}
+                            style={{ color: "oklch(0.76 0.12 350)" }}
                           />
                           <span className="text-sm font-medium">
                             {res.name}
